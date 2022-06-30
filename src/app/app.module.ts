@@ -10,11 +10,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UsersComponent } from './components/users/users.component';
-
-const appRoutes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'dashboard', component: DashboardComponent }
-]
+import { NavComponent } from './components/nav/nav.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +19,14 @@ const appRoutes: Routes = [
     HeaderComponent,
     DashboardComponent,
     FooterComponent,
-    UsersComponent
+    UsersComponent,
+    NavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: true})
-
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
