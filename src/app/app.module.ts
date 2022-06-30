@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from "@angular/router";
 
 
@@ -11,8 +12,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { UsersComponent } from './components/users/users.component';
 
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: '', component: AppComponent }
+  { path: '', component: AppComponent },
+  { path: 'dashboard', component: DashboardComponent }
 ]
 
 @NgModule({
@@ -25,7 +26,10 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes, {enableTracing: true})
+
   ],
   providers: [],
   bootstrap: [AppComponent]
