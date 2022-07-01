@@ -2,7 +2,9 @@
   <div class="card">
     <h5 class="card-header">{{reservation?.name}}</h5>
     <div class="card-body">
-      <h5 class="card-title">Start - end {{reservation?.started_at}} - {{reservation?.finished_at}}</h5>
+      <h5 class="card-title">
+
+        {{reservation?.startedAt}} - {{reservation?.finishedAt}}</h5>
       <p class="card-text">{{reservation?.status}}</p>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
