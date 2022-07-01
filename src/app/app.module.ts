@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { RoomComponent } from './components/room/room.component';
+import { RoomItemComponent } from './components/room-item/room-item.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RoomComponent } from './components/room/room.component';
     HomeComponent,
     UserComponent,
     ReservationComponent,
-    RoomComponent
+    RoomComponent,
+    RoomItemComponent
   ],
   imports: [
     BrowserModule,

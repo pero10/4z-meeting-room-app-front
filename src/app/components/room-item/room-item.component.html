@@ -1,0 +1,16 @@
+<div class="container-lg mb2 mt2">
+<div class="card">
+  <h5 class="card-header">Room #{{room?.id}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{room?.name}}</h5>
+    <p class="card-text no-margin">Located at {{room?.location}}</p>
+    <label for="tvCheckbox">tv</label>
+      <input [checked]="room?.tv" id="tvCheckbox" type="checkbox" disabled><br>
+    <label for="whiteboardCheckBox">white board</label>
+      <input [checked]="room?.whiteboard" id="whiteboardCheckBox" type="checkbox" disabled><br>
+    <label for="videocallCheckbox">video call</label>
+    <input [checked]="room?.videocall" id="videocallCheckbox" type="checkbox" disabled><br>
+    <a routerLink="/reservation" class="btn btn-primary">Make reservation</a>
+  </div>
+</div>
+</div>

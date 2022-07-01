@@ -9,3 +9,21 @@
   height:80vh;
   width: 900px;
 }
+
+.be-smaller-please{
+  display: flex;
+  justify-content: space-around;
+  width: 900px;
+}
+
+.mb2{
+  margin-bottom: 20px;
+}
+
+.mt2{
+  margin-top: 20px;
+}
+
+.no-margin{
+  margin-bottom: 5px;
+}
