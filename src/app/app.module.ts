@@ -15,6 +15,9 @@ import { UserComponent } from './components/user/user.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { RoomComponent } from './components/room/room.component';
 import { RoomItemComponent } from './components/room-item/room-item.component';
+import { ButtonComponent } from './components/button/button.component';
+import { ReservationItemComponent } from './components/reservation-item/reservation-item.component';
+import { UserItemComponent } from './components/user-item/user-item.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,11 @@ import { RoomItemComponent } from './components/room-item/room-item.component';
     UserComponent,
     ReservationComponent,
     RoomComponent,
-    RoomItemComponent
+    RoomItemComponent,
+    RoomComponent,
+    ButtonComponent,
+    ReservationItemComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,
