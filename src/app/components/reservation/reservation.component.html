@@ -1,1 +1,4 @@
-<p>reservation works!</p>
+<app-reservation-item
+  *ngFor="let reservation of reservations"
+  [reservation]="reservation"
+></app-reservation-item>
