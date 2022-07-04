@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from "../../User";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-user-item',
@@ -9,6 +10,8 @@ import {User} from "../../User";
 export class UserItemComponent implements OnInit {
   @Input() user ?: User;
   @Output() onDeleteUser : EventEmitter<User> = new EventEmitter();
+
+  faDelete = faTimes;
 
   constructor() { }
 

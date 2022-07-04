@@ -1,5 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Room} from "../../Room";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
+
 
 @Component({
   selector: 'app-room-item',
@@ -9,6 +11,8 @@ import {Room} from "../../Room";
 export class RoomItemComponent implements OnInit {
   @Input() room?:Room;
   @Output() onDeleteRoom : EventEmitter<Room> = new EventEmitter();
+
+  faDelete = faTimes;
 
   constructor() { }
 
