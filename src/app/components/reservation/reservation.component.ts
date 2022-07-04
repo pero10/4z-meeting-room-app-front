@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ReservationService } from "../../services/reservation.service";
-import { Reservation } from "../../Reservation";
+import {Component, OnInit} from '@angular/core';
+import {ReservationService} from "../../services/reservation.service";
+import {Reservation} from "../../Reservation";
 
 @Component({
   selector: 'app-reservation',
@@ -8,14 +8,23 @@ import { Reservation } from "../../Reservation";
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent implements OnInit {
-  reservations: Reservation[] = [];
+  reservations: Reservation[] = []
 
-  constructor(private reservationServices: ReservationService) { }
+  constructor(private reservationService: ReservationService) {
+  }
 
   ngOnInit(): void {
-    this.reservationServices.getReservations().subscribe(
+    this.reservationService.getReservations().subscribe(
       (reservations) => (this.reservations = reservations)
     );
+  }
+
+  deleteReservationById(reservation: Reservation) {
+    this.reservationService
+      .deleteReservation(reservation)
+      .subscribe(
+        () => (this.reservations = this.reservations.filter((r) => r.id !== reservation.id))
+      );
   }
 
 }

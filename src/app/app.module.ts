@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {Router, RouterModule, Routes} from "@angular/router";
 
 
@@ -37,12 +37,13 @@ import { UserItemComponent } from './components/user-item/user-item.component';
     ReservationItemComponent,
     UserItemComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    // FontAwesomeModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FontAwesomeModule,
+        FontAwesomeModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

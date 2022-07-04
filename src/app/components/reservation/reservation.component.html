@@ -1,4 +1,5 @@
 <app-reservation-item
   *ngFor="let reservation of reservations"
   [reservation]="reservation"
+  (deleteReservationTask)="deleteReservationById(reservation)"
 ></app-reservation-item>

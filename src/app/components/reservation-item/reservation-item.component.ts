@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Reservation } from "../../Reservation";
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Reservation} from "../../Reservation";
+import {faClock} from '@fortawesome/free-solid-svg-icons';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-reservation-item',
@@ -7,11 +9,22 @@ import { Reservation } from "../../Reservation";
   styleUrls: ['./reservation-item.component.css']
 })
 export class ReservationItemComponent implements OnInit {
-  @Input() reservation ?: Reservation;
+  @Input() reservation?: Reservation;
+  @Output() deleteReservationTask:EventEmitter<Reservation> = new EventEmitter<Reservation>();
+  @Output() updateReservationTask:EventEmitter<Reservation> = new EventEmitter<Reservation>();
 
-  constructor() {}
+  faClock = faClock;
+  faDelete = faTimes;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  deleteReservation(reservation: any) {
+    this.deleteReservationTask.emit(reservation);
+    // console.log(reservation);
   }
 
 }

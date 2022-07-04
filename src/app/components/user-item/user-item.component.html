@@ -1,11 +1,11 @@
 <div class="container-lg mt-5">
   <div class="card">
-    <h5 class="card-header">{{user?.first_name}} {{user?.last_name}}</h5>
+    <h5 class="card-header">{{user?.firstName}} {{user?.lastName}}</h5>
     <div class="card-body">
       <h5 class="card-title"></h5>
       <p class="card-text">Email: {{user?.email}}</p>
       <p class="card-text">Phone: {{user?.phone}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="#" (click)="onClickMakeReservation" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
 </div>
