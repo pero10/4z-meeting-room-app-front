@@ -1,12 +1,18 @@
 <div class="container-lg mt-5">
   <div class="card">
-    <h5 class="card-header">{{user?.firstName}} {{user?.lastName}}</h5>
+    <h5 class="card-header">{{user?.firstName}} {{user?.lastName}}
+      <fa-icon
+        (click)="onDelete(user)"
+        [ngStyle]="{'color':'#f00','float':'right'}"
+        [icon]="faDelete"
+        class="pointer">
+      </fa-icon>
+    </h5>
     <div class="card-body">
       <h5 class="card-title"></h5>
       <p class="card-text">Email: {{user?.email}}</p>
       <p class="card-text">Phone: {{user?.phone}}</p>
       <a href="#" (click)="onClickMakeReservation" class="btn btn-primary">Go somewhere</a>
-      <a href="#" class="btn btn-danger" (click)="onDelete(user)">Delete</a>
     </div>
   </div>
 </div>
