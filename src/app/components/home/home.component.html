@@ -1,1 +1,7 @@
-<p>houm bez icega odnosno index pristupacan svima</p>
+<div class="container mt-5">
+  <h1 class="text-primary">Today's reservations</h1>
+</div>
+<app-home-item
+  *ngFor="let reservation of reservations"
+  [reservation]="reservation"
+></app-home-item>

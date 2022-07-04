@@ -1,0 +1,18 @@
+<div class="container-lg mt-5">
+  <div class="card">
+    <h5 class="card-header">{{reservation?.name}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">
+        <fa-icon
+          [icon]="faClock"
+        >
+        </fa-icon> {{reservation?.startedAt}}<br>
+        <fa-icon
+          [icon]="faClock"
+        >
+        </fa-icon> {{reservation?.finishedAt}}
+      </h5>
+      <p class="card-text">{{reservation?.status}}</p>
+    </div>
+  </div>
+</div>
