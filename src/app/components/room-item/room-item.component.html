@@ -10,7 +10,8 @@
       <input [checked]="room?.whiteboard" id="whiteboardCheckBox" type="checkbox" disabled><br>
     <label for="videocallCheckbox">video call</label>
     <input [checked]="room?.videocall" id="videocallCheckbox" type="checkbox" disabled><br>
-    <a routerLink="/reservation" class="btn btn-primary">Make reservation</a>
+    <a routerLink="/reservation" class="btn btn-primary me-3">Make</a>
+    <a class="btn btn-danger" (click)="onDelete(room)">Delete</a>
   </div>
 </div>
 </div>

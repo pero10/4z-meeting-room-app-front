@@ -1,4 +1,5 @@
 <app-user-item
   *ngFor="let user of users"
+  (onDeleteUser) = "deleteUser(user)"
   [user]="user"
 ></app-user-item>

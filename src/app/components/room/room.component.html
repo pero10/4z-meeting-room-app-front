@@ -1,6 +1,7 @@
-  <app-room-item
-    *ngFor="let room of rooms"
-    [room]="room"
-  >
-  </app-room-item>
+<app-room-item
+  *ngFor="let room of rooms"
+  [room]="room"
+  (onDeleteRoom)="deleteRoom(room)"
+>
+</app-room-item>
 

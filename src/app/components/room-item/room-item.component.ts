@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Room} from "../../Room";
 
 @Component({
@@ -7,11 +7,17 @@ import {Room} from "../../Room";
   styleUrls: ['./room-item.component.css']
 })
 export class RoomItemComponent implements OnInit {
-  @Input() room?:Room
+  @Input() room?:Room;
+  @Output() onDeleteRoom : EventEmitter<Room> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onDelete(room ?: Room){
+    this.onDeleteRoom.emit(room);
+    // console.log(room);
   }
 
 }

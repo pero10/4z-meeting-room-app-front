@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from "../../User";
 
 @Component({
@@ -8,6 +8,7 @@ import {User} from "../../User";
 })
 export class UserItemComponent implements OnInit {
   @Input() user ?: User;
+  @Output() onDeleteUser : EventEmitter<User> = new EventEmitter();
 
   constructor() { }
 
@@ -16,6 +17,10 @@ export class UserItemComponent implements OnInit {
 
   onClickMakeReservation(){
 
+  }
+
+  onDelete(user?: User){
+    this.onDeleteUser.emit(user);
   }
 
 }

@@ -7,6 +7,7 @@ import {Room} from "../../Room";
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.css']
 })
+
 export class RoomComponent implements OnInit {
   rooms:Room[]=[];
 
@@ -14,6 +15,12 @@ export class RoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
+  }
+
+  deleteRoom(room: Room){
+    this.roomService.deleteRoom(room).subscribe(
+      () => (this.rooms = this.rooms.filter(r => r.id !== room.id))
+    );
   }
 
 }

@@ -41,7 +41,6 @@ import { UserItemComponent } from './components/user-item/user-item.component';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FontAwesomeModule,
         FontAwesomeModule
     ],
   providers: [],
