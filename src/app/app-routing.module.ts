@@ -11,7 +11,7 @@ const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'dashboard/user', component: UserComponent },
   { path: 'dashboard/reservation', component: ReservationComponent },
-  { path: 'dashboard/room', component: RoomComponent }
+  { path: 'dashboard/room', component: RoomComponent },
 ]
 
 @NgModule({

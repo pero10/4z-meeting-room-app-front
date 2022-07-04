@@ -1,7 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Reservation} from "../../Reservation";
-import {faClock} from '@fortawesome/free-solid-svg-icons';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faClock, faTimes, faEye} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-reservation-item',
@@ -15,6 +14,7 @@ export class ReservationItemComponent implements OnInit {
 
   faClock = faClock;
   faDelete = faTimes;
+  faEye = faEye;
 
   constructor() {
   }
@@ -24,7 +24,6 @@ export class ReservationItemComponent implements OnInit {
 
   deleteReservation(reservation: any) {
     this.deleteReservationTask.emit(reservation);
-    // console.log(reservation);
   }
 
 }
