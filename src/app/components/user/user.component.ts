@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from "../../services/user.service";
 import { User } from "../../User";
+import {Reservation} from "../../Reservation";
+import {ModalService} from "../../services/modal.service";
 
 
 @Component({
@@ -10,8 +12,9 @@ import { User } from "../../User";
 })
 export class UserComponent implements OnInit {
   users: User[] = [];
+  selectedUser ?: User;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public modalService : ModalService) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(
@@ -23,6 +26,16 @@ export class UserComponent implements OnInit {
     this.userService.deleteUser(user).subscribe(
       () => (this.users = this.users.filter(u => u.id !== user.id))
     );
+  }
+
+  onModalToggle(user : User){
+    this.modalService.showDialog = true;
+    this.selectedUser = user;
+  }
+
+  deleteTrigger(user : User){
+    this.deleteUser(user);
+    this.modalService.showDialog = false;
   }
 
 }

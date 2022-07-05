@@ -2,4 +2,10 @@
   *ngFor="let user of users"
   (onDeleteUser) = "deleteUser(user)"
   [user]="user"
+  (onShowModalUser)="onModalToggle(user)"
 ></app-user-item>
+<app-modal-user
+  *ngIf="modalService.showDialog"
+  [user]="selectedUser"
+  (onDeleteTrigger)="deleteTrigger($event)"
+></app-modal-user>

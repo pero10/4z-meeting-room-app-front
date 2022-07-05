@@ -1,0 +1,27 @@
+<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">#{{ reservation?.id }} {{ reservation?.name }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="modalService.showDialog = false"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <fa-icon [icon]="faClock"></fa-icon> {{reservation?.startedAt}}
+        </p>
+        <p>
+          <fa-icon [icon]="faClock"></fa-icon> {{reservation?.finishedAt}}
+        </p>
+        <p>
+          {{reservation?.status}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="modalService.showDialog = false">Okay</button>
+        <button class="btn btn-danger" (click)="deleteTrigger(reservation)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

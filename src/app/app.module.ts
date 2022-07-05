@@ -23,6 +23,8 @@ import { UserItemComponent } from './components/user-item/user-item.component';
 import { HomeItemComponent } from './components/home-item/home-item.component';
 import { ModalTempComponent } from './components/modal-temp/modal-temp.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalReservationComponent } from './components/modal-reservation/modal-reservation.component';
+import { ModalUserComponent } from './components/modal-user/modal-user.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserItemComponent,
     HomeItemComponent,
     ModalTempComponent,
+    ModalReservationComponent,
+    ModalUserComponent,
   ],
     imports: [
         BrowserModule,
