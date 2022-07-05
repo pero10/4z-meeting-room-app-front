@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
 import {Room} from "../../Room";
+import {faTv, faCamera, faLocationDot, faChalkboard} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-modal-temp',
@@ -10,6 +12,11 @@ import {Room} from "../../Room";
 export class ModalTempComponent implements OnInit {
   @Input() room?:Room;
   @Output() onDeleteTrigger : EventEmitter<Room> = new EventEmitter();
+
+  faTv = faTv;
+  faCamera = faCamera;
+  faLocationDot = faLocationDot;
+  faWhiteBoard = faChalkboard;
 
   constructor(public modalService : ModalService) {}
 

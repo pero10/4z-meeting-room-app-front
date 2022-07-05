@@ -2,28 +2,22 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title">#{{ room?.id }} {{ room?.name }}</h1>
+        <h1 class="modal-title">#{{ user?.id }} {{ user?.firstName }} {{ user?.lastName }}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                 (click)="modalService.showDialog = false"
         ></button>
       </div>
       <div class="modal-body">
         <h3>
-          <fa-icon [icon]="faLocationDot"></fa-icon> {{room?.location}}
+          <fa-icon [icon]="faAt"></fa-icon> {{user?.email}}
         </h3>
         <h3>
-          <fa-icon [icon]="faTv"></fa-icon> {{room?.tv  ? 'ima' : 'nema'}}
-        </h3>
-        <h3>
-          <fa-icon [icon]="faCamera"></fa-icon> {{room?.videocall ? 'ima' : 'nema'}}
-        </h3>
-        <h3>
-          <fa-icon [icon]="faWhiteBoard"></fa-icon> {{room?.whiteboard ? 'ima' : 'nema'}}
+          <fa-icon [icon]="faPhone"></fa-icon> {{user?.phone}}
         </h3>
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" (click)="modalService.showDialog = false">Okay</button>
-        <button class="btn btn-danger" (click)="deleteTrigger(room)">Delete</button>
+        <button class="btn btn-danger" (click)="deleteTrigger(user)">Delete</button>
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ import {Reservation} from "../../Reservation";
 import {faClock, faTimes, faEye} from '@fortawesome/free-solid-svg-icons';
 // import {MatDialog} from "@angular/material/dialog";
 import {ModalTempComponent} from "../modal-temp/modal-temp.component";
+import {Room} from "../../Room";
 
 @Component({
   selector: 'app-reservation-item',
@@ -13,6 +14,7 @@ export class ReservationItemComponent implements OnInit {
   @Input() reservation?: Reservation;
   @Output() deleteReservationTask:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   @Output() updateReservationTask:EventEmitter<Reservation> = new EventEmitter<Reservation>();
+  @Output() onShowModal:EventEmitter<Reservation> = new EventEmitter<Reservation>();
 
   faClock = faClock;
   faDelete = faTimes;
@@ -34,4 +36,8 @@ export class ReservationItemComponent implements OnInit {
   // showModalTemp() {
   //   this.dialogRef.open(ModalTempComponent);
   // }
+
+  showModalToggle(reservation ?: Reservation) {
+    this.onShowModal.emit(reservation);
+  }
 }
