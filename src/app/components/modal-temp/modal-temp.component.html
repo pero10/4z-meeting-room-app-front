@@ -1,0 +1,22 @@
+<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">#{{ room?.id }} {{ room?.name }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="modalService.showDialog = false"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Location: {{room?.location}}</p>
+        <p>Tv: {{room?.tv  ? 'ima' : 'nema'}}</p>
+        <p>VideoCall: {{room?.videocall ? 'ima' : 'nema'}}</p>
+        <p>WhiteBoard: {{room?.whiteboard ? 'ima' : 'nema'}}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="modalService.showDialog = false">Okay</button>
+        <button class="btn btn-danger" (click)="deleteTrigger(room)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

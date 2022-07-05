@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {Router, RouterModule, Routes} from "@angular/router";
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,10 @@ import { RoomItemComponent } from './components/room-item/room-item.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ReservationItemComponent } from './components/reservation-item/reservation-item.component';
 import { UserItemComponent } from './components/user-item/user-item.component';
+import { HomeItemComponent } from './components/home-item/home-item.component';
+import { ModalTempComponent } from './components/modal-temp/modal-temp.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -35,13 +40,17 @@ import { UserItemComponent } from './components/user-item/user-item.component';
     RoomComponent,
     ButtonComponent,
     ReservationItemComponent,
-    UserItemComponent
+    UserItemComponent,
+    HomeItemComponent,
+    ModalTempComponent,
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        BrowserAnimationsModule,
+        MatDialogModule
     ],
   providers: [],
   bootstrap: [AppComponent]

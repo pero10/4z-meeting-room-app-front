@@ -1,6 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Reservation} from "../../Reservation";
 import {faClock, faTimes, faEye} from '@fortawesome/free-solid-svg-icons';
+// import {MatDialog} from "@angular/material/dialog";
+import {ModalTempComponent} from "../modal-temp/modal-temp.component";
 
 @Component({
   selector: 'app-reservation-item',
@@ -16,8 +18,11 @@ export class ReservationItemComponent implements OnInit {
   faDelete = faTimes;
   faEye = faEye;
 
-  constructor() {
-  }
+  // constructor(private dialogRef : MatDialog) {
+  // }
+
+  constructor(){}
+
 
   ngOnInit(): void {
   }
@@ -26,4 +31,7 @@ export class ReservationItemComponent implements OnInit {
     this.deleteReservationTask.emit(reservation);
   }
 
+  // showModalTemp() {
+  //   this.dialogRef.open(ModalTempComponent);
+  // }
 }

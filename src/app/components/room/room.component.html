@@ -2,6 +2,13 @@
   *ngFor="let room of rooms"
   [room]="room"
   (onDeleteRoom)="deleteRoom(room)"
+  (onShowModal)="onModalToggle($event)"
 >
 </app-room-item>
+<app-modal-temp
+  *ngIf="modalService.showDialog"
+  [room]="selectedRoom"
+  (onDeleteTrigger)="deleteTrigger($event)"
+></app-modal-temp>
+
 

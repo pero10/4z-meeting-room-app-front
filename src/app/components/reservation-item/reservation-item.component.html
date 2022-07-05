@@ -1,6 +1,6 @@
 <div class="container-lg mt-5">
   <div class="card">
-    <h5 class="card-header">{{reservation?.name}}
+    <h1 class="card-header">{{reservation?.name}}
       <fa-icon
         (click)="deleteReservation(reservation)"
         [ngStyle]="{'color':'#f00','float':'right'}"
@@ -12,9 +12,9 @@
         [icon]="faEye"
         class="pointer">
       </fa-icon>
-    </h5>
+    </h1>
     <div class="card-body">
-      <h5 class="card-title">
+      <h2 class="card-title">
         <fa-icon
           [icon]="faClock"
         >
@@ -23,7 +23,7 @@
           [icon]="faClock"
         >
         </fa-icon> {{reservation?.finishedAt}}
-      </h5>
+      </h2>
       <p class="card-text">{{reservation?.status}}</p>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
