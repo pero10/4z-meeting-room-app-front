@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ModalService} from "../../services/modal.service";
 import {User} from "../../User";
 import {faAt, faPhone} from '@fortawesome/free-solid-svg-icons';
-import {Reservation} from "../../Reservation";
 
 @Component({
   selector: 'app-modal-user',
@@ -12,17 +10,22 @@ import {Reservation} from "../../Reservation";
 export class ModalUserComponent implements OnInit {
   @Input() user?:User;
   @Output() onDeleteTrigger : EventEmitter<User> = new EventEmitter();
+  @Output() close : EventEmitter<boolean> = new EventEmitter();
 
   faAt = faAt;
   faPhone = faPhone;
 
-  constructor(public modalService : ModalService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   deleteTrigger(user ?: User) {
     this.onDeleteTrigger.emit(user);
+  }
+
+  onClose(){
+    this.close.emit(true);
   }
 
 }

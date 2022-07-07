@@ -5,7 +5,7 @@
   (onShowModalUser)="onModalToggle(user)"
 ></app-user-item>
 <app-modal-user
-  *ngIf="modalService.showDialog"
+  *ngIf="regularModalVisible"
   [user]="selectedUser"
   (onDeleteTrigger)="deleteTrigger($event)"
 ></app-modal-user>

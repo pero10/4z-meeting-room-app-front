@@ -25,6 +25,7 @@ import { ModalTempComponent } from './components/modal-temp/modal-temp.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalReservationComponent } from './components/modal-reservation/modal-reservation.component';
 import { ModalUserComponent } from './components/modal-user/modal-user.component';
+import { EditReservationComponent } from './components/edit-reservation/edit-reservation.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ModalUserComponent } from './components/modal-user/modal-user.component
     ModalTempComponent,
     ModalReservationComponent,
     ModalUserComponent,
+    EditReservationComponent,
   ],
     imports: [
         BrowserModule,

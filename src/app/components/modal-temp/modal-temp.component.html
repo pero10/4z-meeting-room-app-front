@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h1 class="modal-title">#{{ room?.id }} {{ room?.name }}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                (click)="modalService.showDialog = false"
+                (click)="onClose()"
         ></button>
       </div>
       <div class="modal-body">
@@ -22,7 +22,7 @@
         </h3>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" (click)="modalService.showDialog = false">Okay</button>
+        <button class="btn btn-primary" (click)="onClose()">Okay</button>
         <button class="btn btn-danger" (click)="deleteTrigger(room)">Delete</button>
       </div>
     </div>

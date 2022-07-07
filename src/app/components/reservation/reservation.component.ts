@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ReservationService} from "../../services/reservation.service";
 import {Reservation} from "../../Reservation";
-import {ModalService} from "../../services/modal.service";
 
 
 @Component({
@@ -13,7 +12,10 @@ export class ReservationComponent implements OnInit {
   reservations: Reservation[] = [];
   selectedReservation ?: Reservation;
 
-  constructor(private reservationService: ReservationService, public modalService : ModalService) {
+  regularModalVisible:boolean=false;
+  editModalVisible:boolean=false;
+
+  constructor(private reservationService: ReservationService) {
   }
 
   ngOnInit(): void {
@@ -31,15 +33,22 @@ export class ReservationComponent implements OnInit {
   }
 
   onModalToggle(reservation : Reservation){
-    this.modalService.showDialog = true;
+    // this.modalService.showDialog = true
+    this.editModalVisible=true;
+
     this.selectedReservation = reservation;
   }
 
   deleteTrigger(reservation : Reservation){
     this.deleteReservationById(reservation);
-    this.modalService.showDialog = false;
+    this.regularModalVisible = false;
   }
 
+  onEditModalToggle(reservation : Reservation){
+    // this.modalService.showEditDialog = true;
+    this.editModalVisible=true;
+    this.selectedReservation = reservation;
+  }
 
 
 }

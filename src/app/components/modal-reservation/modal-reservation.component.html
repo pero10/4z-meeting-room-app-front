@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h1 class="modal-title">#{{ reservation?.id }} {{ reservation?.name }}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                (click)="modalService.showDialog = false"
+                (click)="onClose()"
         ></button>
       </div>
       <div class="modal-body">
@@ -19,7 +19,8 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" (click)="modalService.showDialog = false">Okay</button>
+        <button class="btn btn-primary" (click)="onClose()">Okay</button>
+<!--        <button class="btn btn-danger upd-btn-color" (click)="updateReservation(reservation)">Edit</button>-->
         <button class="btn btn-danger" (click)="deleteTrigger(reservation)">Delete</button>
       </div>
     </div>

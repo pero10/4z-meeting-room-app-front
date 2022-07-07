@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ModalService} from "../../services/modal.service";
 import {Reservation} from "../../Reservation";
 import {faClock} from '@fortawesome/free-solid-svg-icons';
 
@@ -11,10 +10,11 @@ import {faClock} from '@fortawesome/free-solid-svg-icons';
 export class ModalReservationComponent implements OnInit {
   @Input() reservation?:Reservation;
   @Output() onDeleteTrigger : EventEmitter<Reservation> = new EventEmitter();
+  @Output() close:EventEmitter<boolean> = new EventEmitter<boolean>();
 
   faClock = faClock;
 
-  constructor(public modalService : ModalService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -22,5 +22,10 @@ export class ModalReservationComponent implements OnInit {
   deleteTrigger(reservation ?: Reservation) {
     this.onDeleteTrigger.emit(reservation);
   }
+
+  onClose(){
+    this.close.emit(true);
+  }
+
 
 }

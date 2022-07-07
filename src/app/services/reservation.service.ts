@@ -32,4 +32,12 @@ export class ReservationService {
     const url = `${this.apiUrl}/${reservation.id}`;
     return this.http.delete<Reservation>(url);
   }
+
+  editReservation(reservation: Reservation)//:Observable<Reservation>
+    {
+    // const url = `${this.apiUrl}/${reservation.id}`;
+    // return this.http.patch<Reservation>(url);
+  }
+
+
 }

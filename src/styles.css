@@ -30,3 +30,9 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.upd-btn-color{
+  background-color: #2bda91;
+  border:1px solid #2bda91;
+  color:#000;
+}

@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
-import {ModalService} from "../../services/modal.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Room} from "../../Room";
 import {faTv, faCamera, faLocationDot, faChalkboard} from '@fortawesome/free-solid-svg-icons';
 
@@ -12,18 +11,23 @@ import {faTv, faCamera, faLocationDot, faChalkboard} from '@fortawesome/free-sol
 export class ModalTempComponent implements OnInit {
   @Input() room?:Room;
   @Output() onDeleteTrigger : EventEmitter<Room> = new EventEmitter();
+  @Output() close : EventEmitter<boolean> = new EventEmitter();
 
   faTv = faTv;
   faCamera = faCamera;
   faLocationDot = faLocationDot;
   faWhiteBoard = faChalkboard;
 
-  constructor(public modalService : ModalService) {}
+  constructor() {}
 
   ngOnInit(): void {
   }
 
   deleteTrigger(room ?: Room) {
     this.onDeleteTrigger.emit(room);
+  }
+
+  onClose(){
+    this.close.emit(true);
   }
 }

@@ -3,9 +3,16 @@
   [reservation]="reservation"
   (deleteReservationTask)="deleteReservationById(reservation)"
   (onShowModal)="onModalToggle(reservation)"
+  (onShowEditModal)="onEditModalToggle($event)"
 ></app-reservation-item>
 <app-modal-reservation
-  *ngIf="modalService.showDialog"
+  *ngIf="regularModalVisible"
   [reservation]="selectedReservation"
   (onDeleteTrigger)="deleteTrigger($event)"
 ></app-modal-reservation>
+<app-edit-reservation
+  *ngIf="editModalVisible"
+  [reservation]="selectedReservation"
+  (close)="editModalVisible=false"
+>
+</app-edit-reservation>

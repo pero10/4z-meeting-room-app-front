@@ -1,8 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from "../../services/user.service";
-import { User } from "../../User";
-import {Reservation} from "../../Reservation";
-import {ModalService} from "../../services/modal.service";
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../services/user.service";
+import {User} from "../../User";
 
 
 @Component({
@@ -14,28 +12,33 @@ export class UserComponent implements OnInit {
   users: User[] = [];
   selectedUser ?: User;
 
-  constructor(private userService: UserService, public modalService : ModalService) { }
+  regularModalVisible:boolean=false;
+  editModalVisible:boolean=false;
+
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(
-      (users)=> (this.users = users)
+      (users) => (this.users = users)
     );
   }
 
-  deleteUser(user:User){
+  deleteUser(user: User) {
     this.userService.deleteUser(user).subscribe(
       () => (this.users = this.users.filter(u => u.id !== user.id))
     );
   }
 
-  onModalToggle(user : User){
-    this.modalService.showDialog = true;
+  onModalToggle(user: User) {
+    this.regularModalVisible=true;
     this.selectedUser = user;
   }
 
-  deleteTrigger(user : User){
+  deleteTrigger(user: User) {
     this.deleteUser(user);
-    this.modalService.showDialog = false;
+    this.regularModalVisible=true;
   }
+
 
 }

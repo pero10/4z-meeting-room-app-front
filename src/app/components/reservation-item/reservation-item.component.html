@@ -13,8 +13,15 @@
         [icon]="faEye"
         class="pointer">
       </fa-icon>
+      <fa-icon
+        (click)="showEditModalToggle(reservation)"
+        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
+        [icon]="faPen"
+        class="pointer">
+      </fa-icon>
     </h1>
     <div class="card-body">
+      <h3>room: {{reservation?.room?.name}}</h3>
       <h2 class="card-title">
         <fa-icon
           [icon]="faClock"

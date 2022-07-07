@@ -6,7 +6,7 @@
 >
 </app-room-item>
 <app-modal-temp
-  *ngIf="modalService.showDialog"
+  *ngIf="regularModalVisible"
   [room]="selectedRoom"
   (onDeleteTrigger)="deleteTrigger($event)"
 ></app-modal-temp>
