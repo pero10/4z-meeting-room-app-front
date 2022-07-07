@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RoomService {
-  private apiUrl = 'http://localhost:8000/api/rooms';
+  private apiUrl = 'http://localhost:8002/api/rooms';
 
   constructor(private http:HttpClient) {
   }
@@ -26,4 +26,9 @@ export class RoomService {
     const url = `${this.apiUrl}/${room.id}`;
     return this.http.delete<Room>(url);
   }
+
+  // editRoom(room: Room):Observable<any>{
+  //   const url = `${this.apiUrl}/${room.id}`;
+  //   return this.http.patch(url, room);
+  // }
 }

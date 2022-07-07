@@ -3,6 +3,7 @@
   [room]="room"
   (onDeleteRoom)="deleteRoom(room)"
   (onShowModal)="onModalToggle($event)"
+  (onEditRoomModalShow)="editModalToggle($event)"
 >
 </app-room-item>
 <app-modal-temp
@@ -12,5 +13,8 @@
   (close)="regularModalVisible=false"
 
 ></app-modal-temp>
-
+<app-edit-room
+  *ngIf="editRoomService.showDialog"
+  [room]="selectedRoom"
+></app-edit-room>
 
