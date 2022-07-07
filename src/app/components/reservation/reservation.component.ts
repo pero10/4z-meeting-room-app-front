@@ -33,9 +33,12 @@ export class ReservationComponent implements OnInit {
   }
 
   onModalToggle(reservation : Reservation){
-    // this.modalService.showDialog = true
-    this.editModalVisible=true;
+    this.regularModalVisible=true;
+    this.selectedReservation = reservation;
+  }
 
+  onEditModalToggle(reservation : Reservation){
+    this.editModalVisible=true;
     this.selectedReservation = reservation;
   }
 
@@ -43,12 +46,4 @@ export class ReservationComponent implements OnInit {
     this.deleteReservationById(reservation);
     this.regularModalVisible = true;
   }
-
-  onEditModalToggle(reservation : Reservation){
-    // this.modalService.showEditDialog = true;
-    this.editModalVisible=true;
-    this.selectedReservation = reservation;
-  }
-
-
 }
