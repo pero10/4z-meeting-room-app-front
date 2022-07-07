@@ -43,7 +43,7 @@ export class ReservationComponent implements OnInit {
   }
 
   deleteTrigger(reservation : Reservation){
+    this.regularModalVisible = false;
     this.deleteReservationById(reservation);
-    this.regularModalVisible = true;
   }
 }
