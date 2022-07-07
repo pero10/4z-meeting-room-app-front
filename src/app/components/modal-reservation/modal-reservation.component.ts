@@ -26,6 +26,4 @@ export class ModalReservationComponent implements OnInit {
   onClose(){
     this.close.emit(true);
   }
-
-
 }

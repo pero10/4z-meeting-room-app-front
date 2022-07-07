@@ -32,7 +32,7 @@ export class RoomComponent implements OnInit {
   }
 
   deleteTrigger(room: Room) {
+    this.regularModalVisible = false;
     this.deleteRoom(room);
-    this.regularModalVisible = true;
   }
 }

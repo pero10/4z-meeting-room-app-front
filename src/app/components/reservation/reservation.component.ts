@@ -41,7 +41,7 @@ export class ReservationComponent implements OnInit {
 
   deleteTrigger(reservation : Reservation){
     this.deleteReservationById(reservation);
-    this.regularModalVisible = false;
+    this.regularModalVisible = true;
   }
 
   onEditModalToggle(reservation : Reservation){
