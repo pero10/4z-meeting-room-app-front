@@ -8,4 +8,5 @@
   *ngIf="regularModalVisible"
   [user]="selectedUser"
   (onDeleteTrigger)="deleteTrigger($event)"
+  (close)="regularModalVisible=false"
 ></app-modal-user>

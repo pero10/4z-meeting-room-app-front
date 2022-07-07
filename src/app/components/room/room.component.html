@@ -9,6 +9,8 @@
   *ngIf="regularModalVisible"
   [room]="selectedRoom"
   (onDeleteTrigger)="deleteTrigger($event)"
+  (close)="regularModalVisible=false"
+
 ></app-modal-temp>
 
 
