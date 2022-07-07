@@ -2,6 +2,12 @@
   <div class="card">
     <h1 class="card-header">Room #{{room?.id}}
       <fa-icon
+        (click)="onEditModalToggle()"
+        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
+        [icon]="faPencil"
+        class="pointer">
+      </fa-icon>
+      <fa-icon
         (click)="onDelete(room)"
         [ngStyle]="{'color':'#f00','float':'right'}"
         [icon]="faDelete"

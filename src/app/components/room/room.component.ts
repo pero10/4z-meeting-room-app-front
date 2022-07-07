@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
+import {ModalService} from "../../services/modal.service";
+import {EditRoomService} from "../../services/edit-room.service";
 
 @Component({
   selector: 'app-room',
@@ -14,7 +16,7 @@ export class RoomComponent implements OnInit {
   selectedRoom?:Room;
   regularModalVisible:boolean=false;
 
-  constructor(private roomService:RoomService) { }
+  constructor(private roomService:RoomService, public modalService : ModalService, public editRoomService : EditRoomService) { }
 
   ngOnInit(): void {
     this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
@@ -31,8 +33,28 @@ export class RoomComponent implements OnInit {
     this.selectedRoom = room;
   }
 
+  editModalToggle(room: Room) {
+    this.editRoomService.showDialog = true;
+    this.selectedRoom = room;
+  }
+
   deleteTrigger(room: Room) {
     this.deleteRoom(room);
     this.regularModalVisible = true;
   }
+
+  // editRoom(room: Room) {
+  //   this.selectedRoom = room;
+  //   console.log(this.selectedRoom);
+  // }
+
+  // editRoom(room: Room){
+  //   this.roomService.editRoom(room).subscribe();
+  // }
+  //
+  // onEditModalToggle(room: Room) {
+  //   this.modalService.showDialog = true;
+  //   this.selectedRoom = room;
+  // }
+
 }

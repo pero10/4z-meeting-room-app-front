@@ -13,7 +13,6 @@ export class EditReservationComponent implements OnInit {
   @Output() onUpdateReservation:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   @Output() close:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-
   constructor() { }
 
   ngOnInit(): void {
