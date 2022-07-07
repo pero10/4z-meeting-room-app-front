@@ -1,0 +1,26 @@
+<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">#{{ reservation?.id }} {{ reservation?.name }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="onClose()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{reservation?.status}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary"
+        (click)="onClose()"
+        >
+          close
+        </button>
+        <!--        <button class="btn btn-danger upd-btn-color" (click)="updateReservation(reservation)">Edit</button>-->
+<!--        <button class="btn btn-danger" (click)="deleteTrigger(reservation)">Delete</button>-->
+      </div>
+    </div>
+  </div>
+</div>
