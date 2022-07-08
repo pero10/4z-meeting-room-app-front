@@ -14,6 +14,7 @@ const httpOptions = {
 })
 export class RoomService {
   private apiUrl = 'http://localhost:8002/api/rooms';
+  selectedRoom = {};
 
   constructor(private http:HttpClient) {
   }
@@ -27,8 +28,16 @@ export class RoomService {
     return this.http.delete<Room>(url);
   }
 
-  // editRoom(room: Room):Observable<any>{
-  //   const url = `${this.apiUrl}/${room.id}`;
-  //   return this.http.patch(url, room);
-  // }
+  editRoom(room: Room):Observable<any>{
+    const url = `${this.apiUrl}/${room.id}`;
+    this.selectedRoom = {
+      "capacity": room.capacity,
+      "location": room.location,
+      "name": room.name,
+      "tv": room.tv,
+      "videocall": room.videocall,
+      "whiteboard": room.whiteboard
+    }
+    return this.http.patch<Room>(url, this.selectedRoom, httpOptions);
+  }
 }

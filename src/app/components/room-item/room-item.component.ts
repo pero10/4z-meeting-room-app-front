@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Room} from "../../Room";
 import {faTimes, faEye, faPencil} from "@fortawesome/free-solid-svg-icons";
-import {ModalService} from "../../services/modal.service";
+import {Reservation} from "../../Reservation";
 // import {MatDialog} from "@angular/material/dialog";
 
 @Component({
@@ -13,14 +13,14 @@ export class RoomItemComponent implements OnInit {
   @Input() room?:Room;
   @Output() onDeleteRoom : EventEmitter<Room> = new EventEmitter();
   @Output() onShowModal : EventEmitter<Room> = new EventEmitter();
-  @Output() onEditRoomModalShow : EventEmitter<Room> = new EventEmitter()
+  @Output() onShowEditModal : EventEmitter<Room> = new EventEmitter()
 
   faDelete = faTimes;
   faEye = faEye;
   faPencil = faPencil;
 
   // constructor(private dialogRef : MatDialog) { }
-  constructor(public modalService : ModalService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -29,13 +29,12 @@ export class RoomItemComponent implements OnInit {
     this.onDeleteRoom.emit(room);
   }
 
-  onEditModalToggle(room ?: Room){
-    this.onEditRoomModalShow.emit(room);
+  showEditModalToggle(room ?: Room){
+    this.onShowEditModal.emit(room);
   }
 
   showModalToggle(room ?: Room) {
     this.onShowModal.emit(room);
   }
-
 
 }

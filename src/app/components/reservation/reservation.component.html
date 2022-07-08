@@ -9,10 +9,10 @@
   *ngIf="regularModalVisible"
   [reservation]="selectedReservation"
   (onDeleteTrigger)="deleteTrigger($event)"
+  (close)="regularModalVisible=false"
 ></app-modal-reservation>
 <app-edit-reservation
   *ngIf="editModalVisible"
   [reservation]="selectedReservation"
   (close)="editModalVisible=false"
->
-</app-edit-reservation>
+></app-edit-reservation>
