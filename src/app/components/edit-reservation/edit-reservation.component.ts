@@ -1,7 +1,5 @@
 import {Component, EventEmitter, OnInit,Input,Output} from '@angular/core';
 import {Reservation} from "../../Reservation";
-import {ModalService} from "../../services/modal.service";
-
 
 @Component({
   selector: 'app-edit-reservation',

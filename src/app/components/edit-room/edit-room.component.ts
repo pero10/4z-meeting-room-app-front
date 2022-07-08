@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {EditRoomService} from "../../services/edit-room.service";
 import {Room} from "../../Room";
+import {FormControl, FormGroup} from "@angular/forms";
+import {RoomService} from "../../services/room.service";
+import {formControl} from "@angular/core/schematics/migrations/typed-forms/util";
 
 @Component({
   selector: 'app-edit-room',
@@ -9,11 +11,33 @@ import {Room} from "../../Room";
 })
 export class EditRoomComponent implements OnInit {
   @Input() room?:Room;
+  @Output() close:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() submit:EventEmitter<Room> = new EventEmitter<Room>();
+  editRoomForm: FormGroup;
 
-
-  constructor(public editRoomService : EditRoomService) { }
-
-  ngOnInit(): void {
+  constructor(public roomService : RoomService) {
+    this.editRoomForm = new FormGroup({
+      id: new FormControl(),
+      name: new FormControl(),
+      location: new FormControl(),
+      capacity: new FormControl(),
+      tv: new FormControl(),
+      whiteboard: new FormControl(),
+      videocall: new FormControl()
+    })
   }
 
+  ngOnInit(): void {
+    if(this.room){
+      this.editRoomForm.patchValue(this.room);
+    }
+  }
+
+  onClose(){
+    this.close.emit(true);
+  }
+
+  onSubmit(){
+    this.submit.emit(this.editRoomForm.value);
+  }
 }
