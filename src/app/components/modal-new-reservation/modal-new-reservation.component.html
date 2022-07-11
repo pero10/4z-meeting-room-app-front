@@ -1,0 +1,45 @@
+<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Make new reservation
+          <button type="button"
+                  class="btn-close"
+                  id="close-button-new-res"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  (click)="onClose()"
+          ></button>
+        </h1>
+      </div>
+      <div class="insert-new-item">
+        <form class="add-form" (ngSubmit)="onSubmit()">
+          <label>start time</label>
+          <input type="datetime-local" name="startedAt" [(ngModel)]="startedAt" id="started_at"><br>
+          <label>finish time</label>
+          <input type="datetime-local" name="finishedAt" [(ngModel)]="finishedAt" id="finished_at"><br>
+          <label>Name</label>
+          <input type="text" name="reservationName" [(ngModel)]="name" id="name"><br>
+          <label>Status</label>
+
+          <select name="status" [(ngModel)]="status" id="status">
+            <!--            <option>active</option>-->
+            <option>inactive</option>
+            <option>waiting</option>
+            <option>canceled</option>
+          </select><br>
+          <label>Room</label>
+          <select [(ngModel)]="room" name="room"
+          >
+            <option
+              *ngFor="let room of rooms"
+              [ngValue]="room.id">
+              {{room.name}}
+            </option>
+          </select><br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

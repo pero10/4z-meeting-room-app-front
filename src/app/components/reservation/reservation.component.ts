@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ReservationService} from "../../services/reservation.service";
 import {Reservation} from "../../Reservation";
-import {Room} from "../../Room";
 
 
 @Component({
@@ -57,10 +56,4 @@ export class ReservationComponent implements OnInit {
   toggleInsertReservationModal() {
     this.insertModalVisible = true;
   }
-
-  // submittedReservation(reservation:Reservation) {
-  //   this.reservationService.addReservation(reservation).subscribe(
-  //
-  //   )
-  // }
 }

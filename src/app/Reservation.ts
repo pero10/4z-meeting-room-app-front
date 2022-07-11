@@ -6,9 +6,11 @@ export interface Reservation{
   "finishedAt": DatePipe,
   "name": string,
   "status": string,
-  "room":ReservationRoom
+  "room":ReservationRoom,
+  "host":number
 }
 
 export interface ReservationRoom{
+  "id":number
   "name":string
 }

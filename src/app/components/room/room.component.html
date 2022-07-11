@@ -1,3 +1,6 @@
+<button class="btn upd-btn-color"
+        (click)="toggleInsertRoomModal()"
+>Add new room here!</button>
 <app-room-item
   *ngFor="let room of rooms"
   [room]="room"
@@ -17,4 +20,10 @@
   *ngIf="editRoomService.showDialog"
   [room]="selectedRoom"
 ></app-edit-room>
+<app-modal-new-room
+  *ngIf="insertModalVisible"
+  (close)="insertModalVisible=false"
+  (onAddRoom)="addNewRoom($event)"
 
+>
+></app-modal-new-room>

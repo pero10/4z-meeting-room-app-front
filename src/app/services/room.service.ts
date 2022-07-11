@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Room} from "../Room";
+import {environment} from "../../environments/environment";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,22 +14,27 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RoomService {
-  private apiUrl = 'http://localhost:8002/api/rooms';
+  private apiUrl = environment.url;
 
   constructor(private http:HttpClient) {
   }
 
+  addNewRoom(room:Room):Observable<Room> {
+    const url = this.apiUrl+'/api/rooms'
+    return this.http.post<Room>(url,room,httpOptions);
+  }
+
   getRooms():Observable<Room[]>{
-    return this.http.get<Room[]>(this.apiUrl);
+    return this.http.get<Room[]>(this.apiUrl+'/api/rooms');
   }
 
   deleteRoom(room: Room):Observable<Room>{
-    const url = `${this.apiUrl}/${room.id}`;
+    const url = `${this.apiUrl}/api/rooms/${room.id}`;
     return this.http.delete<Room>(url);
   }
 
-  // editRoom(room: Room):Observable<any>{
-  //   const url = `${this.apiUrl}/${room.id}`;
-  //   return this.http.patch(url, room);
-  // }
+  editRoom(room: Room):Observable<Room>{
+    const url = `${this.apiUrl}/api/rooms/${room.id}`;
+    return this.http.patch<Room>(url,room,httpOptions);
+  }
 }

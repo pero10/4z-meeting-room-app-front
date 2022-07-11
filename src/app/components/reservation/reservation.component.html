@@ -1,14 +1,18 @@
+<button class="btn upd-btn-color"
+        (click)="toggleInsertReservationModal()"
+>Add new reservation here!</button>
 <app-reservation-item
   *ngFor="let reservation of reservations"
   [reservation]="reservation"
-  (deleteReservationTask)="deleteReservationById(reservation)"
+  (deleteReservationTask)="deleteReservationById($event)"
   (onShowModal)="onModalToggle(reservation)"
-  (onShowEditModal)="onEditModalToggle($event)"
+  (onShowEditModal)="onEditModalToggle(reservation)"
 ></app-reservation-item>
 <app-modal-reservation
   *ngIf="regularModalVisible"
   [reservation]="selectedReservation"
   (onDeleteTrigger)="deleteTrigger($event)"
+  (close)="regularModalVisible=false"
 ></app-modal-reservation>
 <app-edit-reservation
   *ngIf="editModalVisible"
@@ -16,3 +20,9 @@
   (close)="editModalVisible=false"
 >
 </app-edit-reservation>
+<app-modal-new-reservation
+  *ngIf="insertModalVisible"
+  (close)="insertModalVisible=false"
+  (onAddReservation)="addNewReservation($event)"
+>
+</app-modal-new-reservation>

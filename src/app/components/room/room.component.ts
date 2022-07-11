@@ -15,6 +15,7 @@ export class RoomComponent implements OnInit {
   rooms:Room[]=[];
   selectedRoom?:Room;
   regularModalVisible:boolean=false;
+  insertModalVisible:boolean=false;
 
   constructor(private roomService:RoomService, public modalService : ModalService, public editRoomService : EditRoomService) { }
 
@@ -57,4 +58,13 @@ export class RoomComponent implements OnInit {
   //   this.selectedRoom = room;
   // }
 
+  toggleInsertRoomModal() {
+    this.insertModalVisible=true;
+  }
+
+  addNewRoom(room: Room) {
+    this.roomService.addNewRoom(room).subscribe(
+      (room)=>(this.rooms.push(room))
+    );
+  }
 }
