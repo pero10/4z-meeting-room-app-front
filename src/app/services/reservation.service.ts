@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Reservation} from "../Reservation";
+import {Room} from "../Room";
+import {DatePipe} from "@angular/common";
 
 
 const httpOptions = {
@@ -15,6 +17,7 @@ const httpOptions = {
 })
 export class ReservationService {
   private apiUrl = 'http://localhost:8002/api/reservations';
+  selectedReservation = {};
 
   constructor(private http: HttpClient) {
   }
@@ -33,10 +36,17 @@ export class ReservationService {
     return this.http.delete<Reservation>(url);
   }
 
-  editReservation(reservation: Reservation)//:Observable<Reservation>
-    {
-    // const url = `${this.apiUrl}/${reservation.id}`;
-    // return this.http.patch<Reservation>(url);
+  editReservation(reservation: Reservation): Observable<any>{
+    const url = `${this.apiUrl}/${reservation.id}`;
+    this.selectedReservation = {
+      "startedAt": reservation.startedAt,
+      "finishedAt": reservation.finishedAt,
+      "name": reservation.name,
+      "status": reservation.status
+    }
+    console.log(this.selectedReservation);
+    return this.http.patch<Reservation>(url, this.selectedReservation, httpOptions);
+
   }
 
 

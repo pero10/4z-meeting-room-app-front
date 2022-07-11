@@ -2,25 +2,41 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title">#{{ reservation?.id }} {{ reservation?.name }}</h1>
+        <h1 class="modal-title">Edit room #{{reservation?.id}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-          (click)="onClose()"
+                (click)="onClose()"
         ></button>
       </div>
       <div class="modal-body">
-        <p>
-          {{reservation?.status}}
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary"
-        (click)="onClose()"
-        >
-          close
-        </button>
-        <!--        <button class="btn btn-danger upd-btn-color" (click)="updateReservation(reservation)">Edit</button>-->
-<!--        <button class="btn btn-danger" (click)="deleteTrigger(reservation)">Delete</button>-->
+        <form novalidate [formGroup]="editReservationForm" (ngSubmit)="onSubmit()">
+          <div class="form-group rounded-5">
+            <label for="reservationStartedAt">StartedAt:</label>
+            <input type="text" name="reservationStartedAt" id="reservationStartedAt"
+                   formControlName="startedAt" class="form-control">
+          </div>
+          <div class="form-group rounded-5">
+            <label for="reservationFinishedAt">FinishedAt:</label>
+            <input type="text" name="reservationFinishedAt" id="reservationFinishedAt"
+                   formControlName="finishedAt" class="form-control">
+          </div>
+          <div class="form-group rounded-5">
+            <label for="reservationName">Name:</label>
+            <input type="text" name="reservationName" id="reservationName"
+                   formControlName="name" class="form-control">
+          </div>
+          <div class="form-group rounded-5">
+            <label for="reservationStatus">Status:</label>
+            <input type="text" name="reservationStatus" id="reservationStatus"
+                   formControlName="status" class="form-control">
+          </div>
+<!--          <div>-->
+<!--            {{editReservationForm.value|json}}-->
+<!--          </div>-->
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button class="btn btn-danger ms-3" (click)="onClose()">Cancel</button>
+        </form>
       </div>
     </div>
   </div>
 </div>
+

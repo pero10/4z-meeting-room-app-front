@@ -2,8 +2,8 @@
   *ngFor="let reservation of reservations"
   [reservation]="reservation"
   (deleteReservationTask)="deleteReservationById(reservation)"
-  (onShowModal)="onModalToggle(reservation)"
-  (onShowEditModal)="onEditModalToggle($event)"
+  (onShowModal)="onModalToggle($event)"
+  (onShowEditModal)="onEditModalToggle(reservation)"
 ></app-reservation-item>
 <app-modal-reservation
   *ngIf="regularModalVisible"
@@ -15,4 +15,5 @@
   *ngIf="editModalVisible"
   [reservation]="selectedReservation"
   (close)="editModalVisible=false"
+  (submit)="onSubmitEditForm($event)"
 ></app-edit-reservation>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ReservationService} from "../../services/reservation.service";
 import {Reservation} from "../../Reservation";
+import {Room} from "../../Room";
 
 
 @Component({
@@ -45,5 +46,11 @@ export class ReservationComponent implements OnInit {
   deleteTrigger(reservation : Reservation){
     this.regularModalVisible = false;
     this.deleteReservationById(reservation);
+  }
+
+  onSubmitEditForm(reservation: Reservation) {
+    this.editModalVisible = false;
+    this.reservationService.editReservation(reservation).subscribe();
+    this.reservationService.getReservations().subscribe((reservation)=>(this.reservations=reservation));
   }
 }

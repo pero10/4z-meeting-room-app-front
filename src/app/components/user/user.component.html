@@ -2,7 +2,8 @@
   *ngFor="let user of users"
   (onDeleteUser) = "deleteUser(user)"
   [user]="user"
-  (onShowModalUser)="onModalToggle(user)"
+  (onShowModalUser)="onModalToggle($event)"
+  (onShowEditModal)="editModalToggle(user)"
 ></app-user-item>
 <app-modal-user
   *ngIf="regularModalVisible"
@@ -10,3 +11,9 @@
   (onDeleteTrigger)="deleteTrigger($event)"
   (close)="regularModalVisible=false"
 ></app-modal-user>
+<app-edit-user
+  *ngIf="editModalVisible"
+  [user]="selectedUser"
+  (close)="editModalVisible=false"
+  (submit)="onSubmitEditForm($event)"
+></app-edit-user>
