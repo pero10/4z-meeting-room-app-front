@@ -29,6 +29,8 @@ import { ModalUserComponent } from './components/modal-user/modal-user.component
 import { EditReservationComponent } from './components/edit-reservation/edit-reservation.component';
 import { EditRoomComponent } from './components/edit-room/edit-room.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {ModalNewReservationComponent} from "./components/modal-new-reservation/modal-new-reservation.component";
+import {ModalNewRoomComponent} from "./components/modal-new-room/modal-new-room.component";
 
 
 @NgModule({

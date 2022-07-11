@@ -1,0 +1,38 @@
+<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-normal-header">
+        <h1>Make new room</h1>
+          <button type="button"
+                  class="btn-close move-right"
+                  id="close-button-new-res"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  (click)="onClose()"
+          ></button>
+      </div>
+      <div class="insert-new-item">
+        <form class="add-form" (ngSubmit)="onSubmit()">
+          <label>Name</label>
+          <input id="name" name="name" [(ngModel)]="name"><br>
+          <label>Location</label>
+          <select id="location" name="location" [(ngModel)]="location">
+            <option>Nazor</option>
+            <option>Galerija</option>
+          </select><br>
+          <label>Capacity</label>
+          <input type="number" id="capacity" name="capacity" [(ngModel)]="capacity"><br>
+          <label for="tv">tv: </label>
+          <input type="checkbox" id="tv" name="tv" [(ngModel)]="tv"><br>
+          <label for="whiteboard">whiteboard: </label>
+          <input type="checkbox" id="whiteboard" name="whiteboard" [(ngModel)]="whiteboard"><br>
+          <label for="videocall">videocall: </label>
+          <input type="checkbox" id="videocall" name="videocall" [(ngModel)]="videocall"><br>
+          <br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
