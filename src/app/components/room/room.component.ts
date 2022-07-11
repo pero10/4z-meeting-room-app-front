@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
-import {ModalService} from "../../services/modal.service";
-import {EditRoomService} from "../../services/edit-room.service";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-room',
@@ -16,8 +15,9 @@ export class RoomComponent implements OnInit {
   selectedRoom?:Room;
   regularModalVisible:boolean=false;
   insertModalVisible:boolean=false;
+  editModalVisible:boolean=false;
 
-  constructor(private roomService:RoomService, public modalService : ModalService, public editRoomService : EditRoomService) { }
+  constructor(private roomService:RoomService) { }
 
   ngOnInit(): void {
     this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
@@ -29,13 +29,19 @@ export class RoomComponent implements OnInit {
     );
   }
 
+  onSubmitEditForm(room: Room) {
+    this.editModalVisible = false;
+    this.roomService.editRoom(room).subscribe();
+    this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
+  }
+
   onModalToggle(room: Room) {
     this.regularModalVisible = true;
     this.selectedRoom = room;
   }
 
   editModalToggle(room: Room) {
-    this.editRoomService.showDialog = true;
+    this.editModalVisible = true;
     this.selectedRoom = room;
   }
 
@@ -44,19 +50,6 @@ export class RoomComponent implements OnInit {
     this.deleteRoom(room);
   }
 
-  // editRoom(room: Room) {
-  //   this.selectedRoom = room;
-  //   console.log(this.selectedRoom);
-  // }
-
-  // editRoom(room: Room){
-  //   this.roomService.editRoom(room).subscribe();
-  // }
-  //
-  // onEditModalToggle(room: Room) {
-  //   this.modalService.showDialog = true;
-  //   this.selectedRoom = room;
-  // }
 
   toggleInsertRoomModal() {
     this.insertModalVisible=true;

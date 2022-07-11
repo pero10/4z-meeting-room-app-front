@@ -1,12 +1,49 @@
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title">Edit room #{{room?.id}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="onClose()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form novalidate [formGroup]="editRoomForm" (ngSubmit)="onSubmit()">
+          <div class="form-group rounded-5">
+            <label for="roomName">Name:</label>
+            <input type="text" name="roomName" id="roomName"
+                   formControlName="name" class="form-control">
+          </div>
+          <div class="form-group rounded-5">
+            <label for="roomLocation">Lokacija:</label>
+            <input type="text" name="roomLocation" id="roomLocation"
+                   formControlName="location" class="form-control">
+          </div>
+          <div class="form-group rounded-5">
+            <label for="roomCapacity">Kapacitet:</label>
+            <input type="text" name="roomCapacity" id="roomCapacity"
+                   formControlName="capacity" class="form-control">
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="exampleCheck1">tv:</label>
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="tv">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck2" formControlName="whiteboard">
+            <label class="form-check-label" for="exampleCheck1">white board</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck3" formControlName="videocall">
+            <label class="form-check-label" for="exampleCheck1">video call</label>
+          </div>
+<!--          <div>-->
+<!--            {{editRoomForm.value|json}}-->
+<!--          </div>-->
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button class="btn btn-danger ms-3" (click)="onClose()">Cancel</button>
+        </form>
+      </div>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-  <button type="submit" class="btn btn-danger" (click)="editRoomService.showDialog = false">Cancel</button>
-</form>
+</div>
+

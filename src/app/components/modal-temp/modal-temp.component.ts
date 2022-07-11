@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Room} from "../../Room";
-import {faTv, faCamera, faLocationDot, faChalkboard} from '@fortawesome/free-solid-svg-icons';
+import {faTv, faCamera, faLocationDot, faChalkboard, faPeopleGroup} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -17,6 +17,7 @@ export class ModalTempComponent implements OnInit {
   faCamera = faCamera;
   faLocationDot = faLocationDot;
   faWhiteBoard = faChalkboard;
+  faPeopleGroup = faPeopleGroup;
 
   constructor() {}
 

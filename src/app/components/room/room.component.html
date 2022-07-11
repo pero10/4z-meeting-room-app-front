@@ -6,19 +6,19 @@
   [room]="room"
   (onDeleteRoom)="deleteRoom(room)"
   (onShowModal)="onModalToggle($event)"
-  (onEditRoomModalShow)="editModalToggle($event)"
->
-</app-room-item>
+  (onShowEditModal)="editModalToggle(room)"
+></app-room-item>
 <app-modal-temp
   *ngIf="regularModalVisible"
   [room]="selectedRoom"
   (onDeleteTrigger)="deleteTrigger($event)"
   (close)="regularModalVisible=false"
-
 ></app-modal-temp>
 <app-edit-room
-  *ngIf="editRoomService.showDialog"
+  *ngIf="editModalVisible"
   [room]="selectedRoom"
+  (close)="editModalVisible=false"
+  (submit)="onSubmitEditForm($event)"
 ></app-edit-room>
 <app-modal-new-room
   *ngIf="insertModalVisible"

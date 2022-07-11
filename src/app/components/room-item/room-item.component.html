@@ -2,7 +2,7 @@
   <div class="card">
     <h1 class="card-header">Room #{{room?.id}}
       <fa-icon
-        (click)="onEditModalToggle()"
+        (click)="showEditModalToggle()"
         [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
         [icon]="faPencil"
         class="pointer">
@@ -23,6 +23,7 @@
     <div class="card-body">
       <h1 class="card-title">{{room?.name}}</h1>
       <p class="card-text no-margin">Located at {{room?.location}}</p>
+      <p class="card-text no-margin">Capacity {{room?.capacity}}</p>
       <label for="tvCheckbox">tv</label>
       <input [checked]="room?.tv" id="tvCheckbox" type="checkbox" disabled><br>
       <label for="whiteboardCheckBox">white board</label>
