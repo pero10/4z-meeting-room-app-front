@@ -11,12 +11,12 @@
         <form novalidate [formGroup]="editReservationForm" (ngSubmit)="onSubmit()">
           <div class="form-group rounded-5">
             <label for="reservationStartedAt">StartedAt:</label>
-            <input type="text" name="reservationStartedAt" id="reservationStartedAt"
+            <input type="datetime-local" name="reservationStartedAt" id="reservationStartedAt"
                    formControlName="startedAt" class="form-control">
           </div>
           <div class="form-group rounded-5">
             <label for="reservationFinishedAt">FinishedAt:</label>
-            <input type="text" name="reservationFinishedAt" id="reservationFinishedAt"
+            <input type="datetime-local" name="reservationFinishedAt" id="reservationFinishedAt"
                    formControlName="finishedAt" class="form-control">
           </div>
           <div class="form-group rounded-5">

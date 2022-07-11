@@ -3,7 +3,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Reservation} from "../Reservation";
 import {Room} from "../Room";
-import {DatePipe} from "@angular/common";
+import {DATE_PIPE_DEFAULT_TIMEZONE, DatePipe, formatDate} from "@angular/common";
+import {stringifyTask} from "@angular/compiler-cli/ngcc/src/execution/tasks/utils";
 
 
 const httpOptions = {
@@ -39,14 +40,16 @@ export class ReservationService {
   editReservation(reservation: Reservation): Observable<any>{
     const url = `${this.apiUrl}/${reservation.id}`;
     this.selectedReservation = {
+      // "startedAt": formatDate(reservation.startedAt, 'MMMM d, y, h:mm:ss a z','startedAt','GMT+2' ),
+      // "finishedAt": formatDate(reservation.finishedAt, 'MMMM d, y, h:mm:ss a z','finishedAt','GMT+2' ),
       "startedAt": reservation.startedAt,
       "finishedAt": reservation.finishedAt,
       "name": reservation.name,
       "status": reservation.status
     }
+    // console.log('Tip', typeof(reservation.startedAt));
     console.log(this.selectedReservation);
     return this.http.patch<Reservation>(url, this.selectedReservation, httpOptions);
-
   }
 
 
