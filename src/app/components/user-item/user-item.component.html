@@ -2,6 +2,12 @@
   <div class="card">
     <h1 class="card-header">{{user?.firstName}} {{user?.lastName}}
       <fa-icon
+        (click)="showEditModalToggle()"
+        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
+        [icon]="faPencil"
+        class="pointer">
+      </fa-icon>
+      <fa-icon
         (click)="onDelete(user)"
         [ngStyle]="{'color':'#f00','float':'right'}"
         [icon]="faDelete"

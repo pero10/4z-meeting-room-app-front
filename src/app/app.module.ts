@@ -30,6 +30,7 @@ import { EditRoomComponent } from './components/edit-room/edit-room.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ModalNewReservationComponent} from "./components/modal-new-reservation/modal-new-reservation.component";
 import {ModalNewRoomComponent} from "./components/modal-new-room/modal-new-room.component";
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import {ModalNewRoomComponent} from "./components/modal-new-room/modal-new-room.
     ModalUserComponent,
     EditReservationComponent,
     EditRoomComponent,
+    EditUserComponent,
     ModalNewReservationComponent,
     ModalNewRoomComponent
   ],

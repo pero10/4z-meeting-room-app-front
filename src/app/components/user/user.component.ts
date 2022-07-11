@@ -41,4 +41,14 @@ export class UserComponent implements OnInit {
   }
 
 
+  onSubmitEditForm(user:User) {
+    this.editModalVisible = false;
+    this.userService.editUser(user).subscribe();
+    this.userService.getUsers().subscribe((users)=>(this.users=users));
+  }
+
+  editModalToggle(user: User) {
+    this.editModalVisible = true;
+    this.selectedUser = user;
+  }
 }

@@ -56,4 +56,10 @@ export class ReservationComponent implements OnInit {
   toggleInsertReservationModal() {
     this.insertModalVisible = true;
   }
+
+  onSubmitEditForm(reservation: Reservation) {
+    this.editModalVisible = false;
+    this.reservationService.editReservation(reservation).subscribe();
+    this.reservationService.getReservations().subscribe((reservation)=>(this.reservations=reservation));
+  }
 }

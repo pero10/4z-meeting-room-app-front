@@ -22,7 +22,7 @@ export class ReservationService {
     return this.http.get<Reservation[]>(this.apiUrl);
   }
 
-  getReservationsToday(): Observable<Reservation[]> {
+  getReservationsToday():Observable<Reservation[]>{
     const url = `${this.apiUrl}/today`;
     return this.http.get<Reservation[]>(url);
   }
@@ -32,10 +32,19 @@ export class ReservationService {
     return this.http.delete<Reservation>(url);
   }
 
-  editReservation(reservation: Reservation)//:Observable<Reservation>
-  {
-    // const url = `${this.apiUrl}/${reservation.id}`;
-    // return this.http.patch<Reservation>(url);
+  editReservation(reservation: Reservation): Observable<any>{
+    const url = `${this.apiUrl}/${reservation.id}`;
+    this.selectedReservation = {
+      // "startedAt": formatDate(reservation.startedAt, 'MMMM d, y, h:mm:ss a z','startedAt','GMT+2' ),
+      // "finishedAt": formatDate(reservation.finishedAt, 'MMMM d, y, h:mm:ss a z','finishedAt','GMT+2' ),
+      "startedAt": reservation.startedAt,
+      "finishedAt": reservation.finishedAt,
+      "name": reservation.name,
+      "status": reservation.status
+    }
+    // console.log('Tip', typeof(reservation.startedAt));
+    console.log(this.selectedReservation);
+    return this.http.patch<Reservation>(url, this.selectedReservation, httpOptions);
   }
 
   addReservation(reservation: Reservation):Observable<Reservation> {

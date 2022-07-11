@@ -14,6 +14,8 @@ const httpOptions = {
 })
 export class UserService {
   private apiUrl = 'http://localhost:8000/api/users';
+  selectedUser = {};
+
 
   constructor(private http: HttpClient) {}
 
@@ -27,4 +29,16 @@ export class UserService {
   }
 
 
+  editUser(user: User):Observable<any>{
+    const url = `${this.apiUrl}/${user.id}`;
+    this.selectedUser = {
+      "email": user.email,
+      "firstName": user.firstName,
+      "lastName": user.lastName,
+      "phone": user.phone
+    }
+    console.log(this.selectedUser);
+    return this.http.patch<User>(url, this.selectedUser, httpOptions);
+
+  }
 }
