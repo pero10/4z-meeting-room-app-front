@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Room} from "../../Room";
 import {FormControl, FormGroup} from "@angular/forms";
 import {RoomService} from "../../services/room.service";
-import {formControl} from "@angular/core/schematics/migrations/typed-forms/util";
 
 @Component({
   selector: 'app-edit-room',

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { User } from "../User";
+import {Reservation} from "../Reservation";
+import {FormControl} from "@angular/forms";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,6 +16,8 @@ const httpOptions = {
 })
 export class UserService {
   private apiUrl = 'http://localhost:8002/api/users';
+  selectedUser = {};
+
 
   constructor(private http: HttpClient) {}
 
@@ -27,4 +31,16 @@ export class UserService {
   }
 
 
+  editUser(user: User):Observable<any>{
+    const url = `${this.apiUrl}/${user.id}`;
+    this.selectedUser = {
+      "email": user.email,
+      "firstName": user.firstName,
+      "lastName": user.lastName,
+      "phone": user.phone
+    }
+    console.log(this.selectedUser);
+    return this.http.patch<User>(url, this.selectedUser, httpOptions);
+
+  }
 }

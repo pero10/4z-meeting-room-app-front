@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Reservation} from "../Reservation";
+import {Room} from "../Room";
+import {DATE_PIPE_DEFAULT_TIMEZONE, DatePipe, formatDate} from "@angular/common";
+import {stringifyTask} from "@angular/compiler-cli/ngcc/src/execution/tasks/utils";
 
 
 const httpOptions = {
@@ -15,6 +18,7 @@ const httpOptions = {
 })
 export class ReservationService {
   private apiUrl = 'http://localhost:8002/api/reservations';
+  selectedReservation = {};
 
   constructor(private http: HttpClient) {
   }
@@ -33,10 +37,19 @@ export class ReservationService {
     return this.http.delete<Reservation>(url);
   }
 
-  editReservation(reservation: Reservation)//:Observable<Reservation>
-    {
-    // const url = `${this.apiUrl}/${reservation.id}`;
-    // return this.http.patch<Reservation>(url);
+  editReservation(reservation: Reservation): Observable<any>{
+    const url = `${this.apiUrl}/${reservation.id}`;
+    this.selectedReservation = {
+      // "startedAt": formatDate(reservation.startedAt, 'MMMM d, y, h:mm:ss a z','startedAt','GMT+2' ),
+      // "finishedAt": formatDate(reservation.finishedAt, 'MMMM d, y, h:mm:ss a z','finishedAt','GMT+2' ),
+      "startedAt": reservation.startedAt,
+      "finishedAt": reservation.finishedAt,
+      "name": reservation.name,
+      "status": reservation.status
+    }
+    // console.log('Tip', typeof(reservation.startedAt));
+    console.log(this.selectedReservation);
+    return this.http.patch<Reservation>(url, this.selectedReservation, httpOptions);
   }
 
 

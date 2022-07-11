@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { User } from "../../User";
-import {faTimes, faEye} from "@fortawesome/free-solid-svg-icons";
+import {faTimes, faEye, faPencil} from "@fortawesome/free-solid-svg-icons";
 import {Reservation} from "../../Reservation";
+import {Room} from "../../Room";
 
 @Component({
   selector: 'app-user-item',
@@ -12,10 +13,12 @@ export class UserItemComponent implements OnInit {
   @Input() user ?: User;
   @Output() onDeleteUser : EventEmitter<User> = new EventEmitter();
   @Output() onShowModalUser:EventEmitter<User> = new EventEmitter();
+  @Output() onShowEditModal : EventEmitter<User> = new EventEmitter();
 
 
   faDelete = faTimes;
   faEye = faEye;
+  faPencil = faPencil;
 
   constructor() { }
 
@@ -34,4 +37,7 @@ export class UserItemComponent implements OnInit {
     this.onShowModalUser.emit(user);
   }
 
+  showEditModalToggle(user?: User) {
+    this.onShowEditModal.emit(user);
+  }
 }
