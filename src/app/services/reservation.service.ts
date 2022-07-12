@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Reservation} from "../Reservation";
+import {environment} from "../../environments/environment";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,13 +14,16 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ReservationService {
-  private apiUrl = 'http://localhost:8000/api/reservations';
+  private apiUrl = environment.url;
+
+  selectedUser:any;
+  private selectedReservation: any;
 
   constructor(private http: HttpClient) {
   }
 
   getReservations(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(this.apiUrl);
+    return this.http.get<Reservation[]>(this.apiUrl+'/api/reservations/');
   }
 
   getReservationsToday():Observable<Reservation[]>{
@@ -28,26 +32,27 @@ export class ReservationService {
   }
 
   deleteReservation(reservation: Reservation): Observable<Reservation> {
-    const url = `${this.apiUrl}/${reservation.id}`;
+    const url = `${this.apiUrl}/api/reservations/${reservation.id}`;
     return this.http.delete<Reservation>(url);
   }
 
-  editReservation(reservation: Reservation): Observable<any>{
-    const url = `${this.apiUrl}/${reservation.id}`;
+  editReservation(reservation: Reservation): Observable<Reservation>{
+    const url = `${this.apiUrl}/api/reservations/${reservation.id}`;
     this.selectedReservation = {
-      // "startedAt": formatDate(reservation.startedAt, 'MMMM d, y, h:mm:ss a z','startedAt','GMT+2' ),
-      // "finishedAt": formatDate(reservation.finishedAt, 'MMMM d, y, h:mm:ss a z','finishedAt','GMT+2' ),
+
       "startedAt": reservation.startedAt,
       "finishedAt": reservation.finishedAt,
       "name": reservation.name,
       "status": reservation.status
+      ,
+      "room":reservation.room,
+      "host":reservation.host
     }
-    // console.log('Tip', typeof(reservation.startedAt));
     console.log(this.selectedReservation);
     return this.http.patch<Reservation>(url, this.selectedReservation, httpOptions);
   }
 
   addReservation(reservation: Reservation):Observable<Reservation> {
-    return this.http.post<Reservation>(this.apiUrl,reservation,httpOptions);
+    return this.http.post<Reservation>(this.apiUrl+'/api/reservations',reservation,httpOptions);
   }
 }

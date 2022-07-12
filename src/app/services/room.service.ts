@@ -21,12 +21,12 @@ export class RoomService {
   }
 
   addNewRoom(room:Room):Observable<Room> {
-    const url = this.apiUrl+'/api/rooms'
+    const url = this.apiUrl+'/api/rooms';
     return this.http.post<Room>(url,room,httpOptions);
   }
 
   getRooms():Observable<Room[]>{
-    return this.http.get<Room[]>(this.apiUrl+'/api/rooms');
+    return this.http.get<Room[]>(this.apiUrl+'/api/rooms/desc');
   }
 
   deleteRoom(room: Room):Observable<Room>{
@@ -35,7 +35,7 @@ export class RoomService {
   }
 
   editRoom(room: Room):Observable<any>{
-    const url = `${this.apiUrl}/${room.id}`;
+    const url = `${this.apiUrl}/api/rooms/${room.id}`;
     this.selectedRoom = {
       "capacity": room.capacity,
       "location": room.location,
@@ -44,6 +44,6 @@ export class RoomService {
       "videocall": room.videocall,
       "whiteboard": room.whiteboard
     }
-    return this.http.patch<Room>(url, this.selectedRoom, httpOptions);
+    return this.http.put<Room>(url, this.selectedRoom, httpOptions);
   }
 }

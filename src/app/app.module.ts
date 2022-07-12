@@ -4,6 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {Router, RouterModule, Routes} from "@angular/router";
 import { MatDialogModule } from '@angular/material/dialog';
+import {FormsModule} from "@angular/forms";
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -66,7 +67,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

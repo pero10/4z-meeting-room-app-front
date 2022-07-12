@@ -15,7 +15,7 @@ export class RoomComponent implements OnInit {
   selectedRoom?:Room;
   regularModalVisible:boolean=false;
   insertModalVisible:boolean=false;
-  editModalVisible:boolean=false;
+  editModalVisible:boolean = false;
 
   constructor(private roomService:RoomService) { }
 
