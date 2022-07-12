@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
-import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-room',

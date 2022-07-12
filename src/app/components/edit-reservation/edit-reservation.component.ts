@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit,Input,Output} from '@angular/core';
 import {Reservation} from "../../Reservation";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ReservationService} from "../../services/reservation.service"
-import {DatePipe} from "@angular/common";
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
 
