@@ -40,10 +40,8 @@ export class ReservationService {
   editReservation(reservation: Reservation): Observable<any>{
     const url = `${this.apiUrl}/${reservation.id}`;
     this.selectedReservation = {
-      // "startedAt": formatDate(reservation.startedAt, 'MMMM d, y, h:mm:ss a z','startedAt','GMT+2' ),
-      // "finishedAt": formatDate(reservation.finishedAt, 'MMMM d, y, h:mm:ss a z','finishedAt','GMT+2' ),
-      "startedAt": reservation.startedAt,
-      "finishedAt": reservation.finishedAt,
+      "startedAt": formatDate(reservation.startedAt, 'mm/dd/yyyy,hh:mm ss a','en-US','GMT+2' ),
+      "finishedAt": formatDate(reservation.finishedAt, 'mm/dd/yyyy, hh:mm ss a','en-US','GMT+2' ),
       "name": reservation.name,
       "status": reservation.status
     }

@@ -28,7 +28,13 @@ export class EditReservationComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.reservation){
+      let startedAt = new Date(this.reservation.startedAt);
+      let finishedAt = new Date(this.reservation.finishedAt);
+      console.log(startedAt, finishedAt);
+      this.editReservationForm.controls['startedAt'].setValue(startedAt);
+      this.editReservationForm.controls['finishedAt'].setValue(finishedAt);
       this.editReservationForm.patchValue(this.reservation);
+
     }
   }
 
