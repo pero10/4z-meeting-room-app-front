@@ -39,6 +39,11 @@ export class UserService {
     }
     console.log(this.selectedUser);
     return this.http.patch<User>(url, this.selectedUser, httpOptions);
-
   }
+
+  addUser(user: User):Observable<User>{
+    return this.http.post<User>(this.apiUrl, user, httpOptions);
+  }
+
+
 }

@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {Router, RouterModule, Routes} from "@angular/router";
 import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule} from "@angular/forms";
@@ -32,6 +32,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ModalNewReservationComponent} from "./components/modal-new-reservation/modal-new-reservation.component";
 import {ModalNewRoomComponent} from "./components/modal-new-room/modal-new-room.component";
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     EditRoomComponent,
     EditUserComponent,
     ModalNewReservationComponent,
-    ModalNewRoomComponent
+    ModalNewRoomComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,8 +71,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
