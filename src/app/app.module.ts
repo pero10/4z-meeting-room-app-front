@@ -27,8 +27,10 @@ import { ModalReservationComponent } from './components/modal-reservation/modal-
 import { ModalUserComponent } from './components/modal-user/modal-user.component';
 import { EditReservationComponent } from './components/edit-reservation/edit-reservation.component';
 import { EditRoomComponent } from './components/edit-room/edit-room.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     EditReservationComponent,
     EditRoomComponent,
     EditUserComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
