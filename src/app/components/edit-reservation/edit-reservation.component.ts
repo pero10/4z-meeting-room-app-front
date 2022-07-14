@@ -17,7 +17,6 @@ export class EditReservationComponent implements OnInit {
   @Output() submit:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   editReservationForm: FormGroup;
   rooms: Room[] = [];
-  // reservatedRoom:string='';
 
   constructor(public reservationService : ReservationService,private roomService:RoomService) {
     this.editReservationForm = new FormGroup({
@@ -34,15 +33,14 @@ export class EditReservationComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.reservation){
-      let startedAt = new Date(this.reservation.startedAt);
-      let finishedAt = new Date(this.reservation.finishedAt);
+      let startedAt = this.reservation?.startedAt;
+      let finishedAt = this.reservation.finishedAt;
       console.log(startedAt, finishedAt);
       this.editReservationForm.controls['startedAt'].setValue(startedAt);
       this.editReservationForm.controls['finishedAt'].setValue(finishedAt);
       this.editReservationForm.patchValue(this.reservation);
 
     }
-    // this.reservatedRoom=String(this.reservation?.room.name);
 
     this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
   }
