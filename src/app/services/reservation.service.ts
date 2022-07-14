@@ -48,6 +48,7 @@ export class ReservationService {
       "room":reservation.room,
       "host":reservation.host
     }
+    // console.log('Tip', typeof(reservation.startedAt));
     console.log(this.selectedReservation);
     return this.http.patch<Reservation>(url, this.selectedReservation, httpOptions);
   }
