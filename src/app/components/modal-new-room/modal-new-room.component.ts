@@ -34,15 +34,17 @@ export class ModalNewRoomComponent implements OnInit {
       return
     }
 
-    const tvNum=0,wbNum=0,vcNum=0;
 
     const newRoom: Room = {
       name:this.name!,
       location:this.location!,
       capacity:this.capacity!,
-      tv: this.transferBooleanToNumber(this.tv!),
-      whiteboard: this.transferBooleanToNumber(this.whiteboard!),
-      videocall: this.transferBooleanToNumber(this.videocall!)
+      tv:this.tv!,
+      whiteboard: this.whiteboard!,
+      videocall:this.videocall!
+      // tv: this.transferBooleanToNumber(this.tv!),
+      // whiteboard: this.transferBooleanToNumber(this.whiteboard!),
+      // videocall: this.transferBooleanToNumber(this.videocall!)
     };
 
     this.onAddRoom.emit(newRoom);

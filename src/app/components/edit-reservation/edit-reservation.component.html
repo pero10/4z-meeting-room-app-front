@@ -39,16 +39,17 @@
                     id="reservationRoom"
                     formControlName="room"
                     class="form-control mb-2">
-              <option selected>
-                {{reservatedRoom}}
-              </option>
+              <option id="initialOption"></option>
               <option
                 *ngFor="let room of rooms"
                 [ngValue]="room.id">
                 {{room.name}}
               </option>
+
             </select>
           </div>
+<!--          <input type="hidden" id="reservationHost" name="reservationHost" formControlName="host" value="{{reservation?.host}}">-->
+          <!-- host remaining unchanged-->
           <button type="submit" class="btn btn-primary">Submit</button>
           <button class="btn btn-danger ms-3" (click)="onClose()">Cancel</button>
         </form>

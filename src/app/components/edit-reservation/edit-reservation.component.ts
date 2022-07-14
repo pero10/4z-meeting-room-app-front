@@ -17,7 +17,7 @@ export class EditReservationComponent implements OnInit {
   @Output() submit:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   editReservationForm: FormGroup;
   rooms: Room[] = [];
-  reservatedRoom:string='';
+  // reservatedRoom:string='';
 
   constructor(public reservationService : ReservationService,private roomService:RoomService) {
     this.editReservationForm = new FormGroup({
@@ -36,7 +36,7 @@ export class EditReservationComponent implements OnInit {
     if(this.reservation){
       this.editReservationForm.patchValue(this.reservation);
     }
-    this.reservatedRoom=String(this.reservation?.room.name);
+    // this.reservatedRoom=String(this.reservation?.room.name);
 
     this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
   }
@@ -52,4 +52,5 @@ export class EditReservationComponent implements OnInit {
   onSubmit() {
     this.submit.emit(this.editReservationForm.value);
   }
+
 }

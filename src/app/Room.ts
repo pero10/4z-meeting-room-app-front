@@ -3,7 +3,7 @@ export interface Room{
   name:string;
   location:string;
   capacity:number;
-  tv:number;
-  whiteboard:number;
-  videocall:number;
+  tv:boolean;
+  whiteboard:boolean;
+  videocall:boolean;
 }
