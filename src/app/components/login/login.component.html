@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <form [formGroup]="login">
+    <div class="form-group">
+      <h2 class="text-center">Log in</h2>
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+             placeholder="Enter email" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+      formControlName="password">
+    </div>
+    <div class="m-3 text-center">
+    <button type="submit" class="btn btn-success ms-2 me-2" (click)="loginSubmit(login.value)" [disabled]="login.invalid">Log in</button>
+    <button type="submit" class="btn btn-primary ms-2 me-2" (click)="gotToSignUp()">Sign up</button>
+    </div>
+  </form>
+</div>

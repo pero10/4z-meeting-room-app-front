@@ -1,0 +1,35 @@
+<div class="wrapper">
+  <form [formGroup]="register">
+    <div class="form-group">
+      <h2 class="text-center">Sign up</h2>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" placeholder="First Name"
+               formControlName="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" placeholder="Last Name"
+               formControlName="lastName">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" id="phone" placeholder="Phone"
+               formControlName="phone">
+      </div>
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+             placeholder="Enter email" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+             formControlName="password">
+    </div>
+    <div class="m-3 text-center">
+      <button type="submit" class="btn btn-success ms-2 me-2" (click)="registerSubmit(register.value)"
+      [disabled]="register.invalid">Sign up</button>
+      <button type="submit" class="btn btn-primary ms-2 me-2" (click)="gotToLogIn()">Log in</button>
+    </div>
+  </form>
+</div>
