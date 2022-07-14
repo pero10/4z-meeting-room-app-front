@@ -2,6 +2,12 @@
   <div class="card">
     <h1 class="card-header">Room #{{room?.id}}
       <fa-icon
+        (click)="showEditModalToggle()"
+        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
+        [icon]="faPencil"
+        class="pointer">
+      </fa-icon>
+      <fa-icon
         (click)="onDelete(room)"
         [ngStyle]="{'color':'#f00','float':'right'}"
         [icon]="faDelete"
@@ -11,12 +17,6 @@
         (click)="showModalToggle(room)"
         [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
         [icon]="faEye"
-        class="pointer">
-      </fa-icon>
-      <fa-icon
-        (click)="showEditModalToggle()"
-        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
-        [icon]="faPencil"
         class="pointer">
       </fa-icon>
     </h1>
@@ -30,7 +30,6 @@
       <input [checked]="room?.whiteboard" id="whiteboardCheckBox" type="checkbox" disabled><br>
       <label for="videocallCheckbox">video call</label>
       <input [checked]="room?.videocall" id="videocallCheckbox" type="checkbox" disabled><br>
-      <a routerLink="/reservation" class="btn btn-primary me-3">Make</a>
     </div>
   </div>
 </div>

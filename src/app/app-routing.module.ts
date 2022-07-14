@@ -5,6 +5,7 @@ import {HomeComponent} from "./components/home/home.component";
 import {UserComponent} from "./components/user/user.component";
 import {ReservationComponent} from "./components/reservation/reservation.component";
 import {RoomComponent} from "./components/room/room.component";
+// import {LoginComponent} from "./components/login/login.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {AuthGuard} from "./auth.guard";
