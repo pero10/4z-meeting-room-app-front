@@ -16,8 +16,8 @@
           </div>
           <div class="form-group rounded-5">
             <label for="roomLocation">Lokacija:</label>
-<!--            <input type="text" name="roomLocation" id="roomLocation"-->
-<!--                   formControlName="location" class="form-control">-->
+            <!--            <input type="text" name="roomLocation" id="roomLocation"-->
+            <!--                   formControlName="location" class="form-control">-->
             <select name="roomLocation" id="roomLocation" formControlName="location" class="form-control">
               <option value="Nazor">Nazor</option>
               <option value="Galerija">Galerija</option>
@@ -40,11 +40,13 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck3" formControlName="videocall">
             <label class="form-check-label" for="exampleCheck1">video call</label>
           </div>
-<!--          <div>-->
-<!--            {{editRoomForm.value|json}}-->
-<!--          </div>-->
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn btn-danger ms-3" (click)="onClose()">Cancel</button>
+          <!--          <div>-->
+          <!--            {{editRoomForm.value|json}}-->
+          <!--          </div>-->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button class="btn btn-danger ms-3" (click)="onClose()">Cancel</button>
+          </div>
         </form>
       </div>
     </div>

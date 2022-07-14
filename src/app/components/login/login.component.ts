@@ -42,6 +42,6 @@ export class LoginComponent implements OnInit {
   }
 
   gotToSignUp(){
-    this.router.navigate(['registration'])
+    this.router.navigate(['registration']);
   }
 }

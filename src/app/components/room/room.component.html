@@ -1,6 +1,8 @@
-<button class="btn upd-btn-color"
+<div class="container mt-5">
+<button class="btn btn-outline-success"
         (click)="toggleInsertRoomModal()"
 >Add new room here!</button>
+</div>
 <app-room-item
   *ngFor="let room of rooms"
   [room]="room"

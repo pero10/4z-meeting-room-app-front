@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title">Edit room #{{user?.id}}</h1>
+        <h1 class="modal-title">Edit user #{{user?.id}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                 (click)="onClose()"
         ></button>
@@ -32,8 +32,10 @@
           <!--          <div>-->
           <!--            {{editReservationForm.value|json}}-->
           <!--          </div>-->
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn btn-danger ms-3" (click)="onClose()">Cancel</button>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button class="btn btn-danger ms-3" (click)="onClose()">Cancel</button>
+          </div>
         </form>
       </div>
     </div>

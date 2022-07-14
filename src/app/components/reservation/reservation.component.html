@@ -1,6 +1,8 @@
-<button class="btn upd-btn-color"
-        (click)="toggleInsertReservationModal()"
->Add new reservation here!</button>
+<div class="container mt-5">
+  <button class="btn btn-outline-success text-center"
+          (click)="toggleInsertReservationModal()"
+  >Add new reservation here!</button>
+</div>
 <app-reservation-item
   *ngFor="let reservation of reservations"
   [reservation]="reservation"

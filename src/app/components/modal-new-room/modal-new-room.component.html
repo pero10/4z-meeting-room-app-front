@@ -1,17 +1,17 @@
 <div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header modal-normal-header">
+      <div class="modal-header insert-new-itemmodal-normal-header">
         <h1>Make new room</h1>
-          <button type="button"
-                  class="btn-close move-right"
-                  id="close-button-new"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  (click)="onClose()"
-          ></button>
+        <button type="button"
+                class="btn-close move-right"
+                id="close-button-new"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                (click)="onClose()"
+        ></button>
       </div>
-      <div class="insert-new-item">
+      <div class="modal-body">
         <form class="add-form" (ngSubmit)="onSubmit()">
           <label>Name</label>
           <input id="name" name="name" [(ngModel)]="name"><br>
@@ -29,7 +29,9 @@
           <label for="videocall">videocall: </label>
           <input type="checkbox" id="videocall" name="videocall" [(ngModel)]="videocall"><br>
           <br>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
         </form>
       </div>
     </div>
