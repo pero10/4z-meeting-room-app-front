@@ -1,18 +1,17 @@
 <div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1>Make new reservation
-          <button type="button"
-                  class="btn-close"
-                  id="close-button-new-res"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  (click)="onClose()"
-          ></button>
-        </h1>
+      <div class="modal-header insert-new-itemmodal-normal-header">
+        <h1>Make new reservation</h1>
+        <button type="button"
+                class="btn-close move-right"
+                id="close-button-new"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                (click)="onClose()"
+        ></button>
       </div>
-      <div class="insert-new-item">
+      <div class="modal-body">
         <form class="add-form" (ngSubmit)="onSubmit()">
           <label>start time</label>
           <input type="datetime-local" name="startedAt" [(ngModel)]="startedAt" id="started_at"><br>
@@ -36,8 +35,10 @@
               [ngValue]="room.id">
               {{room.name}}
             </option>
-          </select><br>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          </select>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
         </form>
       </div>
     </div>
