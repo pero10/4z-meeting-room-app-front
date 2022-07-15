@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { User } from "../User";
+import {LoginData} from "../LoginData";
+import {environment} from "../../environments/environment";
+import {UserData} from "../UserData";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,7 +16,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8002/api/users';
+  private apiUrl = environment.url+'/api/users';
+  private validatorRoute='http://localhost:8000/api/loginValidator'
   selectedUser = {};
 
 
@@ -38,10 +42,18 @@ export class UserService {
       "phone": user.phone
     }
     console.log(this.selectedUser);
-    return this.http.patch<User>(url, this.selectedUser, httpOptions);
+    return this.http.patch<User>(this.apiUrl, this.selectedUser, httpOptions);
   }
 
   addUser(user: User):Observable<User>{
     return this.http.post<User>(this.apiUrl, user, httpOptions);
+  }
+
+  validateUser(data:string){
+    return this.http.post<LoginData>(this.validatorRoute,data,httpOptions);
+  }
+
+  loginValidator():Observable<UserData>{
+    return this.http.get<UserData>(this.validatorRoute,httpOptions);
   }
 }

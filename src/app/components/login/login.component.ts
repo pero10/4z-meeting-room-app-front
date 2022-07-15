@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {LoginData} from "../../LoginData";
 
 @Component({
   selector: 'app-login',
@@ -10,38 +11,44 @@ import {UserService} from "../../services/user.service";
 })
 export class LoginComponent implements OnInit {
 
-  login:any = FormGroup;
-  users:any = [];
-  constructor(private fb:FormBuilder, private router: Router, private userService: UserService) { }
+  login: any = FormGroup;
+  userData: any;
+
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.login = this.fb.group({
-      email: ['', Validators.compose([Validators.required, Validators.email ])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
-    })
+    });
 
-    this.userService.getUsers().subscribe((data:any)=>{
-      this.users = data;
-    })
+
+    // this.userService.getUsers().subscribe((data:any)=>{
+    //   this.users = data;
+    // })
   }
 
-  loginSubmit(data: any){
-    if(data.email){
-      this.users.forEach((item:any) => {
-        if(item.email === data.email && data.password === item.password){
-          console.log(data.password);
-          console.log(item.password);
-          // localStorage.setItem("isLoggedIn",  "true");
-          // this.router.navigate(['dashboard']);
-        }
-        else{
-          localStorage.clear();
-        }
-      })
-    }
+  loginSubmit(data: LoginData) {
+    const dataFromLoginForm = JSON.stringify(data);
+    this.userService.validateUser(dataFromLoginForm).subscribe();
+    // console.log('prolazi');
+    // this.userService.loginValidator().subscribe(
+    //   backendData => {
+    //     console.log(backendData);
+    //   });
+
+    // if (this.userData.status == "lgtm") {
+    //   localStorage.setItem("isLoggedIn",  "true");
+    //   localStorage.setItem("id", this.userData.id);
+    //   localStorage.setItem("email", this.userData.email);
+    //   localStorage.setItem("type",  this.userData.type);
+    //
+    //   this.router.navigate(['dashboard']);
+    // }
   }
 
-  gotToSignUp(){
+  gotToSignUp() {
     this.router.navigate(['registration']);
   }
 }
