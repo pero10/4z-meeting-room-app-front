@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {LoginData} from "../../LoginData";
+import {UserData} from "../../UserData";
 
 @Component({
   selector: 'app-login',
@@ -23,23 +24,17 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-
     // this.userService.getUsers().subscribe((data:any)=>{
     //   this.users = data;
     // })
   }
 
   loginSubmit(data: LoginData) {
-    // const jsonData = JSON.stringify(data);
-    this.userData = this.userService.validateUser(data).subscribe();
+    this.userService.validateUser(data).subscribe();
+    console.log(data);
 
-    this.userService.loginValidator().subscribe(
-      $backendData => {
-        console.log($backendData.email);
-      });
-    // console.log(this.userData);
-
-    // if (this.userData.status == "lgtm") {
+    this.userData = this.userService.loginValidator().subscribe();
+    // if (temp === "lgtm") {
     //   localStorage.setItem("isLoggedIn",  "true");
     //   localStorage.setItem("id", this.userData.id);
     //   localStorage.setItem("email", this.userData.email);
@@ -48,6 +43,8 @@ export class LoginComponent implements OnInit {
     //   this.router.navigate(['dashboard']);
     // }
   }
+
+
   gotToSignUp() {
     this.router.navigate(['registration']);
   }

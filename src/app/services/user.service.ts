@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class UserService {
   private apiUrl = environment.url+'/api/users';
-  private validatorRoute='http://localhost:8000/api/loginValidator'
+  private validatorRoute='http://localhost:8002/api/loginValidator';
   selectedUser = {};
 
 
@@ -41,7 +41,6 @@ export class UserService {
       "lastName": user.lastName,
       "phone": user.phone
     }
-    console.log(this.selectedUser);
     return this.http.patch<User>(this.apiUrl, this.selectedUser, httpOptions);
   }
 
