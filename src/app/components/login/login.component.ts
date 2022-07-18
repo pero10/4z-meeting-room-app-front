@@ -29,14 +29,15 @@ export class LoginComponent implements OnInit {
     // })
   }
 
-  loginSubmit(data: LoginData) {
+  loginSubmit1(data: LoginData) {
     const dataFromLoginForm = JSON.stringify(data);
-    this.userService.validateUser(dataFromLoginForm).subscribe();
-    // console.log('prolazi');
-    // this.userService.loginValidator().subscribe(
-    //   backendData => {
-    //     console.log(backendData);
-    //   });
+    const temp = this.userService.validateUser(dataFromLoginForm).subscribe();
+
+
+    this.userService.loginValidator().subscribe(
+      backendData => {
+        console.log(backendData);
+      });
 
     // if (this.userData.status == "lgtm") {
     //   localStorage.setItem("isLoggedIn",  "true");
@@ -46,6 +47,17 @@ export class LoginComponent implements OnInit {
     //
     //   this.router.navigate(['dashboard']);
     // }
+  }
+
+  onSubmit()
+  {
+    this.loginSubmit1(data).subscribe((data) => {
+      this.result = data
+
+      console.log(this.result);
+      console.dir(this.result);
+    });
+
   }
 
   gotToSignUp() {
