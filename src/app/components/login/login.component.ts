@@ -29,15 +29,15 @@ export class LoginComponent implements OnInit {
     // })
   }
 
-  loginSubmit1(data: LoginData) {
-    const dataFromLoginForm = JSON.stringify(data);
-    const temp = this.userService.validateUser(dataFromLoginForm).subscribe();
-
+  loginSubmit(data: LoginData) {
+    // const jsonData = JSON.stringify(data);
+    this.userData = this.userService.validateUser(data).subscribe();
 
     this.userService.loginValidator().subscribe(
-      backendData => {
-        console.log(backendData);
+      $backendData => {
+        console.log($backendData.email);
       });
+    // console.log(this.userData);
 
     // if (this.userData.status == "lgtm") {
     //   localStorage.setItem("isLoggedIn",  "true");
@@ -48,18 +48,6 @@ export class LoginComponent implements OnInit {
     //   this.router.navigate(['dashboard']);
     // }
   }
-
-  onSubmit()
-  {
-    this.loginSubmit1(data).subscribe((data) => {
-      this.result = data
-
-      console.log(this.result);
-      console.dir(this.result);
-    });
-
-  }
-
   gotToSignUp() {
     this.router.navigate(['registration']);
   }
