@@ -34,6 +34,7 @@ import {ModalNewRoomComponent} from "./components/modal-new-room/modal-new-room.
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ReservationAttendeeComponent } from './components/reservation-attendee/reservation-attendee.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { RegisterComponent } from './components/register/register.component';
     ModalNewRoomComponent,
     LoginComponent,
     RegisterComponent,
+    ReservationAttendeeComponent,
   ],
   imports: [
     BrowserModule,

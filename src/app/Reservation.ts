@@ -7,10 +7,19 @@ export interface Reservation{
   "name": string,
   "status": string,
   "room":ReservationRoom,
-  "host":number
+  "host":number,
+  "attendee":Attendee
 }
 
 export interface ReservationRoom{
   "id":number
   "name":string
 }
+
+export interface Attendee{
+  "id":number,
+  "email":string,
+  "firstName":string,
+  "lastName":string
+}
+
