@@ -9,9 +9,9 @@
       </div>
       <div class="modal-body">
         <form novalidate [formGroup]="editReservationForm" (ngSubmit)="onSubmit()">
-<!--          <pre>-->
-<!--            {{editReservationForm.value|json}}-->
-<!--          </pre>-->
+          <!--          <pre>-->
+          <!--            {{editReservationForm.value|json}}-->
+          <!--          </pre>-->
           <div class="form-group rounded-5">
             <label for="reservationStartedAt">StartedAt:</label>
             <input type="datetime-local" name="reservationStartedAt" id="reservationStartedAt"
@@ -38,18 +38,18 @@
             <select name="reservationRoom"
                     id="reservationRoom"
                     formControlName="room"
-                    class="form-control mb-2">
-              <option id="initialOption"></option>
+                    class="form-control form-select"
+            >
               <option
                 *ngFor="let room of rooms"
-                [ngValue]="room.id">
+                [value]="room.id">
                 {{room.name}}
               </option>
-
             </select>
+<!--            <pre>{{editReservationForm.value | json}}</pre>-->
           </div>
-<!--                    <input type="hidden" id="reservationHost" name="reservationHost" formControlName="host" value="{{reservation?.host}}">-->
-<!--           host remaining unchanged-->
+          <!--                    <input type="hidden" id="reservationHost" name="reservationHost" formControlName="host" value="{{reservation?.host}}">-->
+          <!--           host remaining unchanged-->
           <div class="modal-footer">
             <button type="submit" class="btn btn-success">Submit</button>
             <button class="btn btn-danger ms-3" (click)="onClose()">Cancel</button>

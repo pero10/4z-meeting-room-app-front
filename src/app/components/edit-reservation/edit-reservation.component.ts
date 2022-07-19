@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit,Input,Output} from '@angular/core';
 import {Reservation} from "../../Reservation";
 import {FormControl, FormGroup} from "@angular/forms";
-import {ReservationService} from "../../services/reservation.service"
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
 
@@ -17,16 +16,19 @@ export class EditReservationComponent implements OnInit {
   @Output() submit:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   editReservationForm: FormGroup;
   rooms: Room[] = [];
-  // reservatedRoom:string='';
+  selectedRoom = this.reservation?.room;
 
-  constructor(public reservationService : ReservationService,private roomService:RoomService) {
+
+  constructor(private roomService:RoomService) {
     this.editReservationForm = new FormGroup({
       id: new FormControl(),
       startedAt: new FormControl(),
       finishedAt: new FormControl(),
       name: new FormControl(),
       status: new FormControl(),
+      // room: new FormControl(),
       room: new FormControl(),
+      // room: new FormControl(),
       // host: new FormControl()
     })
 
@@ -34,13 +36,9 @@ export class EditReservationComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.reservation){
-      let startedAt = this.reservation.startedAt;
-      let finishedAt = this.reservation.finishedAt;
-      // console.log(startedAt, finishedAt);
-      this.editReservationForm.controls['startedAt'].setValue(startedAt);
-      this.editReservationForm.controls['finishedAt'].setValue(finishedAt);
       this.editReservationForm.patchValue(this.reservation);
-
+      this.editReservationForm.controls['room'].setValue(this.reservation?.room?.id);
+      console.log(this.reservation?.room?.id);
     }
 
     this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
@@ -56,6 +54,7 @@ export class EditReservationComponent implements OnInit {
 
   onSubmit() {
     this.submit.emit(this.editReservationForm.value);
+    console.log(this.editReservationForm.value);
   }
 
 }
