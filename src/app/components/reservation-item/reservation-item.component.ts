@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Reservation} from "../../Reservation";
-import {faClock, faTimes, faEye,faPen} from '@fortawesome/free-solid-svg-icons';
+import {faClock, faTimes, faEye,faPen, faPeopleGroup} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-reservation-item',
@@ -18,6 +18,7 @@ export class ReservationItemComponent implements OnInit {
   faDelete = faTimes;
   faEye = faEye;
   faPen = faPen;
+  faPeopleGroup = faPeopleGroup;
 
   // constructor(private dialogRef : MatDialog) {
   // }
