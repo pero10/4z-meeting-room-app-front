@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Attendee, Reservation} from "../../Reservation";
 
 @Component({
   selector: 'app-reservation-attendee',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reservation-attendee.component.css']
 })
 export class ReservationAttendeeComponent implements OnInit {
-
-  constructor() { }
+  @Input() reservation?:Reservation;
+  @Input() attendees?:Attendee[];
+  @Output() close:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onShowAttendeesModal:EventEmitter<Reservation> = new EventEmitter<Reservation>();
+  constructor() {}
 
   ngOnInit(): void {
   }
 
+  onClose() {
+    this.close.emit(true);
+  }
 }

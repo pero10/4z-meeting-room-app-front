@@ -13,6 +13,7 @@ export class ReservationItemComponent implements OnInit {
   @Output() updateReservationTask:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   @Output() onShowModal:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   @Output() onShowEditModal:EventEmitter<Reservation> = new EventEmitter();
+  @Output() onShowAttendeesToggle:EventEmitter<Reservation> = new EventEmitter<Reservation>()
 
   faClock = faClock;
   faDelete = faTimes;
@@ -39,6 +40,10 @@ export class ReservationItemComponent implements OnInit {
 
   showEditModalToggle(reservation?: Reservation) {
     this.onShowEditModal.emit(reservation);
+  }
+
+  showAttendeesToggle(reservation?: Reservation){
+    this.onShowAttendeesToggle.emit(reservation);
   }
 
   // showModalTemp() {

@@ -1,9 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Reservation, ReservationRoom} from "../../Reservation";
+import {Attendee, Reservation, ReservationHost, ReservationRoom} from "../../Reservation";
 import {DatePipe} from "@angular/common";
 import {RoomService} from "../../services/room.service";
 import {ReservationService} from "../../services/reservation.service";
 import {Room} from "../../Room";
+import {User} from "../../User";
 
 @Component({
   selector: 'app-modal-new-reservation',
@@ -21,9 +22,10 @@ export class ModalNewReservationComponent implements OnInit {
   name?: string;
   status?: string;
   room?: ReservationRoom;
-  host?:number=80;
+  host?:ReservationHost;
   showNewReservationModal?: boolean;
   rooms?: Room[];
+  attendee?: Attendee[];
 
   constructor(private reservationService: ReservationService, private roomService: RoomService) {
   }
@@ -53,7 +55,8 @@ export class ModalNewReservationComponent implements OnInit {
       name: this.name!,
       status: this.status!,
       room: this.room!,
-      host:this.host!
+      host:this.host!,
+      attendees:this.attendee!
     };
 
     this.onAddReservation.emit(newReservation);
