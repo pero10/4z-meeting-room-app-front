@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ReservationService} from "../../services/reservation.service";
-import {Reservation} from "../../Reservation";
+import {Attendee, Reservation} from "../../Reservation";
 
 
 @Component({
@@ -10,11 +10,14 @@ import {Reservation} from "../../Reservation";
 })
 export class ReservationComponent implements OnInit {
   reservations: Reservation[] = [];
+  attendees: Attendee[] = [];
   selectedReservation ?: Reservation;
+  selectedAttendees ?: Attendee[];
 
   regularModalVisible: boolean = false;
   editModalVisible: boolean = false;
   insertModalVisible: boolean = false;
+  attendeesModalVisible: boolean = false;
 
   constructor(private reservationService: ReservationService) {
   }
@@ -23,6 +26,7 @@ export class ReservationComponent implements OnInit {
     this.reservationService.getReservations().subscribe(
       (reservations) => (this.reservations = reservations)
     );
+
   }
 
   deleteReservationById(reservation: Reservation) {
@@ -55,6 +59,13 @@ export class ReservationComponent implements OnInit {
 
   toggleInsertReservationModal() {
     this.insertModalVisible = true;
+  }
+
+  toggleAttendeesModal(reservation: Reservation){
+    this.attendeesModalVisible = true;
+    this.selectedReservation = reservation;
+    this.selectedAttendees = reservation.attendees;
+    console.log(this.selectedAttendees);
   }
 
   onSubmitEditForm(reservation: Reservation) {

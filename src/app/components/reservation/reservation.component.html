@@ -9,6 +9,7 @@
   (deleteReservationTask)="deleteReservationById(reservation)"
   (onShowModal)="onModalToggle($event)"
   (onShowEditModal)="onEditModalToggle(reservation)"
+  (onShowAttendeesToggle)="toggleAttendeesModal($event)"
 ></app-reservation-item>
 <app-modal-reservation
   *ngIf="regularModalVisible"
@@ -26,6 +27,13 @@
   *ngIf="insertModalVisible"
   (close)="insertModalVisible=false"
   (onAddReservation)="addNewReservation($event)"
->
+></app-modal-new-reservation>
+<ng-container *ngIf="attendeesModalVisible">
+  <app-reservation-attendee
+    *ngFor="let reservation of reservations"
+    [reservation]="selectedReservation"
+    [attendees]="selectedAttendees"
+    (close)="attendeesModalVisible=false"
+  ></app-reservation-attendee>
+</ng-container>
 
-</app-modal-new-reservation>

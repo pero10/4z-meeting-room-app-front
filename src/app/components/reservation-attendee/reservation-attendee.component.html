@@ -1,1 +1,37 @@
-<p>reservation-attendee works!</p>
+<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header insert-new-itemmodal-normal-header">
+        <h1>Attendees on the meeting</h1>
+        <button type="button"
+                class="btn-close move-right"
+                id="close-button-new"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                (click)="onClose()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Name of Attende</th>
+            <th>Email</th>
+            <th>Arrive</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let attendee of attendees">
+            <th>{{attendee?.firstName}} {{attendee?.lastName}}</th>
+            <th>{{attendee?.email}}</th>
+            <th>Tu ide status</th>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" (click)="onClose()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

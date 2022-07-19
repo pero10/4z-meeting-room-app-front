@@ -8,8 +8,8 @@
         class="pointer">
       </fa-icon>
       <fa-icon
-        (click)="showEditModalToggle(reservation)"
-        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
+        (click)="showAttendeesToggle(reservation)"
+        [ngStyle]="{'color':'#00f','float':'right', 'margin':'0px 10px'}"
         [icon]="faPeopleGroup"
         class="pointer">
       </fa-icon>
@@ -39,6 +39,7 @@
         </fa-icon> {{reservation?.finishedAt}}
       </h2>
       <p class="card-text">{{reservation?.status}}</p>
+      <h3 class="card-text">Host email: {{reservation?.host?.email}}</h3>
     </div>
   </div>
 </div>
