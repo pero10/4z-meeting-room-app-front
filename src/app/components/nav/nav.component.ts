@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  @Input() notAdmin:boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("isLoggedIn")){
+      this.notAdmin = false;
+    }
+  }
+
+  logOut(){
+    this.notAdmin = true;
+    localStorage.clear();
   }
 
 }

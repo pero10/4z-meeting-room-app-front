@@ -1,7 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Room} from "../../Room";
-import {faTimes, faEye, faPencil} from "@fortawesome/free-solid-svg-icons";
+import {faEye, faPencil, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 import {Reservation} from "../../Reservation";
+import {bootstrapApplication} from "@angular/platform-browser";
 // import {MatDialog} from "@angular/material/dialog";
 
 @Component({
@@ -15,14 +16,19 @@ export class RoomItemComponent implements OnInit {
   @Output() onShowModal : EventEmitter<Room> = new EventEmitter();
   @Output() onShowEditModal : EventEmitter<Room> = new EventEmitter()
 
-  faDelete = faTimes;
+  faDelete = faTrashCan;
   faEye = faEye;
   faPencil = faPencil;
+
+  notAdmin: boolean = false;
 
   // constructor(private dialogRef : MatDialog) { }
   constructor() { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('isLoggedIn')){
+      this.notAdmin = true;
+    }
   }
 
   onDelete(room ?: Room){

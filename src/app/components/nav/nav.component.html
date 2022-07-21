@@ -23,7 +23,15 @@
     </ul>
   </div>
   <div>
-    <a routerLink="login" class="btn btn-primary">Login</a>
-<!--    <a routerLink="login" class="btn btn-danger">LogOut</a>-->
+    <a
+      *ngIf="notAdmin"
+      routerLink="login"
+      class="btn btn-primary"
+    >Login</a>
+    <a
+      *ngIf="!notAdmin"
+      routerLink="login"
+      class="btn btn-danger"
+      (click)="logOut()">LogOut</a>
   </div>
 </nav>

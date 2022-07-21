@@ -48,7 +48,7 @@ export class UserService {
     return this.http.post<User>(this.apiUrl, user, httpOptions);
   }
 
-  validateUser(data:LoginData){
+  validateUser(data:LoginData):Observable<LoginData>{
     const sendData = JSON.stringify(data);
     return this.http.post<LoginData>(this.validatorRoute,sendData,httpOptions);
   }
