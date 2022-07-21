@@ -2,20 +2,22 @@
   <div class="card">
     <h1 class="card-header">{{user?.firstName}} {{user?.lastName}}
       <fa-icon
-        (click)="showEditModalToggle()"
-        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
-        [icon]="faPencil"
-        class="pointer">
-      </fa-icon>
-      <fa-icon
+        *ngIf="notAdmin"
         (click)="onDelete(user)"
-        [ngStyle]="{'color':'#f00','float':'right'}"
+        [ngStyle]="{'color':'#f00','float':'right', 'margin':'0px 10px'}"
         [icon]="faDelete"
         class="pointer">
       </fa-icon>
       <fa-icon
+        *ngIf="notAdmin"
+        (click)="showEditModalToggle()"
+        [ngStyle]="{'color':'#0f0','float':'right', 'margin':'0px 10px'}"
+        [icon]="faPencil"
+        class="pointer">
+      </fa-icon>
+      <fa-icon
         (click)="showModalToggle(user)"
-        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
+        [ngStyle]="{'color':'#f0f','float':'right', 'margin':'0px 10px'}"
         [icon]="faEye"
         class="pointer">
       </fa-icon>

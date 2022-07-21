@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Reservation} from "../../Reservation";
-import {faClock, faTimes, faEye,faPen, faPeopleGroup} from '@fortawesome/free-solid-svg-icons';
+import {faClock, faTrashCan, faEye,faPen, faPeopleGroup} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-reservation-item',
@@ -16,10 +16,12 @@ export class ReservationItemComponent implements OnInit {
   @Output() onShowAttendeesToggle:EventEmitter<Reservation> = new EventEmitter<Reservation>()
 
   faClock = faClock;
-  faDelete = faTimes;
+  faDelete = faTrashCan;
   faEye = faEye;
   faPen = faPen;
   faPeopleGroup = faPeopleGroup;
+
+  notAdmin: boolean = false;
 
   // constructor(private dialogRef : MatDialog) {
   // }
@@ -28,6 +30,9 @@ export class ReservationItemComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(localStorage.getItem('isLoggedIn')){
+      this.notAdmin = true;
+    }
   }
 
   deleteReservation(reservation: any) {
@@ -49,5 +54,6 @@ export class ReservationItemComponent implements OnInit {
   // showModalTemp() {
   //   this.dialogRef.open(ModalTempComponent);
   // }
+
 
 }

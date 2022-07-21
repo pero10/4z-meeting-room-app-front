@@ -4,4 +4,16 @@
 <app-home-item
   *ngFor="let reservation of reservations"
   [reservation]="reservation"
+  (onShowAttendeesToggle)="toggleAttendeesModal($event)"
 ></app-home-item>
+<ng-container *ngIf="attendeesModalVisible">
+  <app-reservation-attendee
+    *ngFor="let reservation of reservations"
+    [reservation]="selectedReservation"
+    [attendees]="selectedAttendees"
+    (close)="attendeesModalVisible=false"
+  ></app-reservation-attendee>
+</ng-container>
+
+
+

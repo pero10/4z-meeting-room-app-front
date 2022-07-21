@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { User } from "../../User";
-import {faTimes, faEye, faPencil} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-user-item',
@@ -14,17 +14,17 @@ export class UserItemComponent implements OnInit {
   @Output() onShowEditModal : EventEmitter<User> = new EventEmitter();
 
 
-  faDelete = faTimes;
+  faDelete = faTrashCan;
   faEye = faEye;
   faPencil = faPencil;
+  notAdmin: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  onClickMakeReservation(){
-
+    if(localStorage.getItem('isLoggedIn')){
+      this.notAdmin = true;
+    }
   }
 
   onDelete(user?: User){

@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class UserService {
   private apiUrl = environment.url+'/api/users';
-  private validatorRoute='http://localhost:8002/api/loginValidator';
+  private validatorRoute='http://localhost:8000/api/loginValidator';
   selectedUser = {};
 
 
@@ -48,7 +48,7 @@ export class UserService {
     return this.http.post<User>(this.apiUrl, user, httpOptions);
   }
 
-  validateUser(data:LoginData){
+  validateUser(data:LoginData):Observable<LoginData>{
     const sendData = JSON.stringify(data);
     return this.http.post<LoginData>(this.validatorRoute,sendData,httpOptions);
   }

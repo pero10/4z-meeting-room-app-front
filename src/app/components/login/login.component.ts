@@ -4,18 +4,23 @@ import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {LoginData} from "../../LoginData";
 import {UserData} from "../../UserData";
+import {Reservation} from "../../Reservation";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {bootstrapApplication} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   login: any = FormGroup;
   userData: any;
+  notAdmin: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) {
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService, private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -32,8 +37,13 @@ export class LoginComponent implements OnInit {
   loginSubmit(data: LoginData) {
     this.userService.validateUser(data).subscribe();
     console.log(data);
+    if(this.userService.validateUser(data).subscribe()){
+      this.notAdmin = false;
+      localStorage.setItem("isLoggedIn",  "true");
+      this.router.navigate(['']);
+    }
 
-    this.userData = this.userService.loginValidator().subscribe();
+    //this.userData = this.userService.loginValidator().subscribe();
     // if (temp === "lgtm") {
     //   localStorage.setItem("isLoggedIn",  "true");
     //   localStorage.setItem("id", this.userData.id);

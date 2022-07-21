@@ -2,8 +2,9 @@
   <div class="card">
     <h1 class="card-header">{{reservation?.name}}
       <fa-icon
+        *ngIf="notAdmin"
         (click)="deleteReservation(reservation)"
-        [ngStyle]="{'color':'#f00','float':'right'}"
+        [ngStyle]="{'color':'#f00','float':'right', 'margin':'0px 10px'}"
         [icon]="faDelete"
         class="pointer">
       </fa-icon>
@@ -14,14 +15,15 @@
         class="pointer">
       </fa-icon>
       <fa-icon
+        *ngIf="notAdmin"
         (click)="showEditModalToggle(reservation)"
-        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
+        [ngStyle]="{'color':'#0f0','float':'right', 'margin':'0px 10px'}"
         [icon]="faPen"
         class="pointer">
       </fa-icon>
       <fa-icon
         (click)="showModalToggle(reservation)"
-        [ngStyle]="{'color':'#000','float':'right', 'margin':'0px 10px'}"
+        [ngStyle]="{'color':'#f0f','float':'right', 'margin':'0px 10px'}"
         [icon]="faEye"
         class="pointer">
       </fa-icon>

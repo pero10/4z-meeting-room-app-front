@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ReservationService } from "../../services/reservation.service";
-import {Reservation} from "../../Reservation";
+import {Attendee, Reservation} from "../../Reservation";
 
 
 @Component({
@@ -9,7 +9,11 @@ import {Reservation} from "../../Reservation";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  reservations: Reservation[] = []
+  @Input() reservation?: Reservation;
+  reservations: Reservation[] = [];
+  attendeesModalVisible: boolean = false;
+  selectedReservation ?: Reservation;
+  selectedAttendees ?: Attendee[];
 
   constructor(private reservationService: ReservationService) { }
 
@@ -19,4 +23,9 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  toggleAttendeesModal(reservation: Reservation){
+    this.attendeesModalVisible = true;
+    this.selectedReservation = reservation;
+    this.selectedAttendees = reservation.attendees;
+  }
 }
