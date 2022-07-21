@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class UserService {
   private apiUrl = environment.url+'/api/users';
-  private validatorRoute='http://localhost:8002/api/loginValidator';
+  private validatorRoute='http://localhost:8000/api/loginValidator';
   selectedUser = {};
 
 

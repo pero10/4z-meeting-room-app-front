@@ -4,18 +4,21 @@ import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {LoginData} from "../../LoginData";
 import {UserData} from "../../UserData";
+import {Reservation} from "../../Reservation";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   login: any = FormGroup;
   userData: any;
 
-  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) {
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService, private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -33,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.userService.validateUser(data).subscribe();
     console.log(data);
 
-    this.userData = this.userService.loginValidator().subscribe();
+    //this.userData = this.userService.loginValidator().subscribe();
     // if (temp === "lgtm") {
     //   localStorage.setItem("isLoggedIn",  "true");
     //   localStorage.setItem("id", this.userData.id);

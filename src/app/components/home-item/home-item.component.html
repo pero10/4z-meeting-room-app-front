@@ -1,16 +1,25 @@
 <div class="container-lg mt-5">
   <div class="card">
-    <h1 class="card-header">{{reservation?.name}}</h1>
+    <h1 class="card-header">{{reservation?.name}}
+      <fa-icon
+        (click)="showAttendeesToggle(reservation)"
+        [ngStyle]="{'color':'#00f','float':'right', 'margin':'0px 10px'}"
+        [icon]="faPeopleGroup"
+        class="pointer">
+      </fa-icon>
+    </h1>
     <div class="card-body">
       <h3 class="card-title">
         <fa-icon
           [icon]="faClock"
         >
-        </fa-icon> {{reservation?.startedAt}}<br>
+        </fa-icon>
+        {{reservation?.startedAt}}<br>
         <fa-icon
           [icon]="faClock"
         >
-        </fa-icon> {{reservation?.finishedAt}}
+        </fa-icon>
+        {{reservation?.finishedAt}}
       </h3>
       <p class="card-text">{{reservation?.status}}</p>
     </div>

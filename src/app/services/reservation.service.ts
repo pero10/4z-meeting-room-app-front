@@ -23,11 +23,11 @@ export class ReservationService {
   }
 
   getReservations(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(this.apiUrl+'/api/reservations/');
+    return this.http.get<Reservation[]>(this.apiUrl+'/api/reservations');
   }
 
   getReservationsToday():Observable<Reservation[]>{
-    const url = `${this.apiUrl}/today`;
+    const url = `${this.apiUrl}/api/reservations/today`;
     return this.http.get<Reservation[]>(url);
   }
 
