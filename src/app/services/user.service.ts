@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import { User } from "../User";
 import {LoginData} from "../LoginData";
 import {environment} from "../../environments/environment";
@@ -20,7 +20,6 @@ export class UserService {
   private validatorRoute='http://localhost:8000/api/loginValidator';
   selectedUser = {};
 
-
   constructor(private http: HttpClient) {}
 
   getUsers():Observable<User[]>{
@@ -31,7 +30,6 @@ export class UserService {
     const url = `${this.apiUrl}/${user.id}`;
     return this.http.delete<User>(url);
   }
-
 
   editUser(user: User):Observable<any>{
     const url = `${this.apiUrl}/${user.id}`;
@@ -48,12 +46,8 @@ export class UserService {
     return this.http.post<User>(this.apiUrl, user, httpOptions);
   }
 
-  validateUser(data:LoginData):Observable<LoginData>{
-    const sendData = JSON.stringify(data);
-    return this.http.post<LoginData>(this.validatorRoute,sendData,httpOptions);
-  }
 
   loginValidator():Observable<UserData>{
-    return this.http.get<UserData>(this.validatorRoute,httpOptions);
+    return this.http.get<UserData>(this.validatorRoute, httpOptions);
   }
 }

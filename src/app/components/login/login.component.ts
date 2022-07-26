@@ -3,10 +3,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {LoginData} from "../../LoginData";
-import {UserData} from "../../UserData";
-import {Reservation} from "../../Reservation";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {bootstrapApplication} from "@angular/platform-browser";
+import {AuthService} from "../../services/auth.service";
+import {CookieService} from "ngx-cookie-service";
+import {BehaviorSubject, observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -17,45 +16,41 @@ import {bootstrapApplication} from "@angular/platform-browser";
 export class LoginComponent implements OnInit {
 
   login: any = FormGroup;
-  userData: any;
   notAdmin: boolean = false;
+  loggedUser: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private userService: UserService, private http: HttpClient) {
-  }
+  userData: any;
+  subscription?: Subscription;
+
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private userService: UserService,
+              private cookieService: CookieService,
+              private authService: AuthService
+  ){}
 
   ngOnInit(): void {
     this.login = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
     });
-
-    // this.userService.getUsers().subscribe((data:any)=>{
-    //   this.users = data;
-    // })
   }
 
-  loginSubmit(data: LoginData) {
-    this.userService.validateUser(data).subscribe();
-    console.log(data);
-    if(this.userService.validateUser(data).subscribe()){
-      this.notAdmin = false;
-      localStorage.setItem("isLoggedIn",  "true");
-      this.router.navigate(['']);
-    }
+  submit(data: LoginData) {
+    this.authService.login(data).subscribe(
+      user => {
 
-    //this.userData = this.userService.loginValidator().subscribe();
-    // if (temp === "lgtm") {
-    //   localStorage.setItem("isLoggedIn",  "true");
-    //   localStorage.setItem("id", this.userData.id);
-    //   localStorage.setItem("email", this.userData.email);
-    //   localStorage.setItem("type",  this.userData.type);
-    //
-    //   this.router.navigate(['dashboard']);
-    // }
-  }
+        console.log(user);
 
-
-  gotToSignUp() {
-    this.router.navigate(['registration']);
-  }
+        if(user.status === 'lgtm'){
+          this.authService.changeUser(user);
+          this.userData = user;
+          this.router.navigate(['']);
+        }
+        else{
+          alert(user.status);
+        }
+      }
+    )
+ }
 }

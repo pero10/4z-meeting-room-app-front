@@ -1,6 +1,7 @@
 <div class="wrapper">
   <form [formGroup]="login">
     <div class="form-group">
+      <h1 id="error-message"></h1>
       <h2 class="text-center">Log in</h2>
       <label for="exampleInputEmail1">Email address</label>
       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -12,8 +13,8 @@
       formControlName="password">
     </div>
     <div class="m-3 text-center">
-    <button type="submit" class="btn btn-success ms-2 me-2" (click)="loginSubmit(login.value)" [disabled]="login.invalid">Log in</button>
-    <button type="submit" class="btn btn-primary ms-2 me-2" (click)="gotToSignUp()">Sign up</button>
+    <button type="submit" class="btn btn-success ms-2 me-2" (click)="submit(login.value)" [disabled]="login.invalid">Log in</button>
+    <a routerLink="/registration"><button class="btn btn-primary ms-2 me-2">Sign up</button></a>
     </div>
   </form>
 </div>

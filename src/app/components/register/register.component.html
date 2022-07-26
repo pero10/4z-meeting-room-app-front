@@ -29,7 +29,7 @@
     <div class="m-3 text-center">
       <button type="submit" class="btn btn-success ms-2 me-2" (click)="registerSubmit(register.value)"
       [disabled]="register.invalid">Sign up</button>
-      <button type="submit" class="btn btn-primary ms-2 me-2" (click)="gotToLogIn()">Log in</button>
+      <a routerLink="/login"><button class="btn btn-primary ms-2 me-2">Log in</button></a>
     </div>
   </form>
 </div>

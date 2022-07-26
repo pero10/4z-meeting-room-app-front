@@ -1,4 +1,6 @@
 export interface LoginData{
+  id:number,
   email:string,
-  password:string
+  type:number,
+  status:string
 }
