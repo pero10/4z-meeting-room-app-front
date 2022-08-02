@@ -40,6 +40,8 @@ export class RegisterComponent implements OnInit {
         console.log(user)
       }
     );
+    this.router.navigate(['login']);
+    alert('Uspesno ste registrovani');
   }
 
   gotToLogIn() {

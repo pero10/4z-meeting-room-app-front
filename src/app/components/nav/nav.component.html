@@ -6,13 +6,13 @@
   <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link btn-outline-info rounded-3" href="#">Home</a>
+        <a class="nav-link btn-outline-info rounded-3" routerLink="#">Home</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link btn-outline-info rounded-3" href="/dashboard/user">Users</a>
+        <a class="nav-link btn-outline-info rounded-3" routerLink="/dashboard/user">Users</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link btn-outline-info rounded-3" href="/dashboard/reservation">Reservations</a>
+        <a class="nav-link btn-outline-info rounded-3" routerLink="/dashboard/reservation">Reservations</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link btn-outline-info rounded-3" routerLink="/dashboard/room">Rooms</a>
@@ -24,12 +24,12 @@
   </div>
   <div>
     <a
-      *ngIf="notAdmin"
+      *ngIf="!currentUser"
       routerLink="login"
       class="btn btn-primary"
     >Login</a>
     <a
-      *ngIf="!notAdmin"
+      *ngIf="currentUser"
       routerLink="login"
       class="btn btn-danger"
       (click)="logOut()">LogOut</a>

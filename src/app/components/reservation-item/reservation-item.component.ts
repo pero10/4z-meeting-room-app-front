@@ -1,6 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Reservation} from "../../Reservation";
 import {faClock, faTrashCan, faEye,faPen, faPeopleGroup} from '@fortawesome/free-solid-svg-icons';
+import {LoginData} from "../../LoginData";
+import {AuthService} from "../../services/auth.service"
 
 @Component({
   selector: 'app-reservation-item',
@@ -21,18 +23,16 @@ export class ReservationItemComponent implements OnInit {
   faPen = faPen;
   faPeopleGroup = faPeopleGroup;
 
-  notAdmin: boolean = false;
+  currentUser?: LoginData | null;
 
   // constructor(private dialogRef : MatDialog) {
   // }
 
-  constructor(){}
+  constructor(private authService: AuthService){}
 
 
   ngOnInit(): void {
-    if(localStorage.getItem('isLoggedIn')){
-      this.notAdmin = true;
-    }
+    this.authService.currentUserData.subscribe((user) => this.currentUser = user);
   }
 
   deleteReservation(reservation: any) {

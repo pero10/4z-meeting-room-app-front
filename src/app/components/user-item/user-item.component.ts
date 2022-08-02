@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { User } from "../../User";
 import { faEye, faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import {LoginData} from "../../LoginData";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-user-item',
@@ -13,18 +15,17 @@ export class UserItemComponent implements OnInit {
   @Output() onShowModalUser:EventEmitter<User> = new EventEmitter();
   @Output() onShowEditModal : EventEmitter<User> = new EventEmitter();
 
-
   faDelete = faTrashCan;
   faEye = faEye;
   faPencil = faPencil;
   notAdmin: boolean = false;
 
-  constructor() { }
+  currentUser?: LoginData | any;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('isLoggedIn')){
-      this.notAdmin = true;
-    }
+    this.authService.currentUserData.subscribe((user) => this.currentUser = user);
   }
 
   onDelete(user?: User){

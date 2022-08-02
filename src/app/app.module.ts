@@ -35,6 +35,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReservationAttendeeComponent } from './components/reservation-attendee/reservation-attendee.component';
+import {CookieService} from "ngx-cookie-service";
 
 
 @NgModule({
@@ -76,7 +77,7 @@ import { ReservationAttendeeComponent } from './components/reservation-attendee/
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
