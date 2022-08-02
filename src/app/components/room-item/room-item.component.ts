@@ -1,8 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Room} from "../../Room";
 import {faEye, faPencil, faTrashCan} from "@fortawesome/free-solid-svg-icons";
-import {Reservation} from "../../Reservation";
-import {bootstrapApplication} from "@angular/platform-browser";
+import {AuthService} from "../../services/auth.service";
+import {LoginData} from "../../LoginData";
 // import {MatDialog} from "@angular/material/dialog";
 
 @Component({
@@ -20,15 +20,15 @@ export class RoomItemComponent implements OnInit {
   faEye = faEye;
   faPencil = faPencil;
 
+  currentUser?: LoginData | any;
+
   notAdmin: boolean = false;
 
   // constructor(private dialogRef : MatDialog) { }
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('isLoggedIn')){
-      this.notAdmin = true;
-    }
+    this.authService.currentUserData.subscribe((user) => this.currentUser = user);
   }
 
   onDelete(room ?: Room){

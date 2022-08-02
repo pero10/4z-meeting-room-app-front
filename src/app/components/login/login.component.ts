@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
 
         if(user.status === 'lgtm'){
           this.authService.changeUser(user);
+          console.log(this.authService.getJwtToken(user).subscribe());
           this.userData = user;
           this.router.navigate(['']);
         }

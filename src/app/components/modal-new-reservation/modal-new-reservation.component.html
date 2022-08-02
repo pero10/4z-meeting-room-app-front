@@ -33,7 +33,7 @@
             <option
               *ngFor="let room of rooms"
               [ngValue]="room.id">
-              {{room.name}}
+              {{room.name}} | {{room.capacity}}
             </option>
           </select>
           <div class="modal-footer">

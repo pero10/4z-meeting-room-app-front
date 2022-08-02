@@ -4,7 +4,6 @@ import {DatePipe} from "@angular/common";
 import {RoomService} from "../../services/room.service";
 import {ReservationService} from "../../services/reservation.service";
 import {Room} from "../../Room";
-import {User} from "../../User";
 
 @Component({
   selector: 'app-modal-new-reservation',

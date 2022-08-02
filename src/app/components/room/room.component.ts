@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
+import {LoginData} from "../../LoginData";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-room',
@@ -16,10 +18,15 @@ export class RoomComponent implements OnInit {
   insertModalVisible:boolean=false;
   editModalVisible:boolean = false;
 
-  constructor(private roomService:RoomService) { }
+  currentUser?: LoginData | any;
+
+  constructor(private roomService:RoomService,
+              private authService:AuthService
+  ) { }
 
   ngOnInit(): void {
     this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
+    this.authService.currentUserData.subscribe((user) => this.currentUser = user);
   }
 
   deleteRoom(room: Room){

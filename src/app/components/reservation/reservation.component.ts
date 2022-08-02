@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ReservationService} from "../../services/reservation.service";
 import {Attendee, Reservation, ReservationRoom} from "../../Reservation";
 import {Room} from "../../Room";
+import {LoginData} from "../../LoginData";
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -20,13 +22,18 @@ export class ReservationComponent implements OnInit {
   insertModalVisible: boolean = false;
   attendeesModalVisible: boolean = false;
 
-  constructor(private reservationService: ReservationService) {
+  currentUser?: LoginData | any;
+
+  constructor(private reservationService: ReservationService,
+              private authService: AuthService
+  ) {
   }
 
   ngOnInit(): void {
     this.reservationService.getReservations().subscribe(
       (reservations) => (this.reservations = reservations)
     );
+    this.authService.currentUserData.subscribe((user) => this.currentUser = user);
   }
 
   deleteReservationById(reservation: Reservation) {

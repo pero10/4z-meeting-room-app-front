@@ -46,7 +46,6 @@ export class UserService {
     return this.http.post<User>(this.apiUrl, user, httpOptions);
   }
 
-
   loginValidator():Observable<UserData>{
     return this.http.get<UserData>(this.validatorRoute, httpOptions);
   }
