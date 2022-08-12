@@ -5,6 +5,7 @@ import { User } from "../User";
 import {LoginData} from "../LoginData";
 import {environment} from "../../environments/environment";
 import {UserData} from "../UserData";
+import {Reservation} from "../Reservation";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,6 +20,7 @@ const httpOptions = {
 export class UserService {
   private apiUrl = environment.url+'/api/users';
   private validatorRoute='http://localhost:8000/api/loginValidator';
+  private callAttendeeRoute = 'http://localhost:8000/api/reservations/attendees';
   selectedUser = {};
 
   constructor(private http: HttpClient) {}
@@ -49,5 +51,10 @@ export class UserService {
 
   loginValidator():Observable<UserData>{
     return this.http.get<UserData>(this.validatorRoute, httpOptions);
+  }
+
+  callAttendee(user: User):Observable<User>{
+    const url = `${this.callAttendeeRoute}/${user.id}`;
+    return this.http.post<User>(url, user.id, httpOptions);
   }
 }

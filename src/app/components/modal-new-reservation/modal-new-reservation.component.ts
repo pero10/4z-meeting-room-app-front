@@ -4,6 +4,9 @@ import {DatePipe} from "@angular/common";
 import {RoomService} from "../../services/room.service";
 import {ReservationService} from "../../services/reservation.service";
 import {Room} from "../../Room";
+import {Subscription} from "rxjs";
+import {LoginData} from "../../LoginData";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-modal-new-reservation',
@@ -26,7 +29,11 @@ export class ModalNewReservationComponent implements OnInit {
   rooms?: Room[];
   attendee?: Attendee[];
 
-  constructor(private reservationService: ReservationService, private roomService: RoomService) {
+  currentUser?: LoginData | null;
+
+  constructor(private reservationService: ReservationService,
+              private roomService: RoomService,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -35,6 +42,8 @@ export class ModalNewReservationComponent implements OnInit {
         console.log(data);
         this.rooms = data;
       });
+    this.authService.currentUserData.subscribe((user) => this.currentUser = user);
+
   }
 
   onSubmit() {

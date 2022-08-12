@@ -17,8 +17,6 @@ import {HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "
 export class LoginComponent implements OnInit{
 
   login: any = FormGroup;
-  notAdmin: boolean = false;
-  loggedUser: boolean = false;
 
   userData: any;
   subscription?: Subscription;
@@ -36,16 +34,6 @@ export class LoginComponent implements OnInit{
       password: ['', Validators.required]
     });
   }
-
-  // intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  //   let jwttoken = req.clone({
-  //     setHeaders: {
-  //       Authorization: 'Bearer ' + token
-  //     }
-  //   })
-  //   return next.handle(jwttoken);
-  // }
-
 
   submit(data: LoginData) {
     this.authService.getJwtToken(data).subscribe(

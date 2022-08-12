@@ -79,4 +79,5 @@ export class ReservationComponent implements OnInit {
     this.reservationService.editReservation(reservation).subscribe();
     this.reservationService.getReservations().subscribe((reservation)=>(this.reservations=reservation));
   }
+
 }

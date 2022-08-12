@@ -9,7 +9,7 @@ import {User} from "../User";
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer '
+
   })
 }
 

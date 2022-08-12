@@ -5,7 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {Router, RouterModule, Routes} from "@angular/router";
 import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule} from "@angular/forms";
-
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +36,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReservationAttendeeComponent } from './components/reservation-attendee/reservation-attendee.component';
 import {CookieService} from "ngx-cookie-service";
+import { AttendeesAutocompleteComponent } from './components/attendees-autocomplete/attendees-autocomplete.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatOptionModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -66,6 +69,7 @@ import {CookieService} from "ngx-cookie-service";
     LoginComponent,
     RegisterComponent,
     ReservationAttendeeComponent,
+    AttendeesAutocompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,10 @@ import {CookieService} from "ngx-cookie-service";
     BrowserAnimationsModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatAutocompleteModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

@@ -43,8 +43,7 @@ export class ReservationService {
       "startedAt": reservation.startedAt,
       "finishedAt": reservation.finishedAt,
       "name": reservation.name,
-      "status": reservation.status
-      ,
+      "status": reservation.status,
       "room":reservation.room,
       "host":reservation.host
     }
