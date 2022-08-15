@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../User";
 import {UserService} from "../../services/user.service";
-import {FormControl} from "@angular/forms";
+import {FormBuilder, FormControl} from "@angular/forms";
 import {map, startWith} from "rxjs/operators";
 import {Observable} from "rxjs";
 

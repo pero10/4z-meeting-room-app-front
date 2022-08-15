@@ -22,7 +22,7 @@ export class RoomComponent implements OnInit {
 
   constructor(private roomService:RoomService,
               private authService:AuthService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
