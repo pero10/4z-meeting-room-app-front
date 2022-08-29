@@ -1,0 +1,12 @@
+<div class="container-lg mt-5 search-reservation">
+    <form>
+      <h4 id="h4-reservation-search">Duration:</h4><br>
+      <label for="new_started_at" class="filter-label">Started at:</label>
+      <input type="datetime-local" name="newStartedAt" [(ngModel)]="newStartedAt" id="new_started_at">
+      <label for="new_started_at" class="filter-label">Finished at:</label>
+      <input type="datetime-local" name="newFinishedAt" [(ngModel)]="newFinishedAt" id="new_finished_at"><br>
+      <label class="filter-label">Reservation name</label>
+      <input type="text" name="name" id="name">
+      <select></select>
+    </form>
+</div>

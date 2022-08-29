@@ -1,9 +1,19 @@
 <div class="container mt-5">
-  <button class="btn btn-outline-success text-center"
+  <button class="btn btn-outline-success text-center make-some-space"
           *ngIf="currentUser"
           (click)="toggleInsertReservationModal()"
   >Add new reservation here!</button>
+  <button class="btn btn-outline-success text-center make-some-space">
+      Search/filters
+  </button>
+
 </div>
+
+<!-- hidden div with filters which is gonna be toggled on search button clicc -->
+<app-search-reservation>
+
+
+</app-search-reservation>
 <app-reservation-item
   *ngFor="let reservation of reservations"
   [reservation]="reservation"

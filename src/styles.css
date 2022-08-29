@@ -64,3 +64,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   align-items: center;
 }
 
+.make-some-space{
+  margin:20px;
+}
+
+.filter-label{
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px;
+}
+
+.search-reservation{
+  border:2px solid #000000;
+}
+
+#h4-reservation-search{
+  font-size: 18px;
+  font-weight: 500;
+  margin: 5px 10px;
+}
+

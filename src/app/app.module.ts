@@ -39,6 +39,7 @@ import {CookieService} from "ngx-cookie-service";
 import { AttendeesAutocompleteComponent } from './components/attendees-autocomplete/attendees-autocomplete.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatOptionModule} from "@angular/material/core";
+import { SearchReservationComponent } from './components/search-reservation/search-reservation.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import {MatOptionModule} from "@angular/material/core";
     LoginComponent,
     RegisterComponent,
     ReservationAttendeeComponent,
-    AttendeesAutocompleteComponent
+    AttendeesAutocompleteComponent,
+    SearchReservationComponent
   ],
   imports: [
     BrowserModule,
