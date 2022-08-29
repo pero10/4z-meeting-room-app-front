@@ -3,17 +3,20 @@
           *ngIf="currentUser"
           (click)="toggleInsertReservationModal()"
   >Add new reservation here!</button>
-  <button class="btn btn-outline-success text-center make-some-space">
-      Search/filters
+  <button class="btn btn-outline-success text-center make-some-space"
+          (click)="toggleReservationSearchComponent()"
+          [ngClass]="searchReservationComponentVisible?'search-toggled':'btn-outline-success'"
+  >Filters
   </button>
 
 </div>
 
 <!-- hidden div with filters which is gonna be toggled on search button clicc -->
-<app-search-reservation>
-
-
-</app-search-reservation>
+<app-search-reservation
+  *ngIf = "searchReservationComponentVisible"
+(showReservationSearch)="toggleReservationSearchComponent()">
+<!--  (searchOnSubmit)="onSubmit($event)"-->
+  </app-search-reservation>
 <app-reservation-item
   *ngFor="let reservation of reservations"
   [reservation]="reservation"
@@ -21,24 +24,30 @@
   (onShowModal)="onModalToggle($event)"
   (onShowEditModal)="onEditModalToggle(reservation)"
   (onShowAttendeesToggle)="toggleAttendeesModal($event)"
-></app-reservation-item>
+>
+</app-reservation-item>
+
 <app-modal-reservation
   *ngIf="regularModalVisible"
   [reservation]="selectedReservation"
   (onDeleteTrigger)="deleteTrigger($event)"
   (close)="regularModalVisible=false"
-></app-modal-reservation>
+>
+</app-modal-reservation>
+
 <app-edit-reservation
   *ngIf="editModalVisible"
   [reservation]="selectedReservation"
   (close)="editModalVisible=false"
   (submit)="onSubmitEditForm($event)"
 ></app-edit-reservation>
+
 <app-modal-new-reservation
   *ngIf="insertModalVisible"
   (close)="insertModalVisible=false"
   (onAddReservation)="addNewReservation($event)"
 ></app-modal-new-reservation>
+
 <ng-container *ngIf="attendeesModalVisible">
   <app-reservation-attendee
     *ngFor="let reservation of reservations"

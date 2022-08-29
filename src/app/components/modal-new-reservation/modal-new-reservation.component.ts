@@ -4,7 +4,6 @@ import {DatePipe} from "@angular/common";
 import {RoomService} from "../../services/room.service";
 import {ReservationService} from "../../services/reservation.service";
 import {Room} from "../../Room";
-import {Subscription} from "rxjs";
 import {LoginData} from "../../LoginData";
 import {AuthService} from "../../services/auth.service";
 
@@ -54,7 +53,7 @@ export class ModalNewReservationComponent implements OnInit {
       !this.status ||
       !this.room) {
       alert('You can\'t leave any of the fields empty!');
-      return
+      return;
     }
 
     const newReservation: Reservation = {

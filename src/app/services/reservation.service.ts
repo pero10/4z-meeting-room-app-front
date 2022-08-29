@@ -56,4 +56,9 @@ export class ReservationService {
   addReservation(reservation: Reservation):Observable<Reservation> {
     return this.http.post<Reservation>(this.apiUrl+'/api/reservations',reservation,httpOptions);
   }
+
+  searchReservation(reservation: Reservation) {
+    return this.http.get<Reservation>(this.apiUrl+'api/reservations/filter');
+    //this url must be generated dinamically..
+  }
 }

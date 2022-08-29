@@ -1,12 +1,33 @@
 <div class="container-lg mt-5 search-reservation">
-    <form>
+    <form (ngSubmit)="onSubmit()">
       <h4 id="h4-reservation-search">Duration:</h4><br>
+
       <label for="new_started_at" class="filter-label">Started at:</label>
       <input type="datetime-local" name="newStartedAt" [(ngModel)]="newStartedAt" id="new_started_at">
+
       <label for="new_started_at" class="filter-label">Finished at:</label>
       <input type="datetime-local" name="newFinishedAt" [(ngModel)]="newFinishedAt" id="new_finished_at"><br>
-      <label class="filter-label">Reservation name</label>
-      <input type="text" name="name" id="name">
-      <select></select>
+
+      <label class="filter-label">Reservation name: </label>
+      <input type="text" name="name" id="name"><br>
+
+      <label for="status" class="filter-label">Status:</label>
+      <select id="status" name="status" [(ngModel)]="status">
+        <option>inactive</option>
+        <option>waiting</option>
+        <option>canceled</option>
+      </select><br>
+
+      <label for="room" class="filter-label">Select room: </label>
+      <select id="room" name="room" [(ngModel)]="room">
+        <option>room</option>
+      </select><br>
+
+      <label for="host" class="filter-label">Select host: </label>
+      <select id="host"  name="host" [(ngModel)]="host" >
+        <option>host</option>
+      </select><br>
+
+      <button type="submit" class="btn btn-success">Search!</button>
     </form>
 </div>

@@ -75,7 +75,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .search-reservation{
-  border:2px solid #000000;
+  border:1px solid #a19c9c;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 #h4-reservation-search{
@@ -83,4 +85,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-weight: 500;
   margin: 5px 10px;
 }
+
+.search-toggled{
+  background-color: #198754;
+  color:#fff;
+
+}
+
 

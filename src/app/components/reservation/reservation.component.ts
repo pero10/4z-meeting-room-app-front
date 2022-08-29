@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ReservationService} from "../../services/reservation.service";
-import {Attendee, Reservation, ReservationRoom} from "../../Reservation";
+import {Attendee, Reservation} from "../../Reservation";
 import {Room} from "../../Room";
 import {LoginData} from "../../LoginData";
 import {AuthService} from "../../services/auth.service";
@@ -21,6 +21,7 @@ export class ReservationComponent implements OnInit {
   editModalVisible: boolean = false;
   insertModalVisible: boolean = false;
   attendeesModalVisible: boolean = false;
+  searchReservationComponentVisible:boolean = false;
 
   currentUser?: LoginData | any;
 
@@ -43,6 +44,13 @@ export class ReservationComponent implements OnInit {
         () => (this.reservations = this.reservations.filter((r) => r.id !== reservation.id))
       );
   }
+
+  // searchReservation(reservation:Reservation){
+    // this.reservationService
+      // .searchReservation(reservation)
+      // .subscribe(reservation) => (this.reservations = reservation)
+
+  // }
 
   onModalToggle(reservation: Reservation) {
     this.regularModalVisible = true;
@@ -80,4 +88,7 @@ export class ReservationComponent implements OnInit {
     this.reservationService.getReservations().subscribe((reservation)=>(this.reservations=reservation));
   }
 
+  toggleReservationSearchComponent() {
+    this.searchReservationComponentVisible = !this.searchReservationComponentVisible;
+  }
 }
