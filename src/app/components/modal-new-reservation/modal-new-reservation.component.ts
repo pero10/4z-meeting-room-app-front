@@ -55,8 +55,8 @@ export class ModalNewReservationComponent implements OnInit {
     }
 
     const newReservation: Reservation = {
-      startedAt: this.startedAt!,
-      finishedAt: this.finishedAt!,
+      started_at: this.startedAt!,
+      finished_at: this.finishedAt!,
       name: this.name!,
       status: this.status!,
       room: this.room!,

@@ -40,8 +40,8 @@ export class ReservationService {
     const url = `${this.apiUrl}/api/reservations/${reservation.id}`;
     this.selectedReservation = {
 
-      "startedAt": reservation.startedAt,
-      "finishedAt": reservation.finishedAt,
+      "startedAt": reservation.started_at,
+      "finishedAt": reservation.finished_at,
       "name": reservation.name,
       "status": reservation.status,
       "room": reservation.room,

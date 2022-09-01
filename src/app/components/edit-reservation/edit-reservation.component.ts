@@ -3,7 +3,6 @@ import {Reservation} from "../../Reservation";
 import {FormControl, FormGroup} from "@angular/forms";
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
-import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-edit-reservation',
@@ -38,8 +37,8 @@ export class EditReservationComponent implements OnInit {
       this.editReservationForm.controls['room'].setValue(this.reservation?.room?.id);
       //'UTC - yyyy-MM-dThh:mm:ssz'
       // let startedAt = new Date('UTC - yyyy-MM-dThh:mm:ssz');
-      this.editReservationForm.controls['startedAt'].setValue(this.reservation?.startedAt);
-      this.editReservationForm.controls['finishedAt'].setValue(this.reservation?.finishedAt);
+      this.editReservationForm.controls['startedAt'].setValue(this.reservation?.started_at);
+      this.editReservationForm.controls['finishedAt'].setValue(this.reservation?.finished_at);
     }
     this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
   }
