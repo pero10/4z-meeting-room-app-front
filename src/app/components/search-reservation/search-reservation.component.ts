@@ -1,6 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {Reservation, ReservationHost, ReservationRoom} from "../../Reservation";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {RoomService} from "../../services/room.service";
+import {Room} from "../../Room";
 
 @Component({
   selector: 'app-search-reservation',
@@ -9,56 +12,44 @@ import {Reservation, ReservationHost, ReservationRoom} from "../../Reservation";
 })
 export class SearchReservationComponent implements OnInit {
 
-  @Output() showReservationSearch:EventEmitter<Reservation> = new EventEmitter();
-  @Output() searchOnSubmit:EventEmitter<Reservation> = new EventEmitter<Reservation>();
+  @Output() showReservationSearch: EventEmitter<Reservation> = new EventEmitter();
+  @Output() searchOnSubmit: EventEmitter<Reservation> = new EventEmitter<Reservation>();
 
-  newStartedAt?:DatePipe;
-  newFinishedAt?:DatePipe;
-  name?:string;
-  status?:string;
-  room?:ReservationRoom
-  host?:ReservationHost;
+  searchReservationForm!: FormGroup;
+  rooms?: Room[];
 
-  constructor() {
+  constructor(private roomService: RoomService) {
   }
 
   ngOnInit(): void {
+    this.searchReservationForm = new FormGroup({
+      started_at: new FormControl(),
+      finished_at: new FormControl(),
+      name: new FormControl(),
+      status: new FormControl(),
+      room: new FormControl(),
+      host: new FormControl()
+    });
+
+      this.roomService.getRooms().subscribe(
+      (data: Room[]) => {
+        this.rooms = data;
+      });
   }
 
   onSubmit() {
-    if(
-      !this.newStartedAt&&
-      !this.newFinishedAt&&
-      !this.name&&
-      !this.status&&
-      !this.host&&
-      !this.room
-    ){
-      alert("Please select even one parameter.");
-      return;
-    }
+    // console.log(this.searchReservationForm.value);
 
-    const reservation:Reservation = {
-      startedAt: this.newStartedAt!,
-      finishedAt: this.newFinishedAt!,
-      name: this.name!,
-      status: this.status!,
-      room: this.room!,
-      host:this.host!,
-      attendees:[]
-    };
-    this.searchOnSubmit.emit(reservation);
-    }
+    this.searchOnSubmit.emit(this.searchReservationForm.value);
+  }
 
-    toggleReservationSearch(reservation?:Reservation){
+  toggleReservationSearch(reservation?: Reservation) {
     this.showReservationSearch.emit(reservation);
-    }
+  }
 
-    submitSearch(reservation?:Reservation){
+  submitSearch(reservation?: any) {
     this.searchOnSubmit.emit(reservation);
-
-    }
-
+  }
 }
 
 

@@ -38,7 +38,7 @@ export class ModalNewReservationComponent implements OnInit {
   ngOnInit(): void {
     this.roomService.getRooms().subscribe(
       (data: Room[]) => {
-        console.log(data);
+        // console.log(data);
         this.rooms = data;
       });
     this.authService.currentUserData.subscribe((user) => this.currentUser = user);

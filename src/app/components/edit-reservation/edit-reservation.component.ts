@@ -27,12 +27,9 @@ export class EditReservationComponent implements OnInit {
       finishedAt: new FormControl(),
       name: new FormControl(),
       status: new FormControl(),
-      // room: new FormControl(),
       room: new FormControl(),
-      // room: new FormControl(),
       // host: new FormControl()
     })
-
   }
 
   ngOnInit(): void {

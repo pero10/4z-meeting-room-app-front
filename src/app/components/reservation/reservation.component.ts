@@ -45,12 +45,11 @@ export class ReservationComponent implements OnInit {
       );
   }
 
-  // searchReservation(reservation:Reservation){
-    // this.reservationService
-      // .searchReservation(reservation)
-      // .subscribe(reservation) => (this.reservations = reservation)
-
-  // }
+  searchReservation(searchReservationData:any){
+    this.reservationService
+      .searchReservation(searchReservationData)
+      .subscribe(x=>(searchReservationData = x));
+  }
 
   onModalToggle(reservation: Reservation) {
     this.regularModalVisible = true;
@@ -91,4 +90,6 @@ export class ReservationComponent implements OnInit {
   toggleReservationSearchComponent() {
     this.searchReservationComponentVisible = !this.searchReservationComponentVisible;
   }
+
+
 }

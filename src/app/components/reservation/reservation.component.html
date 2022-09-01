@@ -2,20 +2,19 @@
   <button class="btn btn-outline-success text-center make-some-space"
           *ngIf="currentUser"
           (click)="toggleInsertReservationModal()"
-  >Add new reservation here!</button>
+  >Add new reservation here!
+  </button>
   <button class="btn btn-outline-success text-center make-some-space"
           (click)="toggleReservationSearchComponent()"
           [ngClass]="searchReservationComponentVisible?'search-toggled':'btn-outline-success'"
   >Filters
   </button>
-
 </div>
 
-<!-- hidden div with filters which is gonna be toggled on search button clicc -->
 <app-search-reservation
   *ngIf = "searchReservationComponentVisible"
-(showReservationSearch)="toggleReservationSearchComponent()">
-<!--  (searchOnSubmit)="onSubmit($event)"-->
+  (showReservationSearch)="toggleReservationSearchComponent()"
+  (searchOnSubmit)="searchReservation($event)">
   </app-search-reservation>
 <app-reservation-item
   *ngFor="let reservation of reservations"
