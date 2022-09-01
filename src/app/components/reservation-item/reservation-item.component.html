@@ -23,7 +23,7 @@
       </fa-icon>
       <fa-icon
         (click)="showModalToggle(reservation)"
-        [ngStyle]="{'color':'#f0f','float':'right', 'margin':'0px 10px'}"
+        [ngStyle]="{'color':'#ce2dce','float':'right', 'margin':'0px 10px'}"
         [icon]="faEye"
         class="pointer">
       </fa-icon>
@@ -31,14 +31,10 @@
     <div class="card-body">
       <h3>room: {{reservation?.room?.name}}</h3>
       <h2 class="card-title">
-        <fa-icon
-          [icon]="faClock"
-        >
-        </fa-icon> {{reservation?.startedAt}}<br>
-        <fa-icon
-          [icon]="faClock"
-        >
-        </fa-icon> {{reservation?.finishedAt}}
+        <fa-icon [icon]="faClock"></fa-icon>
+          {{reservation?.startedAt}}<br>
+        <fa-icon [icon]="faClock"></fa-icon>
+          {{reservation?.finishedAt}}
       </h2>
       <p class="card-text">{{reservation?.status}}</p>
       <h3 class="card-text">Host email: {{reservation?.host?.email}}</h3>

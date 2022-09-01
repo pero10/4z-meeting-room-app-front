@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {DatePipe} from "@angular/common";
-import {Reservation, ReservationHost, ReservationRoom} from "../../Reservation";
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {Reservation} from "../../Reservation";
+import {FormControl, FormGroup} from "@angular/forms";
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
 
@@ -38,8 +37,6 @@ export class SearchReservationComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log(this.searchReservationForm.value);
-
     this.searchOnSubmit.emit(this.searchReservationForm.value);
   }
 
@@ -47,8 +44,9 @@ export class SearchReservationComponent implements OnInit {
     this.showReservationSearch.emit(reservation);
   }
 
-  submitSearch(reservation?: any) {
-    this.searchOnSubmit.emit(reservation);
+  clearFilters() {
+    this.searchReservationForm.reset();
+    this.onSubmit();
   }
 }
 

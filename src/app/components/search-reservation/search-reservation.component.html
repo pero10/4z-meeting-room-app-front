@@ -1,40 +1,45 @@
 <div class="container-lg mt-5 search-reservation">
-    <form (ngSubmit)="onSubmit()" [formGroup]="searchReservationForm">
-      <h4 id="h4-reservation-search">Duration:</h4><br>
+  <form (ngSubmit)="onSubmit()" [formGroup]="searchReservationForm">
+    <!--      <h4 id="h4-reservation-search">Duration:</h4><br>-->
+    <div class="duration-div duration-border">
+      <div>
+        <label for="new_started_at" class="filter-label">Started at:</label><br>
+        <input type="datetime-local" name="newStartedAt" formControlName="started_at" id="new_started_at">
+      </div>
+      <div>
+        <label for="new_started_at" class="filter-label">Finished at:</label><br>
+        <input type="datetime-local" name="newFinishedAt" formControlName="finished_at" id="new_finished_at"><br>
+      </div>
+    </div>
+    <label class="filter-label">Reservation name: </label>
+    <input type="text" formControlName="name" id="name"><br>
 
-      <label for="new_started_at" class="filter-label">Started at:</label>
-      <input type="datetime-local" name="newStartedAt" formControlName="started_at" id="new_started_at">
+    <label for="status" class="filter-label">Status:</label>
+    <select id="status" name="status" formControlName="status">
+      <option>inactive</option>
+      <option>waiting</option>
+      <option>canceled</option>
+    </select><br>
 
-      <label for="new_started_at" class="filter-label">Finished at:</label>
-      <input type="datetime-local" name="newFinishedAt" formControlName="finished_at" id="new_finished_at"><br>
+    <!--      <label for="room" class="filter-label">Select room: </label>-->
+    <!--      <select id="room" name="room" formControlName="room">-->
+    <!--        <option-->
+    <!--          *ngFor="let room of rooms"-->
+    <!--          [ngValue]="room.id">-->
+    <!--          {{room.name}} | {{room.capacity}}-->
+    <!--        </option>-->
+    <!--      </select><br>-->
 
-      <label class="filter-label">Reservation name: </label>
-      <input type="text" formControlName="name" id="name"><br>
-
-      <label for="status" class="filter-label">Status:</label>
-      <select id="status" name="status" formControlName="status">
-        <option>inactive</option>
-        <option>waiting</option>
-        <option>canceled</option>
-      </select><br>
-
-<!--      <label for="room" class="filter-label">Select room: </label>-->
-<!--      <select id="room" name="room" formControlName="room">-->
-<!--        <option-->
-<!--          *ngFor="let room of rooms"-->
-<!--          [ngValue]="room.id">-->
-<!--          {{room.name}} | {{room.capacity}}-->
-<!--        </option>-->
-<!--      </select><br>-->
-
-<!--      <label for="host" class="filter-label">Select host: </label>-->
-<!--      <select id="host"  name="host" formControlName="host" >-->
-<!--        <option>host</option>-->
-<!--      </select><br>-->
-
-      <button type="submit" class="btn btn-success">
-        Search!
-      </button>
-      <!--      (click)="submitSearch(searchReservationForm.value)"-->
-    </form>
+    <!--      <label for="host" class="filter-label">Select host: </label>-->
+    <!--      <select id="host"  name="host" formControlName="host" >-->
+    <!--        <option>host</option>-->
+    <!--      </select><br>-->
+    <div class="filter-submit-section">
+    <button type="submit" class="btn btn-success">
+      Search!
+    </button>
+    <button class="btn btn-danger" (click)="clearFilters()">Clear filters</button>
+    </div>
+    <!--      (click)="submitSearch(searchReservationForm.value)"-->
+  </form>
 </div>

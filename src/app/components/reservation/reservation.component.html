@@ -16,6 +16,7 @@
   (showReservationSearch)="toggleReservationSearchComponent()"
   (searchOnSubmit)="searchReservation($event)">
   </app-search-reservation>
+
 <app-reservation-item
   *ngFor="let reservation of reservations"
   [reservation]="reservation"

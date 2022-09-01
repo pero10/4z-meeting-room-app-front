@@ -66,6 +66,6 @@ export class ReservationService {
           params = params.append(key, searchReservationData[key]);
       }
     )
-    return this.http.get<Reservation>(this.apiUrl + '/api/reservations/filter', {params});
+    return this.http.get<Reservation[]>(this.apiUrl + '/api/reservations/filter', {params});
   }
 }
