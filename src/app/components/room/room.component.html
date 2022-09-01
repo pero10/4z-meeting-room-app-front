@@ -1,9 +1,22 @@
 <div class="container mt-5">
-<button class="btn btn-outline-success"
+<button class="btn btn-outline-success text-center make-some-space"
         *ngIf="currentUser"
         (click)="toggleInsertRoomModal()"
 >Add new room here!</button>
+  <button class="btn btn-outline-success text-center make-some-space"
+  (click)="toggleRoomSearch()"
+  [ngClass]="searchRoomComponentVisible?'search-toggled':'btn-outline-success'"
+  >
+Filters
+  </button>
 </div>
+<app-search-room
+*ngIf = "searchRoomComponentVisible"
+(showRoomSearch)="toggleRoomSearch()"
+(searchOnSubmit)="searchRoom($event)"
+>
+
+</app-search-room>
 <app-room-item
   *ngFor="let room of rooms"
   [room]="room"

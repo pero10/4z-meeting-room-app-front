@@ -19,6 +19,7 @@ export class RoomComponent implements OnInit {
   editModalVisible:boolean = false;
 
   currentUser?: LoginData | any;
+  searchRoomComponentVisible: boolean=false;
 
   constructor(private roomService:RoomService,
               private authService:AuthService
@@ -56,14 +57,25 @@ export class RoomComponent implements OnInit {
     this.deleteRoom(room);
   }
 
-
   toggleInsertRoomModal() {
     this.insertModalVisible=true;
+    this.searchRoomComponentVisible = false;
+    this.roomService.getRooms().subscribe(refreshedRooms => this.rooms = refreshedRooms);
+  }
+
+  toggleRoomSearch(){
+    this.searchRoomComponentVisible = !this.searchRoomComponentVisible;
   }
 
   addNewRoom(room: Room) {
     this.roomService.addNewRoom(room).subscribe(
       (room)=>(this.rooms.push(room))
     );
+  }
+
+  searchRoom(searchRoomData: any) {
+    this.roomService.
+    searchRoom(searchRoomData).
+    subscribe(searchedRooms => this.rooms = searchedRooms);
   }
 }

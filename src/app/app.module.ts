@@ -40,6 +40,7 @@ import { AttendeesAutocompleteComponent } from './components/attendees-autocompl
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatOptionModule} from "@angular/material/core";
 import { SearchReservationComponent } from './components/search-reservation/search-reservation.component';
+import { SearchRoomComponent } from './components/search-room/search-room.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { SearchReservationComponent } from './components/search-reservation/sear
     RegisterComponent,
     ReservationAttendeeComponent,
     AttendeesAutocompleteComponent,
-    SearchReservationComponent
+    SearchReservationComponent,
+    SearchRoomComponent
   ],
   imports: [
     BrowserModule,
