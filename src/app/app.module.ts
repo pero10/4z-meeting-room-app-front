@@ -43,6 +43,7 @@ import { SearchReservationComponent } from './components/search-reservation/sear
 import { SearchRoomComponent } from './components/search-room/search-room.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
 import { AttendeesComponent } from './components/attendees/attendees.component';
+import { AttendeeItemComponent } from './components/attendee-item/attendee-item.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { AttendeesComponent } from './components/attendees/attendees.component';
     SearchReservationComponent,
     SearchRoomComponent,
     SearchUserComponent,
-    AttendeesComponent
+    AttendeesComponent,
+    AttendeeItemComponent
   ],
   imports: [
     BrowserModule,

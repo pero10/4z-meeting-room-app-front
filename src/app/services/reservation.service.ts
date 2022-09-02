@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Reservation} from "../Reservation";
 import {environment} from "../../environments/environment";
+import {User} from "../User";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -47,14 +48,23 @@ export class ReservationService {
       "room": reservation.room,
       "host": reservation.host
     }
-    // console.log('Tip', typeof(reservation.startedAt));
+
     console.log(this.selectedReservation);
-    // return (JSON)this.http.patch<any>(url, this.selectedReservation, httpOptions);
     return this.http.patch<any>(url, JSON.stringify(this.selectedReservation), httpOptions);
   }
 
   addReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.post<Reservation>(this.apiUrl + '/api/reservations', reservation, httpOptions);
+  }
+
+  getReservationAttendees(reservation:Reservation){
+    const url = `${this.apiUrl}/api/reservations/attendees/coming/${reservation.id}`;
+    return this.http.get<User>(url);
+  }
+
+  getReservationPendingAttendees(reservation:Reservation){
+    const url = `${this.apiUrl}/api/reservations/attendees/${reservation.id}`;
+    return this.http.get(url);
   }
 
   searchReservation(searchReservationData: any)
@@ -68,4 +78,6 @@ export class ReservationService {
     )
     return this.http.get<Reservation[]>(this.apiUrl + '/api/reservations/filter', {params});
   }
+
+
 }
