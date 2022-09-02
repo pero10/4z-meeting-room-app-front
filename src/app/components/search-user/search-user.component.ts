@@ -18,8 +18,8 @@ export class SearchUserComponent implements OnInit {
   ngOnInit(): void {
     this.searchUserForm = new FormGroup({
       email:new FormControl(),
-      first_name:new FormControl(),
-      last_name:new FormControl(),
+      firstName:new FormControl(),
+      lastName:new FormControl(),
       phone:new FormControl()
     });
   }
@@ -30,6 +30,6 @@ export class SearchUserComponent implements OnInit {
   }
 
   onSubmit() {
-this.searchOnSubmit.emit(this.searchUserForm.value);
+    this.searchOnSubmit.emit(this.searchUserForm.value);
   }
 }

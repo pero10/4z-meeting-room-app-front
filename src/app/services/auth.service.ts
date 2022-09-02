@@ -5,6 +5,7 @@ import {UserData} from "../UserData";
 import {HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {User} from "../User";
+import {CookieService} from "ngx-cookie-service";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,6 +24,7 @@ export class AuthService{
   private apikeyUrl = 'http://localhost:8000/api/login_check';
 
   constructor(private http: HttpClient,
+              private cookieService: CookieService
               ) { }
 
   private userData = new BehaviorSubject<null | LoginData>(null);
@@ -33,6 +35,7 @@ export class AuthService{
   }
 
   logout(){
+    this.cookieService.delete('user');
     this.userData.next(null);
   }
 

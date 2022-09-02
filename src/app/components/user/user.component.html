@@ -1,3 +1,16 @@
+<div class="container mt-5">
+  <button class="btn btn-outline-success text-center make-some-space"
+          (click)="toggleSearchUser()"
+          [ngClass]="searchUserComponentVisible?'search-toggled':'btn-outline-success'"
+  >
+    Filters
+  </button>
+</div>
+<app-search-user
+  *ngIf="searchUserComponentVisible"
+  (showUserSearch)="toggleSearchUser()"
+  (searchOnSubmit)="searchUser($event)"
+></app-search-user>
 <app-user-item
   *ngFor="let user of users"
   (onDeleteUser) = "deleteUser(user)"
@@ -11,11 +24,6 @@
   (onDeleteTrigger)="deleteTrigger($event)"
   (close)="regularModalVisible=false"
 ></app-modal-user>
-<app-search-user
-*ngIf="searchUserComponentVisible"
-(showUserSearch)="toggleSearchUser()"
-(searchOnSubmit)="searchUser($event)"
-></app-search-user>
 <app-edit-user
   *ngIf="editModalVisible"
   [user]="selectedUser"
