@@ -10,6 +10,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {AuthGuard} from "./auth.guard";
 import {AttendeesAutocompleteComponent} from "./components/attendees-autocomplete/attendees-autocomplete.component";
+import {AttendeesComponent} from "./components/attendees/attendees.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'dashboard/user', component: UserComponent, canActivate:[AuthGuard]},
   { path: 'dashboard/reservation', component: ReservationComponent, canActivate:[AuthGuard]},
   { path: 'dashboard/room', component: RoomComponent, canActivate:[AuthGuard]},
+  { path: 'dashboard/attendees', component: AttendeesComponent, canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegisterComponent },
   { path: '', redirectTo:'login', pathMatch: "full"},

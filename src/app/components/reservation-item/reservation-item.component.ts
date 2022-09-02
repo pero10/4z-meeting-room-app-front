@@ -1,6 +1,13 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Reservation} from "../../Reservation";
-import {faClock, faTrashCan, faEye,faPen, faPeopleGroup} from '@fortawesome/free-solid-svg-icons';
+import {
+  faClock,
+  faTrashCan,
+  faEye,
+  faPen,
+  faPeopleGroup,
+  faUserPlus
+} from '@fortawesome/free-solid-svg-icons';
 import {LoginData} from "../../LoginData";
 import {AuthService} from "../../services/auth.service"
 
@@ -16,17 +23,16 @@ export class ReservationItemComponent implements OnInit {
   @Output() onShowModal:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   @Output() onShowEditModal:EventEmitter<Reservation> = new EventEmitter();
   @Output() onShowAttendeesToggle:EventEmitter<Reservation> = new EventEmitter<Reservation>()
+  @Output() onShowAttendeesPage:EventEmitter<Reservation> = new EventEmitter<Reservation>()
 
   faClock = faClock;
   faDelete = faTrashCan;
   faEye = faEye;
   faPen = faPen;
   faPeopleGroup = faPeopleGroup;
+  faAddAttendee = faUserPlus;
 
   currentUser?: LoginData | null;
-
-  // constructor(private dialogRef : MatDialog) {
-  // }
 
   constructor(private authService: AuthService){}
 
@@ -51,9 +57,7 @@ export class ReservationItemComponent implements OnInit {
     this.onShowAttendeesToggle.emit(reservation);
   }
 
-  // showModalTemp() {
-  //   this.dialogRef.open(ModalTempComponent);
-  // }
-
-
+  openAddAttendeePage(reservation?: Reservation){
+    this.onShowAttendeesPage.emit(reservation);
+  }
 }
