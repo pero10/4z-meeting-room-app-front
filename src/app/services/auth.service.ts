@@ -52,7 +52,8 @@ export class AuthService{
         'Authorization': 'Bearer ' + token
       })
     }
-    return this.http.get('http://localhost:8000/api/me', httpOptions);
+    return this.http.get<LoginData>('http://localhost:8000/api/me', httpOptions).pipe(
+      tap((user) => this.userData.next(user)));
   }
 
 }

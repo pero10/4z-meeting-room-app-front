@@ -17,8 +17,8 @@ const httpOptions = {
 })
 export class UserService {
   private apiUrl = environment.url+'/api/users';
-  private validatorRoute='http://localhost:8000/api/loginValidator';
-  private callAttendeeRoute = 'http://localhost:8000/api/reservations/attendees';
+  private validatorRoute='http://localhost:8002/api/loginValidator';
+  private callAttendeeRoute = 'http://localhost:8002/api/reservations/attendees';
   selectedUser = {};
 
   constructor(private http: HttpClient) {}

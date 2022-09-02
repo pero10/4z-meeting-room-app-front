@@ -3,6 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import { Observable } from 'rxjs';
 import {AuthService} from "./services/auth.service";
 import {LoginData} from "./LoginData";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class AuthGuard implements CanActivate {
   currentUser ?: LoginData | null;
 
   constructor(private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private cookieService: CookieService) {
   }
 
   canActivate(
@@ -24,10 +26,8 @@ export class AuthGuard implements CanActivate {
     // }else{
     //   this.router.navigate(['dashboard']);
     // }
-    this.authService.currentUserData.subscribe(
-      (user) => this.currentUser = user
-    )
-    if(!this.currentUser){
+    const token = this.cookieService.get('user');
+    if(!token){
       this.router.navigate(['login']);
     }
     return true;
