@@ -41,6 +41,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatOptionModule} from "@angular/material/core";
 import { SearchReservationComponent } from './components/search-reservation/search-reservation.component';
 import { SearchRoomComponent } from './components/search-room/search-room.component';
+import { SearchUserComponent } from './components/search-user/search-user.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { SearchRoomComponent } from './components/search-room/search-room.compon
     ReservationAttendeeComponent,
     AttendeesAutocompleteComponent,
     SearchReservationComponent,
-    SearchRoomComponent
+    SearchRoomComponent,
+    SearchUserComponent
   ],
   imports: [
     BrowserModule,
