@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit{
   userData: any;
   subscription?: Subscription;
 
+  errorMessage = "";
+
   constructor(private fb: FormBuilder,
               private router: Router,
               private userService: UserService,
@@ -47,6 +49,10 @@ export class LoginComponent implements OnInit{
             this.router.navigate(['']);
           }
         );
+      },
+      (error) => {
+        console.log(error.error.message);
+        this.errorMessage = error.error.message;
       }
     );
 

@@ -31,5 +31,12 @@
       [disabled]="register.invalid">Sign up</button>
       <a routerLink="/login"><button class="btn btn-primary ms-2 me-2">Log in</button></a>
     </div>
+    <div
+      *ngIf="errorMessage"
+      class="alert alert-danger">
+      <div>
+        {{errorMessage}}<br>
+      </div>
+    </div>
   </form>
 </div>

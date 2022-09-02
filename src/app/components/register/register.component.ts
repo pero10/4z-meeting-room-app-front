@@ -11,6 +11,7 @@ import {UserService} from "../../services/user.service";
 export class RegisterComponent implements OnInit {
 
   register:any = FormGroup;
+  errorMessage = "";
 
   constructor(private fb:FormBuilder, private router:Router, private userService: UserService) { }
 
@@ -38,10 +39,13 @@ export class RegisterComponent implements OnInit {
     this.userService.addUser(newUser).subscribe(
       (user:any) => {
         console.log(user)
+      },
+      (error) => {
+        console.log(error.error.message);
       }
     );
-    this.router.navigate(['login']);
-    alert('Uspesno ste registrovani');
+    // this.router.navigate(['login']);
+    // alert('Uspesno ste registrovani');
   }
 
   gotToLogIn() {

@@ -16,5 +16,12 @@
     <button type="submit" class="btn btn-success ms-2 me-2" (click)="submit(login.value)" [disabled]="login.invalid">Log in</button>
     <a routerLink="/registration"><button class="btn btn-primary ms-2 me-2">Sign up</button></a>
     </div>
+    <div
+    *ngIf="errorMessage"
+    class="alert alert-danger">
+    <div>
+      {{errorMessage}}<br>
+    </div>
+  </div>
   </form>
 </div>
