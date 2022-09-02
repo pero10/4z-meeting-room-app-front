@@ -1,11 +1,13 @@
 <div class="container mt-5">
 
-  <button class="btn btn-outline-success text-center make-some-space">
-    <!--        (click)="toggleReservationSearchComponent()"-->
-    <!--        [ngClass]="searchReservationComponentVisible?'search-toggled':'btn-outline-success'"-->
-    Filters
+  <button class="btn btn-outline-success text-center make-some-space"
+    (click)="toggleAttendeeSearchComponent()"
+    [ngClass]="searchAttendeeComponentVisible?'search-toggled':'btn-outline-success'"
+   >Filters
   </button>
 </div>
 <app-search-user
+  *ngIf="searchAttendeeComponentVisible"
+
 >
 </app-search-user>

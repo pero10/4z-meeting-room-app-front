@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./attendees.component.css']
 })
 export class AttendeesComponent implements OnInit {
+  searchAttendeeComponentVisible: boolean=false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  toggleAttendeeSearchComponent() {
+    this.searchAttendeeComponentVisible = !this.searchAttendeeComponentVisible;
+  }
 }
