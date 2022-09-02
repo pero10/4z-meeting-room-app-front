@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {Observable, Subscription} from "rxjs";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {Observable} from "rxjs";
 import { User } from "../User";
-import {LoginData} from "../LoginData";
 import {environment} from "../../environments/environment";
 import {UserData} from "../UserData";
-import {Reservation} from "../Reservation";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -35,7 +33,7 @@ export class UserService {
   }
 
   editUser(user: User):Observable<any>{
-    const url = `${this.apiUrl}/${user.id}`;
+    // const url = `${this.apiUrl}/${user.id}`;
     this.selectedUser = {
       "email": user.email,
       "firstName": user.firstName,
@@ -56,5 +54,16 @@ export class UserService {
   callAttendee(user: User):Observable<User>{
     const url = `${this.callAttendeeRoute}/${user.id}`;
     return this.http.post<User>(url, user.id, httpOptions);
+  }
+
+  searchUser(searchUserData:any) {
+    let params: HttpParams = new HttpParams();
+
+    Object.keys(searchUserData).forEach(function (key) {
+        if (searchUserData[key] !== null)
+          params = params.append(key, searchUserData[key]);
+      }
+    )
+    return this.http.get<User[]>(this.apiUrl + '/api/users/filter', {params});
   }
 }

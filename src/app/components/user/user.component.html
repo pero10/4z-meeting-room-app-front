@@ -11,6 +11,11 @@
   (onDeleteTrigger)="deleteTrigger($event)"
   (close)="regularModalVisible=false"
 ></app-modal-user>
+<app-search-user
+*ngIf="searchUserComponentVisible"
+(showUserSearch)="toggleSearchUser()"
+(searchOnSubmit)="searchUser($event)"
+></app-search-user>
 <app-edit-user
   *ngIf="editModalVisible"
   [user]="selectedUser"

@@ -1,0 +1,32 @@
+<div class="container-lg mt-5 search-section">
+  <form (ngSubmit)="onSubmit()" [formGroup]="searchRoomForm" class="search-form">
+
+    <label for="name">Name: </label>
+    <input type="text" id="name" formControlName="name"><br>
+
+    <label for="location">Location: </label>
+    <select id="location" formControlName="location">
+      <option value="Galerija">Galerija</option>
+      <option value="Nazor">Nazor</option>
+    </select><br>
+
+    <label for="capacity">Capacity: </label>
+    <input type="number" formControlName="capacity" id="capacity"><br>
+
+    <label for="tv">TV: </label>
+    <input type="checkbox" id="tv" formControlName="tv"><br>
+
+    <label for="whiteboard">Whiteboard: </label>
+    <input type="checkbox" id="whiteboard" formControlName="whiteboard"><br>
+
+    <label for="videocall">Video call: </label>
+    <input type="checkbox" id="videocall" formControlName="videocall">
+
+    <div class="filter-submit-section">
+      <button type="submit" class="btn btn-success">
+        Search!
+      </button>
+      <button class="btn clear-filters-button" (click)="clearFilters()">Clear filters</button>
+    </div>
+  </form>
+</div>

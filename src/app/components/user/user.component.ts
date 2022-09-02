@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
 
   regularModalVisible:boolean=false;
   editModalVisible:boolean=false;
+  searchUserComponentVisible: boolean=false;
 
   constructor(private userService: UserService) {
   }
@@ -50,5 +51,13 @@ export class UserComponent implements OnInit {
   editModalToggle(user: User) {
     this.editModalVisible = true;
     this.selectedUser = user;
+  }
+
+  toggleSearchUser(){
+    this.searchUserComponentVisible = !this.searchUserComponentVisible;
+  }
+
+  searchUser(searchUserData:any) {
+    this.userService.searchUser(searchUserData).subscribe(searchedUser=>this.users = searchedUser);
   }
 }

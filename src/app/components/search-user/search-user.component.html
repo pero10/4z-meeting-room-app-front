@@ -1,0 +1,11 @@
+<div class="container-lg mt-5 search-section">
+  <form (ngSubmit)="onSubmit()" [formGroup]="searchUserForm" class="search-form">
+
+    <div class="filter-submit-section">
+      <button type="submit" class="btn btn-success">
+        Search!
+      </button>
+      <button class="btn clear-filters-button" (click)="clearFilters()">Clear filters</button>
+    </div>
+  </form>
+</div>

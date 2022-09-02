@@ -1,12 +1,12 @@
-<div class="container-lg mt-5 search-reservation">
-  <form (ngSubmit)="onSubmit()" [formGroup]="searchReservationForm">
+<div class="container-lg mt-5 search-section">
+  <form (ngSubmit)="onSubmit()" [formGroup]="searchReservationForm" class="search-form">
     <!--      <h4 id="h4-reservation-search">Duration:</h4><br>-->
-    <div class="duration-div duration-border">
-      <div>
+    <div class="duration-div duration-bg">
+      <div class="duration-item">
         <label for="new_started_at" class="filter-label">Started at:</label><br>
         <input type="datetime-local" name="newStartedAt" formControlName="started_at" id="new_started_at">
       </div>
-      <div>
+      <div class="duration-item">
         <label for="new_started_at" class="filter-label">Finished at:</label><br>
         <input type="datetime-local" name="newFinishedAt" formControlName="finished_at" id="new_finished_at"><br>
       </div>
@@ -38,7 +38,7 @@
     <button type="submit" class="btn btn-success">
       Search!
     </button>
-    <button class="btn btn-danger" (click)="clearFilters()">Clear filters</button>
+    <button class="btn clear-filters-button" (click)="clearFilters()">Clear filters</button>
     </div>
     <!--      (click)="submitSearch(searchReservationForm.value)"-->
   </form>
