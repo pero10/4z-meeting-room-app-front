@@ -1,4 +1,6 @@
-<div class="container-lg mt-5">
+<div class="container-lg mt-5"
+  *ngIf="reservation"
+>
   <div class="card">
     <h1 class="card-header">{{reservation?.name}}
       <fa-icon
@@ -20,6 +22,7 @@
         class="pointer"
         (click)="openAddAttendeePage()"
         routerLink="/dashboard/attendees"
+        [queryParams]="{id: reservation.id}"
       >
 
       </fa-icon>

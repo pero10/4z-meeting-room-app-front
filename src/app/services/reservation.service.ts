@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Reservation} from "../Reservation";
+import {Attendee, Reservation} from "../Reservation";
 import {environment} from "../../environments/environment";
 import {User} from "../User";
 
@@ -17,7 +17,6 @@ const httpOptions = {
 export class ReservationService {
   private apiUrl = environment.url;
 
-  selectedUser: any;
   private selectedReservation: any;
 
   constructor(private http: HttpClient) {
@@ -57,9 +56,9 @@ export class ReservationService {
     return this.http.post<Reservation>(this.apiUrl + '/api/reservations', reservation, httpOptions);
   }
 
-  getReservationAttendees(reservation:Reservation){
-    const url = `${this.apiUrl}/api/reservations/attendees/coming/${reservation.id}`;
-    return this.http.get<User>(url);
+  getReservationAttendees(id:number){
+    const url = `${this.apiUrl}/api/reservations/attendees/coming/${id}`;
+    return this.http.get<Attendee[]>(url);
   }
 
   getReservationPendingAttendees(reservation:Reservation){

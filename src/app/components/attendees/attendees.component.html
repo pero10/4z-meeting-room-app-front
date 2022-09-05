@@ -10,3 +10,8 @@
   *ngIf="searchAttendeeComponentVisible"
 >
 </app-search-user>
+
+<app-attendee-item
+*ngFor="let attendee of attendees"
+[attendee]="attendee"
+></app-attendee-item>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Reservation} from "../../Reservation";
+import {Component, OnInit, Input, Output} from '@angular/core';
+import {Attendee, Reservation} from "../../Reservation";
 import {ReservationService} from "../../services/reservation.service";
-import {User} from "../../User";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-attendees',
@@ -9,17 +9,30 @@ import {User} from "../../User";
   styleUrls: ['./attendees.component.css']
 })
 export class AttendeesComponent implements OnInit {
-  searchAttendeeComponentVisible: boolean=false;
-  attendees?: User;
-  pendingAttendees?:User;
-  reservation?:Reservation;
 
-  constructor(private reservationService:ReservationService) { }
+
+  searchAttendeeComponentVisible: boolean = false;
+  attendees?: Attendee[] = [];
+  pendingAttendees?: Attendee;
+  id?: number;
+
+  constructor(
+    private reservationService: ReservationService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.reservationService.getReservationAttendees(this.reservation!).subscribe(
-      comingAttendees => this.attendees = comingAttendees
-    )
+    this.activatedRoute.queryParams.subscribe(
+      params => {
+        this.id = params['id'];
+      }
+    );
+
+    this.reservationService.getReservationAttendees(this.id!).subscribe(
+      (comingAttendees => {
+          this.attendees = comingAttendees
+        }
+      ));
   }
 
   toggleAttendeeSearchComponent() {

@@ -93,8 +93,4 @@ export class ReservationComponent implements OnInit {
     this.searchReservationComponentVisible = !this.searchReservationComponentVisible;
   }
 
-  openAttendeesPage(reservation?:Reservation) {
-
-
-  }
 }
