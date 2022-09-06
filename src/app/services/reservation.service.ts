@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Attendee, Reservation} from "../Reservation";
 import {environment} from "../../environments/environment";
-import {User} from "../User";
 
 const httpOptions = {
   headers: new HttpHeaders({
