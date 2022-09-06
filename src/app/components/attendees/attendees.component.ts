@@ -9,9 +9,8 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./attendees.component.css']
 })
 export class AttendeesComponent implements OnInit {
+  searchAttendeeComponentVisible: boolean=false;
 
-
-  searchAttendeeComponentVisible: boolean = false;
   attendees?: Attendee[] = [];
   pendingAttendees?: Attendee;
   id?: number;
@@ -38,6 +37,4 @@ export class AttendeesComponent implements OnInit {
   toggleAttendeeSearchComponent() {
     this.searchAttendeeComponentVisible = !this.searchAttendeeComponentVisible;
   }
-
-
 }
