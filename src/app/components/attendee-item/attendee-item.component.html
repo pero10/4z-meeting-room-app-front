@@ -1,1 +1,16 @@
-<p>attendee-item works!</p>
+<div class="container-lg mt-5">
+  <div class="card">
+    <h1 class="card-header">#{{attendee?.id}} {{attendee?.firstName}}</h1>
+    <div class="card-body">
+      <h3>{{attendee?.email}}</h3>
+      <h2 class="card-title">
+        {{attendee?.firstName}}
+        {{attendee!.lastName.toUpperCase()}}
+      </h2>
+      <p>Coming</p>
+    </div>
+
+
+
+  </div>
+</div>

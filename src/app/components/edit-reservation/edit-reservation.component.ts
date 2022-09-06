@@ -22,8 +22,8 @@ export class EditReservationComponent implements OnInit {
   constructor(private roomService:RoomService) {
     this.editReservationForm = new FormGroup({
       id: new FormControl(),
-      startedAt: new FormControl(),
-      finishedAt: new FormControl(),
+      started_at: new FormControl(),
+      finished_at: new FormControl(),
       name: new FormControl(),
       status: new FormControl(),
       room: new FormControl(),
