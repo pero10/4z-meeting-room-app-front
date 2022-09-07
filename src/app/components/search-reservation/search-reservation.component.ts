@@ -3,6 +3,7 @@ import {Reservation} from "../../Reservation";
 import {FormControl, FormGroup} from "@angular/forms";
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search-reservation',
@@ -11,13 +12,14 @@ import {Room} from "../../Room";
 })
 export class SearchReservationComponent implements OnInit {
 
-  @Output() showReservationSearch: EventEmitter<Reservation> = new EventEmitter();
   @Output() searchOnSubmit: EventEmitter<Reservation> = new EventEmitter<Reservation>();
+  @Output() showReservationSearch: EventEmitter<Reservation> = new EventEmitter();
 
   searchReservationForm!: FormGroup;
   rooms?: Room[];
 
-  constructor(private roomService: RoomService) {
+  constructor(private roomService: RoomService,
+              private router:Router) {
   }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class SearchReservationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.searchOnSubmit.emit(this.searchReservationForm.value);
+    this.router.navigate(['/dashboard/reservation'],{queryParams:this.searchReservationForm.value});
   }
 
   toggleReservationSearch(reservation?: Reservation) {

@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Room} from "../../Room";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search-room',
@@ -11,13 +12,17 @@ export class SearchRoomComponent implements OnInit {
 
   @Output() searchOnSubmit: EventEmitter<Room> = new EventEmitter<Room>();
   @Output() showRoomSearch: EventEmitter<Room> = new EventEmitter();
+  @Input() filterParams: EventEmitter<any> = new EventEmitter();
 
   searchRoomForm!: FormGroup;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
-    this.searchRoomForm = new FormGroup({
+    this.searchRoomForm! = new FormGroup({
       name: new FormControl(),
       location: new FormControl(),
       capacity: new FormControl(),
@@ -25,6 +30,7 @@ export class SearchRoomComponent implements OnInit {
       whiteboard: new FormControl(),
       videocall: new FormControl()
     });
+
   }
 
   clearFilters() {
@@ -33,10 +39,27 @@ export class SearchRoomComponent implements OnInit {
   }
 
   onSubmit() {
-    this.searchOnSubmit.emit(this.searchRoomForm.value);
+    this.router.navigate(
+      ['/dashboard/room'],
+      {queryParams: this.formGroupAdapter(this.searchRoomForm.value)}
+    );
   }
 
-  toggleRoomSearch(room?:Room){
+  toggleRoomSearch(room?: Room) {
     this.showRoomSearch.emit(room);
+  }
+
+  formGroupAdapter(formGroup: any): any {
+      Object.keys(formGroup).forEach(key => {
+        if (formGroup[key] !== null)
+        {
+          if (typeof formGroup[key] === "boolean")
+          {
+            formGroup[key] = formGroup[key] ? 1 : 0;
+          }
+        }
+      });
+
+    return formGroup;
   }
 }

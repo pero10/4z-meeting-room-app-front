@@ -38,7 +38,6 @@ export class ReservationService {
   editReservation(reservation: Reservation): Observable<Reservation> {
     const url = `${this.apiUrl}/api/reservations/${reservation.id}`;
     this.selectedReservation = {
-
       "startedAt": reservation.started_at,
       "finishedAt": reservation.finished_at,
       "name": reservation.name,
@@ -47,7 +46,7 @@ export class ReservationService {
       "host": reservation.host
     }
 
-    console.log(this.selectedReservation);
+    // console.log(this.selectedReservation);
     return this.http.patch<any>(url, JSON.stringify(this.selectedReservation), httpOptions);
   }
 
