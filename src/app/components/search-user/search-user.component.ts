@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {User} from "../../User";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search-user',
@@ -13,14 +14,15 @@ export class SearchUserComponent implements OnInit {
 
   searchUserForm!: FormGroup;
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
     this.searchUserForm = new FormGroup({
-      email:new FormControl(),
-      firstName:new FormControl(),
-      lastName:new FormControl(),
-      phone:new FormControl()
+      email: new FormControl(),
+      firstName: new FormControl(),
+      lastName: new FormControl(),
+      phone: new FormControl()
     });
   }
 
@@ -30,6 +32,9 @@ export class SearchUserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.searchOnSubmit.emit(this.searchUserForm.value);
+    this.router.navigate(
+      ['/dashboard/user'],
+      {queryParams: this.searchUserForm.value}
+    );
   }
 }

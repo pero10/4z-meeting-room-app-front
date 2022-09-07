@@ -24,7 +24,6 @@ export class RoomItemComponent implements OnInit {
 
   notAdmin: boolean = false;
 
-  // constructor(private dialogRef : MatDialog) { }
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {

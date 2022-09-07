@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {User} from "../../User";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -12,17 +13,34 @@ export class UserComponent implements OnInit {
   users: User[] = [];
   selectedUser ?: User;
 
-  regularModalVisible:boolean=false;
-  editModalVisible:boolean=false;
-  searchUserComponentVisible: boolean=false;
+  regularModalVisible: boolean = false;
+  editModalVisible: boolean = false;
+  searchUserComponentVisible: boolean = false;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute
+  ) {
   }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(
       (users) => (this.users = users)
     );
+
+    this.activatedRoute.queryParams.subscribe(
+      params => {
+        this.searchUser(params);
+      }
+    );
+  }
+
+  searchUser(searchUserData: any) {
+    this.userService
+      .searchUser(searchUserData)
+      .subscribe(
+        searchedUser => this.users = searchedUser
+      );
   }
 
   deleteUser(user: User) {
@@ -32,20 +50,20 @@ export class UserComponent implements OnInit {
   }
 
   onModalToggle(user: User) {
-    this.regularModalVisible=true;
+    this.regularModalVisible = true;
     this.selectedUser = user;
   }
 
   deleteTrigger(user: User) {
     this.deleteUser(user);
-    this.regularModalVisible=true;
+    this.regularModalVisible = true;
   }
 
 
-  onSubmitEditForm(user:User) {
+  onSubmitEditForm(user: User) {
     this.editModalVisible = false;
     this.userService.editUser(user).subscribe();
-    this.userService.getUsers().subscribe((users)=>(this.users=users));
+    this.userService.getUsers().subscribe((users) => (this.users = users));
   }
 
   editModalToggle(user: User) {
@@ -53,11 +71,9 @@ export class UserComponent implements OnInit {
     this.selectedUser = user;
   }
 
-  toggleSearchUser(){
+  toggleSearchUser() {
     this.searchUserComponentVisible = !this.searchUserComponentVisible;
   }
 
-  searchUser(searchUserData:any) {
-    this.userService.searchUser(searchUserData).subscribe(searchedUser=>this.users = searchedUser);
-  }
+
 }

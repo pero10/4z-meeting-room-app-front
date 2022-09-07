@@ -13,9 +13,8 @@
 
 <app-search-reservation
   *ngIf = "searchReservationComponentVisible"
-  (showReservationSearch)="toggleReservationSearchComponent()"
-  (searchOnSubmit)="searchReservation($event)">
-  </app-search-reservation>
+  (showReservationSearch)="toggleReservationSearchComponent()">
+</app-search-reservation>
 
 <app-reservation-item
   *ngFor="let reservation of reservations"

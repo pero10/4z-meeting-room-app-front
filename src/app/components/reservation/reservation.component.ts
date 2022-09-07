@@ -4,6 +4,7 @@ import {Attendee, Reservation} from "../../Reservation";
 import {Room} from "../../Room";
 import {LoginData} from "../../LoginData";
 import {AuthService} from "../../services/auth.service";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent implements OnInit {
-  @Input() room?:Room;
+  @Input() room?: Room;
   reservations: Reservation[] = [];
   selectedReservation ?: Reservation;
   selectedAttendees ?: Attendee[];
@@ -21,20 +22,38 @@ export class ReservationComponent implements OnInit {
   editModalVisible: boolean = false;
   insertModalVisible: boolean = false;
   attendeesModalVisible: boolean = false;
-  searchReservationComponentVisible:boolean = false;
+  searchReservationComponentVisible: boolean = false;
+  searchReservationParameters!: any;
+
 
   currentUser?: LoginData | any;
 
   constructor(private reservationService: ReservationService,
-              private authService: AuthService
+              private authService: AuthService,
+              private activatedRoute: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
-    this.reservationService.getReservations().subscribe(
-      (reservations) => (this.reservations = reservations)
+    // this.reservationService.getReservations().subscribe(
+    //   (reservations) => (this.reservations = reservations)
+    // );
+    this.authService.currentUserData.subscribe(
+      (user) => this.currentUser = user
     );
-    this.authService.currentUserData.subscribe((user) => this.currentUser = user);
+
+    this.activatedRoute.queryParams.subscribe(
+      params => {
+        this.searchReservation(params);
+      }
+    );
+  }
+  searchReservation(searchReservationData: any) {
+    this.reservationService
+      .searchReservation(searchReservationData)
+      .subscribe(
+        searchedReservation => this.reservations = searchedReservation
+      );
   }
 
   deleteReservationById(reservation: Reservation) {
@@ -43,12 +62,6 @@ export class ReservationComponent implements OnInit {
       .subscribe(
         () => (this.reservations = this.reservations.filter((r) => r.id !== reservation.id))
       );
-  }
-
-  searchReservation(searchReservationData:any){
-    this.reservationService
-      .searchReservation(searchReservationData)
-      .subscribe(searchedReservation => this.reservations = searchedReservation);
   }
 
   onModalToggle(reservation: Reservation) {
@@ -77,7 +90,7 @@ export class ReservationComponent implements OnInit {
     this.reservationService.getReservations().subscribe(refreshedReservations => this.reservations = refreshedReservations);
   }
 
-  toggleAttendeesModal(reservation: Reservation){
+  toggleAttendeesModal(reservation: Reservation) {
     this.attendeesModalVisible = true;
     this.selectedReservation = reservation;
     this.selectedAttendees = reservation.attendees;
@@ -86,7 +99,7 @@ export class ReservationComponent implements OnInit {
   onSubmitEditForm(reservation: Reservation) {
     this.editModalVisible = false;
     this.reservationService.editReservation(reservation).subscribe();
-    this.reservationService.getReservations().subscribe((reservation)=>(this.reservations=reservation));
+    this.reservationService.getReservations().subscribe((reservation) => (this.reservations = reservation));
   }
 
   toggleReservationSearchComponent() {

@@ -17,7 +17,9 @@ export class RoomService {
   private apiUrl = environment.url;
   selectedRoom = {};
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient
+  ) {
   }
 
   addNewRoom(room: Room): Observable<Room> {
@@ -62,3 +64,4 @@ export class RoomService {
     return this.http.get<Room[]>(this.apiUrl + '/api/rooms/filter', {params});
   }
 }
+

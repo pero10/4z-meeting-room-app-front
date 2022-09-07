@@ -1,4 +1,6 @@
-<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}"
+  *ngIf="reservation"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header insert-new-itemmodal-normal-header">
@@ -32,6 +34,11 @@
       <div class="modal-footer">
 <!--        <app-attendees-autocomplete></app-attendees-autocomplete>-->
 <!--        <button class="btn btn-success" (click)="showAttendeesList()">Add new attendee</button>-->
+        <button
+          class="btn clear-filters-button"
+          routerLink="/dashboard/attendees"
+          [queryParams]="{id: reservation.id}"
+        >View more</button>
         <button class="btn btn-danger" (click)="onClose()">Close</button>
       </div>
     </div>

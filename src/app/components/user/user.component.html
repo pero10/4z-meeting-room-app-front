@@ -9,7 +9,6 @@
 <app-search-user
   *ngIf="searchUserComponentVisible"
   (showUserSearch)="toggleSearchUser()"
-  (searchOnSubmit)="searchUser($event)"
 ></app-search-user>
 <app-user-item
   *ngFor="let user of users"

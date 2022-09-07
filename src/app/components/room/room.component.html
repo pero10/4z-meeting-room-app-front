@@ -13,7 +13,6 @@ Filters
 <app-search-room
 *ngIf = "searchRoomComponentVisible"
 (showRoomSearch)="toggleRoomSearch()"
-(searchOnSubmit)="searchRoom($event)"
 >
 
 </app-search-room>
@@ -24,18 +23,21 @@ Filters
   (onShowModal)="onModalToggle($event)"
   (onShowEditModal)="editModalToggle(room)"
 ></app-room-item>
+
 <app-modal-temp
   *ngIf="regularModalVisible"
   [room]="selectedRoom"
   (onDeleteTrigger)="deleteTrigger($event)"
   (close)="regularModalVisible=false"
 ></app-modal-temp>
+
 <app-edit-room
   *ngIf="editModalVisible"
   [room]="selectedRoom"
   (close)="editModalVisible=false"
   (submit)="onSubmitEditForm($event)"
 ></app-edit-room>
+
 <app-modal-new-room
   *ngIf="insertModalVisible"
   (close)="insertModalVisible=false"
