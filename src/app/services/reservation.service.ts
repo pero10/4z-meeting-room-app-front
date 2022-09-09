@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Attendee, Reservation} from "../Reservation";
 import {environment} from "../../environments/environment";
+import {CookieService} from "ngx-cookie-service";
+import {NewReservationFormValue} from "../components/modal-new-reservation/modal-new-reservation.component";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,7 +20,8 @@ export class ReservationService {
 
   private selectedReservation: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private cookieService: CookieService) {
   }
 
   getReservations(): Observable<Reservation[]> {
@@ -45,13 +48,19 @@ export class ReservationService {
       "room": reservation.room,
       "host": reservation.host
     }
-
-    // console.log(this.selectedReservation);
     return this.http.patch<any>(url, JSON.stringify(this.selectedReservation), httpOptions);
   }
 
-  addReservation(reservation: Reservation): Observable<Reservation> {
-    return this.http.post<Reservation>(this.apiUrl + '/api/reservations', reservation, httpOptions);
+  addReservation(reservation: NewReservationFormValue, hostId: number): Observable<Reservation> {
+    const newReservation = {
+      started_at: reservation.startedAt,
+      finished_at: reservation.finishedAt,
+      name: reservation.name,
+      status: "Active",
+      room: reservation.roomId,
+      host: hostId,
+    };
+    return this.http.post<Reservation>(this.apiUrl + '/api/reservations', newReservation, httpOptions);
   }
 
   getReservationAttendees(id:number){

@@ -12,30 +12,25 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form class="add-form" (ngSubmit)="onSubmit()">
+        <form class="add-form" (ngSubmit)="onSubmit()" [formGroup]="newReservationForm">
           <label>start time</label>
-          <input type="datetime-local" name="startedAt" [(ngModel)]="startedAt" id="started_at"><br>
+          <input type="datetime-local" name="startedAt" formControlName="startedAt" id="started_at"><br>
           <label>finish time</label>
-          <input type="datetime-local" name="finishedAt" [(ngModel)]="finishedAt" id="finished_at"><br>
+          <input type="datetime-local" name="finishedAt" formControlName="finishedAt"
+                 min="{{newReservationForm.get('startedAt')?.value}}" id="finished_at"><br>
           <label>Name</label>
-          <input type="text" name="reservationName" [(ngModel)]="name" id="name"><br>
-          <label>Status</label>
-
-          <select name="status" [(ngModel)]="status" id="status">
-            <!--            <option>active</option>-->
-            <option>inactive</option>
-            <option>waiting</option>
-            <option>canceled</option>
-          </select><br>
+          <input type="text" name="reservationName" formControlName="name" id="name"><br>
           <label>Room</label>
-          <select [(ngModel)]="room" name="room"
-          >
+          <select formControlName="roomId" name="room">
             <option
               *ngFor="let room of rooms"
               [ngValue]="room.id">
               {{room.name}} | {{room.capacity}}
             </option>
           </select>
+          <pre>
+            {{newReservationForm.value | json}}
+          </pre>
           <div class="modal-footer">
             <button type="submit" class="btn btn-success">Submit</button>
           </div>
