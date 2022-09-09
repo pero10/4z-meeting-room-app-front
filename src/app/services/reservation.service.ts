@@ -59,9 +59,9 @@ export class ReservationService {
     return this.http.get<Attendee[]>(url);
   }
 
-  getReservationPendingAttendees(reservation:Reservation){
-    const url = `${this.apiUrl}/api/reservations/attendees/${reservation.id}`;
-    return this.http.get(url);
+  getReservationPendingAttendees(id:number){
+    const url = `${this.apiUrl}/api/reservations/attendees/${id}`;
+    return this.http.get<Attendee[]>(url);
   }
 
   searchReservation(searchReservationData: any)

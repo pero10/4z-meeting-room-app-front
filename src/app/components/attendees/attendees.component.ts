@@ -10,10 +10,9 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AttendeesComponent implements OnInit {
 
-
   searchAttendeeComponentVisible: boolean = false;
   attendees?: Attendee[] = [];
-  pendingAttendees?: Attendee;
+  pendingAttendees?: Attendee[] =[];
   id?: number;
 
   constructor(
@@ -30,9 +29,17 @@ export class AttendeesComponent implements OnInit {
 
     this.reservationService.getReservationAttendees(this.id!).subscribe(
       (comingAttendees => {
-          this.attendees = comingAttendees
+          this.attendees = comingAttendees;
         }
-      ));
+      )
+    );
+
+    this.reservationService.getReservationPendingAttendees(this.id!).subscribe(
+      (pendingAttendees => {
+        this.pendingAttendees = pendingAttendees;
+        }
+      )
+    );
   }
 
   toggleAttendeeSearchComponent() {

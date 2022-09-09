@@ -35,9 +35,6 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.reservationService.getReservations().subscribe(
-    //   (reservations) => (this.reservations = reservations)
-    // );
     this.authService.currentUserData.subscribe(
       (user) => this.currentUser = user
     );

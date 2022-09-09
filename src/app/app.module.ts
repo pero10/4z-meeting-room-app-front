@@ -44,6 +44,7 @@ import { SearchRoomComponent } from './components/search-room/search-room.compon
 import { SearchUserComponent } from './components/search-user/search-user.component';
 import { AttendeesComponent } from './components/attendees/attendees.component';
 import { AttendeeItemComponent } from './components/attendee-item/attendee-item.component';
+import { PendingAttendeeComponent } from './components/pending-attendee/pending-attendee.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { AttendeeItemComponent } from './components/attendee-item/attendee-item.
     SearchRoomComponent,
     SearchUserComponent,
     AttendeesComponent,
-    AttendeeItemComponent
+    AttendeeItemComponent,
+    PendingAttendeeComponent
   ],
   imports: [
     BrowserModule,
