@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
   }
 
   registerSubmit(user:any){
-    console.log(user);
     let newUser = {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -38,13 +37,12 @@ export class RegisterComponent implements OnInit {
     }
     this.userService.addUser(newUser).subscribe(
       (user:any) => {
-        console.log(user)
       },
       (error) => {
         console.log(error.error.message);
       }
     );
-    // this.router.navigate(['login']);
+    this.router.navigate(['login']);
     // alert('Uspesno ste registrovani');
   }
 

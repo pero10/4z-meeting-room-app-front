@@ -45,13 +45,11 @@ export class LoginComponent implements OnInit{
           (user) => {
             this.authService.changeUser(user);
             this.userData = user;
-            console.log(this.userData);
             this.router.navigate(['']);
           }
         );
       },
       (error) => {
-        console.log(error.error.message);
         this.errorMessage = error.error.message;
       }
     );

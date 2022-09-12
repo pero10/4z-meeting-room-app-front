@@ -5,6 +5,8 @@ import {Room} from "../../Room";
 import {LoginData} from "../../LoginData";
 import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute} from "@angular/router";
+import {NewReservationFormValue} from "../modal-new-reservation/modal-new-reservation.component";
+import {switchMap, tap} from "rxjs";
 
 
 @Component({
@@ -76,15 +78,17 @@ export class ReservationComponent implements OnInit {
     this.deleteReservationById(reservation);
   }
 
-  addNewReservation(reservation: Reservation) {
-    this.reservationService.addReservation(reservation).subscribe(
-      (reservation) => (this.reservations.push(reservation)));
+  addNewReservation(reservationFormValue: NewReservationFormValue) {
+    this.reservationService.addReservation(reservationFormValue, this.currentUser.id).pipe(
+      tap(res => console.log(`beforeL:`, res)),
+      switchMap(res => this.reservationService.getReservations()),
+      tap( res => this.reservations = res)
+    ).subscribe();
   }
 
   toggleInsertReservationModal() {
     this.insertModalVisible = true;
     this.searchReservationComponentVisible = false;
-    // this.reservationService.getReservations().subscribe(refreshedReservations => this.reservations = refreshedReservations);
   }
 
   toggleAttendeesModal(reservation: Reservation) {
@@ -96,7 +100,6 @@ export class ReservationComponent implements OnInit {
   onSubmitEditForm(reservation: Reservation) {
     this.editModalVisible = false;
     this.reservationService.editReservation(reservation).subscribe();
-    this.reservationService.getReservations().subscribe((reservation) => (this.reservations = reservation));
   }
 
   toggleReservationSearchComponent() {

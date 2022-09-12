@@ -6,6 +6,14 @@ import {ReservationService} from "../../services/reservation.service";
 import {Room} from "../../Room";
 import {LoginData} from "../../LoginData";
 import {AuthService} from "../../services/auth.service";
+import {FormControl, FormGroup, UntypedFormGroup, Validators} from "@angular/forms";
+
+export interface NewReservationFormValue{
+  "startedAt" : string,
+  "finishedAt" : string,
+  "name" : string,
+  "roomId" : number
+}
 
 @Component({
   selector: 'app-modal-new-reservation',
@@ -14,24 +22,24 @@ import {AuthService} from "../../services/auth.service";
 })
 export class ModalNewReservationComponent implements OnInit {
 
-  @Output() onAddReservation: EventEmitter<Reservation> = new EventEmitter();
+  @Output() onAddReservation: EventEmitter<NewReservationFormValue> = new EventEmitter();
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-
-  startedAt?: DatePipe;
-  finishedAt?: DatePipe;
-  name?: string;
-  status?: string;
-  room?: ReservationRoom;
-  host?:ReservationHost;
   rooms?: Room[];
-  attendee?: Attendee[];
 
   currentUser?: LoginData | null;
+  newReservationForm: UntypedFormGroup;
 
   constructor(private reservationService: ReservationService,
               private roomService: RoomService,
               private authService: AuthService) {
+
+    this.newReservationForm = new FormGroup({
+      "startedAt" : new FormControl<string | null>(null, Validators.required),
+      "finishedAt" : new FormControl<string | null>(null, Validators.required),
+      "name" : new FormControl<string | null>(null, Validators.required),
+      "roomId" : new FormControl<number | null>(null, Validators.required),
+    })
   }
 
   ngOnInit(): void {
@@ -43,27 +51,7 @@ export class ModalNewReservationComponent implements OnInit {
   }
 
   onSubmit() {
-    if (
-      !this.startedAt ||
-      !this.finishedAt ||
-      !this.name ||
-      !this.status ||
-      !this.room) {
-      alert('You can\'t leave any of the fields empty!');
-      return;
-    }
-
-    const newReservation: Reservation = {
-      started_at: this.startedAt!,
-      finished_at: this.finishedAt!,
-      name: this.name!,
-      status: this.status!,
-      room: this.room!,
-      host:this.host!,
-      attendees:this.attendee!
-    };
-
-    this.onAddReservation.emit(newReservation);
+    this.onAddReservation.emit(this.newReservationForm.value);
     this.onClose();
   }
 

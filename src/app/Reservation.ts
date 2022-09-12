@@ -14,8 +14,6 @@ export interface Reservation{
 export interface ReservationHost{
   "id": number,
   "email": string,
-  "firstName":string,
-  "lastName": string
 }
 
 export interface ReservationRoom{
