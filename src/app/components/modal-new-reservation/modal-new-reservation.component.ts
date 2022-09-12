@@ -1,12 +1,12 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Attendee, Reservation, ReservationHost, ReservationRoom} from "../../Reservation";
-import {DatePipe} from "@angular/common";
 import {RoomService} from "../../services/room.service";
 import {ReservationService} from "../../services/reservation.service";
 import {Room} from "../../Room";
 import {LoginData} from "../../LoginData";
 import {AuthService} from "../../services/auth.service";
 import {FormControl, FormGroup, UntypedFormGroup, Validators} from "@angular/forms";
+import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
+import {tap} from "rxjs";
 
 export interface NewReservationFormValue{
   "startedAt" : string,
@@ -15,6 +15,7 @@ export interface NewReservationFormValue{
   "roomId" : number
 }
 
+@UntilDestroy()
 @Component({
   selector: 'app-modal-new-reservation',
   templateUrl: './modal-new-reservation.component.html',
@@ -43,11 +44,21 @@ export class ModalNewReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.roomService.getRooms().subscribe(
-      (data: Room[]) => {
-        this.rooms = data;
-      });
-    this.authService.currentUserData.subscribe((user) => this.currentUser = user);
+    this.roomService.getRooms().pipe(
+      untilDestroyed(this),
+      tap(
+        (data:Room[])=>
+          this.rooms = data
+      )
+    ).subscribe();
+
+    this.authService.currentUserData.pipe(
+      untilDestroyed(this),
+      tap(
+      (user) =>
+        this.currentUser = user)
+    ).subscribe();
+
   }
 
   onSubmit() {

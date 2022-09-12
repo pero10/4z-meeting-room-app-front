@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {User} from "../../User";
 import {ActivatedRoute} from "@angular/router";
+import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
+import {tap} from "rxjs";
 
-
+@UntilDestroy()
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -28,11 +30,12 @@ export class UserComponent implements OnInit {
       (users) => (this.users = users)
     );
 
-    this.activatedRoute.queryParams.subscribe(
-      params => {
-        this.searchUser(params);
-      }
-    );
+    this.activatedRoute.queryParams.pipe(
+      untilDestroyed(this),
+      tap(params=>
+      this.searchUser(params)
+      )
+    ).subscribe();
   }
 
   searchUser(searchUserData: any) {
@@ -74,6 +77,4 @@ export class UserComponent implements OnInit {
   toggleSearchUser() {
     this.searchUserComponentVisible = !this.searchUserComponentVisible;
   }
-
-
 }

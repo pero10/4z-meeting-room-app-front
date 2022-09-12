@@ -16,6 +16,7 @@ export class AttendeesAutocompleteComponent implements OnInit {
 
   myControl = new FormControl;
   filteredUsers?: Observable<User[]>;
+  attendee: any;
 
   constructor(private userService: UserService) { }
 

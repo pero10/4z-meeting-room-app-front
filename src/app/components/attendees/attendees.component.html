@@ -7,11 +7,11 @@
   </button>
 </div>
 <app-attendee-item
-  *ngFor="let attendee of attendees"
+  *ngFor="let attendee of attendees$|async"
   [attendee]="attendee"
 ></app-attendee-item>
 <app-pending-attendee
-  *ngFor="let pendingAttendee of pendingAttendees"
+  *ngFor="let pendingAttendee of pendingAttendees$|async"
   [pendingAttendee]="pendingAttendee"
 ></app-pending-attendee>
 

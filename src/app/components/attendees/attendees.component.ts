@@ -2,7 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Attendee} from "../../Reservation";
 import {ReservationService} from "../../services/reservation.service";
 import {ActivatedRoute} from "@angular/router";
+import {UntilDestroy} from "@ngneat/until-destroy";
+import {Observable} from "rxjs";
 
+@UntilDestroy()
 @Component({
   selector: 'app-attendees',
   templateUrl: './attendees.component.html',
@@ -11,40 +14,32 @@ import {ActivatedRoute} from "@angular/router";
 export class AttendeesComponent implements OnInit {
 
   searchAttendeeModalVisible: boolean = false;
-  attendees?: Attendee[] = [];
-  pendingAttendees?: Attendee[] =[];
+  attendees$?: Observable<Attendee[]>;
+  pendingAttendees$?: Observable<Attendee[]>;
   id?: number;
+
   // attendeesModalVisible: boolean=false;
 
   constructor(
     private reservationService: ReservationService,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(
       params => {
-        this.id = params['id'];
+        if (params['id']) {
+          this.attendees$ = this.reservationService.getReservationAttendees(params['id']);
+          this.pendingAttendees$ = this.reservationService.getReservationPendingAttendees(params['id']);
+        }
       }
-    );
-
-    this.reservationService.getReservationAttendees(this.id!).subscribe(
-      (comingAttendees => {
-          this.attendees = comingAttendees;
-        }
-      )
-    );
-
-    this.reservationService.getReservationPendingAttendees(this.id!).subscribe(
-      (pendingAttendees => {
-        this.pendingAttendees = pendingAttendees;
-        }
-      )
     );
   }
 
   toggleAttendeeSearchComponent() {
-    this.searchAttendeeModalVisible=true;
+    this.searchAttendeeModalVisible = true;
   }
 
 }

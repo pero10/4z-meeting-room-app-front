@@ -7,8 +7,9 @@ import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {NewReservationFormValue} from "../modal-new-reservation/modal-new-reservation.component";
 import {switchMap, tap} from "rxjs";
+import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 
-
+@UntilDestroy()
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
@@ -37,17 +38,23 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.currentUserData.subscribe(
-      (user) => this.currentUser = user
-    );
+    this.authService.currentUserData.pipe(
+      untilDestroyed(this),
+      tap(user=>
+        (this.currentUser = user)
+      )
+    ).subscribe();
 
-    this.activatedRoute.queryParams.subscribe(
-      params => {
+    this.activatedRoute.queryParams.pipe(
+      untilDestroyed(this),
+      tap(params => {
         this.searchReservation(params);
-      }
-    );
+      })
+    ).subscribe();
+
   }
   searchReservation(searchReservationData: any) {
+
     this.reservationService
       .searchReservation(searchReservationData)
       .subscribe(

@@ -2,8 +2,10 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from "../../User";
 import {UserService} from "../../services/user.service";
 import {ActivatedRoute} from "@angular/router";
-import {switchMap, tap} from "rxjs";
+import {Subscription, switchMap, tap} from "rxjs";
+import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 
+@UntilDestroy()
 @Component({
   selector: 'app-attendee-search-modal',
   templateUrl: './attendee-search-modal.component.html',
@@ -12,8 +14,11 @@ import {switchMap, tap} from "rxjs";
 export class AttendeeSearchModalComponent implements OnInit {
 
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  unsub:Subscription|undefined;
   attendees: User[] = [];
   reservationID?:number;
+
   constructor(
     private userService:UserService,
     private activatedRoute:ActivatedRoute
@@ -22,9 +27,10 @@ export class AttendeeSearchModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.pipe(
-      tap(result=>{
-        console.log(result);
-      }),
+      untilDestroyed(this),
+      // tap(result=>{
+      //   console.log(result);
+      // }),
       switchMap(params=>{
         return this.userService.getUsersInReservationRange(params['id']);
         }
@@ -36,6 +42,9 @@ export class AttendeeSearchModalComponent implements OnInit {
     ).subscribe();
   }
 
+  ngOnDestroy(){
+
+  }
 
   onClose() {
     this.close.emit(true);

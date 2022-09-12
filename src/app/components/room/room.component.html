@@ -17,7 +17,7 @@ Filters
 
 </app-search-room>
 <app-room-item
-  *ngFor="let room of rooms"
+  *ngFor="let room of rooms$|async"
   [room]="room"
   (onDeleteRoom)="deleteRoom(room)"
   (onShowModal)="onModalToggle($event)"

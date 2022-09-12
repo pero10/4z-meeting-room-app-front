@@ -38,7 +38,10 @@ export class ReservationItemComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.authService.currentUserData.subscribe((user) => this.currentUser = user);
+    this.authService.currentUserData.subscribe(
+      (user) =>
+        this.currentUser = user
+    );
   }
 
   deleteReservation(reservation: any) {
