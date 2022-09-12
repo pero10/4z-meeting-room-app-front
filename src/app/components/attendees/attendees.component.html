@@ -2,15 +2,10 @@
 
   <button class="btn btn-outline-success text-center make-some-space"
           (click)="toggleAttendeeSearchComponent()"
-          [ngClass]="searchAttendeeComponentVisible?'search-toggled':'btn-outline-success'"
-  >Filters
+          [ngClass]="searchAttendeeModalVisible?'search-toggled':'btn-outline-success'"
+  >Add attendees
   </button>
 </div>
-<app-search-user
-  *ngIf="searchAttendeeComponentVisible"
->
-</app-search-user>
-
 <app-attendee-item
   *ngFor="let attendee of attendees"
   [attendee]="attendee"
@@ -19,3 +14,10 @@
   *ngFor="let pendingAttendee of pendingAttendees"
   [pendingAttendee]="pendingAttendee"
 ></app-pending-attendee>
+
+
+<app-attendee-search-modal
+  *ngIf="searchAttendeeModalVisible"
+  (close)="searchAttendeeModalVisible=false"
+>
+</app-attendee-search-modal>

@@ -24,7 +24,6 @@ export class ModalNewReservationComponent implements OnInit {
   status?: string;
   room?: ReservationRoom;
   host?:ReservationHost;
-  showNewReservationModal?: boolean;
   rooms?: Room[];
   attendee?: Attendee[];
 

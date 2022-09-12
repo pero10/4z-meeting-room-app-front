@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Attendee, Reservation} from "../../Reservation";
 import {User} from "../../User";
-import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-reservation-attendee',

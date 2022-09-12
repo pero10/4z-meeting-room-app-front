@@ -10,10 +10,11 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AttendeesComponent implements OnInit {
 
-  searchAttendeeComponentVisible: boolean = false;
+  searchAttendeeModalVisible: boolean = false;
   attendees?: Attendee[] = [];
   pendingAttendees?: Attendee[] =[];
   id?: number;
+  // attendeesModalVisible: boolean=false;
 
   constructor(
     private reservationService: ReservationService,
@@ -43,8 +44,7 @@ export class AttendeesComponent implements OnInit {
   }
 
   toggleAttendeeSearchComponent() {
-    this.searchAttendeeComponentVisible = !this.searchAttendeeComponentVisible;
+    this.searchAttendeeModalVisible=true;
   }
-
 
 }

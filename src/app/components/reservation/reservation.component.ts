@@ -84,7 +84,7 @@ export class ReservationComponent implements OnInit {
   toggleInsertReservationModal() {
     this.insertModalVisible = true;
     this.searchReservationComponentVisible = false;
-    this.reservationService.getReservations().subscribe(refreshedReservations => this.reservations = refreshedReservations);
+    // this.reservationService.getReservations().subscribe(refreshedReservations => this.reservations = refreshedReservations);
   }
 
   toggleAttendeesModal(reservation: Reservation) {
