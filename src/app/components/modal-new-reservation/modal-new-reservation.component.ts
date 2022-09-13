@@ -6,7 +6,7 @@ import {LoginData} from "../../LoginData";
 import {AuthService} from "../../services/auth.service";
 import {FormControl, FormGroup, UntypedFormGroup, Validators} from "@angular/forms";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
-import {tap} from "rxjs";
+import {Observable, tap} from "rxjs";
 
 export interface NewReservationFormValue{
   "startedAt" : string,
@@ -30,6 +30,7 @@ export class ModalNewReservationComponent implements OnInit {
 
   currentUser?: LoginData | null;
   newReservationForm: UntypedFormGroup;
+  rooms$?: Observable<Room[]>;
 
   constructor(private reservationService: ReservationService,
               private roomService: RoomService,
@@ -44,13 +45,7 @@ export class ModalNewReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.roomService.getRooms().pipe(
-      untilDestroyed(this),
-      tap(
-        (data:Room[])=>
-          this.rooms = data
-      )
-    ).subscribe();
+    this.rooms$ = this.roomService.getRooms().pipe(untilDestroyed(this));
 
     this.authService.currentUserData.pipe(
       untilDestroyed(this),
@@ -58,7 +53,6 @@ export class ModalNewReservationComponent implements OnInit {
       (user) =>
         this.currentUser = user)
     ).subscribe();
-
   }
 
   onSubmit() {

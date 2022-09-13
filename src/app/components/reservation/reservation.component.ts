@@ -6,7 +6,7 @@ import {LoginData} from "../../LoginData";
 import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {NewReservationFormValue} from "../modal-new-reservation/modal-new-reservation.component";
-import {switchMap, tap} from "rxjs";
+import {Observable, switchMap, tap} from "rxjs";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 
 @UntilDestroy()
@@ -20,7 +20,7 @@ export class ReservationComponent implements OnInit {
   reservations: Reservation[] = [];
   selectedReservation ?: Reservation;
   selectedAttendees ?: Attendee[];
-
+  reservations$?:Observable<Reservation[]>;
   regularModalVisible: boolean = false;
   editModalVisible: boolean = false;
   insertModalVisible: boolean = false;
@@ -48,25 +48,20 @@ export class ReservationComponent implements OnInit {
     this.activatedRoute.queryParams.pipe(
       untilDestroyed(this),
       tap(params => {
-        this.searchReservation(params);
+        this.reservations$ = this.reservationService.searchReservation(params);
       })
     ).subscribe();
-
-  }
-  searchReservation(searchReservationData: any) {
-
-    this.reservationService
-      .searchReservation(searchReservationData)
-      .subscribe(
-        searchedReservation => this.reservations = searchedReservation
-      );
   }
 
   deleteReservationById(reservation: Reservation) {
     this.reservationService
       .deleteReservation(reservation)
       .subscribe(
-        () => (this.reservations = this.reservations.filter((r) => r.id !== reservation.id))
+        () => (
+          this.reservations = this.reservations.filter(
+            (r) => r.id !== reservation.id
+          )
+        )
       );
   }
 

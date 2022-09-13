@@ -23,7 +23,7 @@
           <label>Room</label>
           <select formControlName="roomId" name="room">
             <option
-              *ngFor="let room of rooms"
+              *ngFor="let room of rooms$|async"
               [ngValue]="room.id">
               {{room.name}} | {{room.capacity}}
             </option>

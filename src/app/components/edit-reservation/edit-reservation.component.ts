@@ -3,6 +3,7 @@ import {Reservation} from "../../Reservation";
 import {FormControl, FormGroup} from "@angular/forms";
 import {RoomService} from "../../services/room.service";
 import {Room} from "../../Room";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-edit-reservation',
@@ -15,8 +16,8 @@ export class EditReservationComponent implements OnInit {
   @Output() close:EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() submit:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   editReservationForm: FormGroup;
-  rooms: Room[] = [];
   selectedRoom = this.reservation?.room;
+  rooms$?: Observable<Room[]>;
 
 
   constructor(private roomService:RoomService) {
@@ -32,15 +33,15 @@ export class EditReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rooms$ = this.roomService.getRooms();
+
     if(this.reservation){
       this.editReservationForm.patchValue(this.reservation);
       this.editReservationForm.controls['room'].setValue(this.reservation?.room?.id);
-      //'UTC - yyyy-MM-dThh:mm:ssz'
-      // let startedAt = new Date('UTC - yyyy-MM-dThh:mm:ssz');
-      this.editReservationForm.controls['startedAt'].setValue(this.reservation?.started_at);
-      this.editReservationForm.controls['finishedAt'].setValue(this.reservation?.finished_at);
+      this.editReservationForm.controls['started_at'].setValue(this.reservation?.started_at);
+      this.editReservationForm.controls['finished_at'].setValue(this.reservation?.finished_at);
     }
-    this.roomService.getRooms().subscribe((rooms)=>(this.rooms=rooms));
+
   }
 
   updateReservation(reservation?: Reservation) {

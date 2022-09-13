@@ -41,8 +41,8 @@ export class ReservationService {
   editReservation(reservation: Reservation): Observable<Reservation> {
     const url = `${this.apiUrl}/api/reservations/${reservation.id}`;
     this.selectedReservation = {
-      "startedAt": reservation.started_at,
-      "finishedAt": reservation.finished_at,
+      "started_at": reservation.started_at,
+      "finished_at": reservation.finished_at,
       "name": reservation.name,
       "status": reservation.status,
       "room": reservation.room,

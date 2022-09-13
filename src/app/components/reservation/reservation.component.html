@@ -17,7 +17,7 @@
 </app-search-reservation>
 
 <app-reservation-item
-  *ngFor="let reservation of reservations"
+  *ngFor="let reservation of reservations$|async"
   [reservation]="reservation"
   (deleteReservationTask)="deleteReservationById(reservation)"
   (onShowModal)="onModalToggle($event)"
