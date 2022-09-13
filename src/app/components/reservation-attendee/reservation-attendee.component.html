@@ -3,7 +3,7 @@
 >
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header insert-new-itemmodal-normal-header">
+      <div class="modal-header insert-new-item modal-normal-header">
         <h1>Attendees on the meeting for reservation {{reservation?.id}}</h1>
         <button type="button"
                 class="btn-close move-right"
@@ -17,7 +17,7 @@
         <table class="table">
           <thead>
           <tr>
-            <th>Name of Attende</th>
+            <th>Name of Attendee</th>
             <th>Email</th>
             <th>Arrive</th>
           </tr>
@@ -26,7 +26,12 @@
           <tr *ngFor="let attendee of attendees">
             <th>{{attendee?.firstName}} {{attendee?.lastName}}</th>
             <th>{{attendee?.email}}</th>
-            <th>Tu ide status</th>
+            <th>coming</th>
+          </tr>
+          <tr *ngFor="let pAttendee of pendingAttendees">
+            <th>{{pAttendee?.firstName}} {{pAttendee?.lastName}}</th>
+            <th>{{pAttendee?.email}}</th>
+            <th>pending</th>
           </tr>
           </tbody>
         </table>

@@ -8,7 +8,8 @@ export interface Reservation{
   "status": string,
   "room":ReservationRoom,
   "host":ReservationHost,
-  "attendees":Attendee[]
+  "attendees":Attendee[],
+  "pendingAttendees":Attendee[],
 }
 
 export interface ReservationHost{
@@ -22,6 +23,13 @@ export interface ReservationRoom{
 }
 
 export interface Attendee{
+  "id":number,
+  "email":string,
+  "firstName":string,
+  "lastName":string
+}
+
+export interface pendingAttendee{
   "id":number,
   "email":string,
   "firstName":string,

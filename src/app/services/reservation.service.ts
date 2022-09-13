@@ -53,8 +53,8 @@ export class ReservationService {
 
   addReservation(reservation: NewReservationFormValue, hostId: number): Observable<Reservation> {
     const newReservation = {
-      started_at: reservation.startedAt,
-      finished_at: reservation.finishedAt,
+      started_at: reservation.started_at,
+      finished_at: reservation.finished_at,
       name: reservation.name,
       status: "Active",
       room: reservation.roomId,

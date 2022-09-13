@@ -9,8 +9,8 @@ import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {Observable, tap} from "rxjs";
 
 export interface NewReservationFormValue{
-  "startedAt" : string,
-  "finishedAt" : string,
+  "started_at" : string,
+  "finished_at" : string,
   "name" : string,
   "roomId" : number
 }
@@ -37,8 +37,8 @@ export class ModalNewReservationComponent implements OnInit {
               private authService: AuthService) {
 
     this.newReservationForm = new FormGroup({
-      "startedAt" : new FormControl<string | null>(null, Validators.required),
-      "finishedAt" : new FormControl<string | null>(null, Validators.required),
+      "started_at" : new FormControl<string | null>(null, Validators.required),
+      "finished_at" : new FormControl<string | null>(null, Validators.required),
       "name" : new FormControl<string | null>(null, Validators.required),
       "roomId" : new FormControl<number | null>(null, Validators.required),
     })

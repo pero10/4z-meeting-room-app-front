@@ -10,14 +10,14 @@ import {User} from "../../User";
 export class ReservationAttendeeComponent implements OnInit {
   @Input() reservation?:Reservation;
   @Input() attendees?:Attendee[];
+  @Input() pendingAttendees?:Attendee[];
   @Output() close:EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() attendeesPage:EventEmitter<any> = new EventEmitter<any>();
   @Output() onShowAttendeesModal:EventEmitter<Reservation> = new EventEmitter<Reservation>();
   @Output() attendeesList:EventEmitter<User> = new EventEmitter<User>();
 
   constructor(
-    // private router: Router,
-    // private activatedRoute:ActivatedRoute
+
   ) {}
 
   ngOnInit(): void {

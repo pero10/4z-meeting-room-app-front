@@ -30,8 +30,7 @@
   [reservation]="selectedReservation"
   (onDeleteTrigger)="deleteTrigger($event)"
   (close)="regularModalVisible=false"
->
-</app-modal-reservation>
+></app-modal-reservation>
 
 <app-edit-reservation
   *ngIf="editModalVisible"
@@ -48,9 +47,10 @@
 
 <ng-container *ngIf="attendeesModalVisible">
   <app-reservation-attendee
-    *ngFor="let reservation of reservations"
+    *ngFor="let reservation of reservations$|async"
     [reservation]="selectedReservation"
     [attendees]="selectedAttendees"
+    [pendingAttendees]="selectedPendingAttendees"
     (close)="attendeesModalVisible=false"
   ></app-reservation-attendee>
 </ng-container>

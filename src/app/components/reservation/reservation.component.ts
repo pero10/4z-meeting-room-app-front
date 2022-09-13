@@ -20,7 +20,9 @@ export class ReservationComponent implements OnInit {
   reservations: Reservation[] = [];
   selectedReservation ?: Reservation;
   selectedAttendees ?: Attendee[];
-  reservations$?:Observable<Reservation[]>;
+  selectedPendingAttendees ?: Attendee[];
+
+  reservations$?: Observable<Reservation[]>;
   regularModalVisible: boolean = false;
   editModalVisible: boolean = false;
   insertModalVisible: boolean = false;
@@ -31,16 +33,17 @@ export class ReservationComponent implements OnInit {
 
   currentUser?: LoginData | any;
 
-  constructor(private reservationService: ReservationService,
-              private authService: AuthService,
-              private activatedRoute: ActivatedRoute
+  constructor(
+    private reservationService: ReservationService,
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
     this.authService.currentUserData.pipe(
       untilDestroyed(this),
-      tap(user=>
+      tap(user =>
         (this.currentUser = user)
       )
     ).subscribe();
@@ -84,7 +87,7 @@ export class ReservationComponent implements OnInit {
     this.reservationService.addReservation(reservationFormValue, this.currentUser.id).pipe(
       tap(res => console.log(`beforeL:`, res)),
       switchMap(res => this.reservationService.getReservations()),
-      tap( res => this.reservations = res)
+      tap(res => this.reservations = res)
     ).subscribe();
   }
 
@@ -97,6 +100,7 @@ export class ReservationComponent implements OnInit {
     this.attendeesModalVisible = true;
     this.selectedReservation = reservation;
     this.selectedAttendees = reservation.attendees;
+    this.selectedPendingAttendees = reservation.pendingAttendees;
   }
 
   onSubmitEditForm(reservation: Reservation) {

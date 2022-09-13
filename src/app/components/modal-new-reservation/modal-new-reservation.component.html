@@ -14,10 +14,19 @@
       <div class="modal-body">
         <form class="add-form" (ngSubmit)="onSubmit()" [formGroup]="newReservationForm">
           <label>start time</label>
-          <input type="datetime-local" name="startedAt" formControlName="startedAt" id="started_at"><br>
+          <input
+            type="datetime-local"
+            name="startedAt"
+            formControlName="started_at"
+            id="started_at">
+          <br>
           <label>finish time</label>
-          <input type="datetime-local" name="finishedAt" formControlName="finishedAt"
-                 min="{{newReservationForm.get('startedAt')?.value}}" id="finished_at"><br>
+          <input
+            type="datetime-local"
+            name="finishedAt"
+            formControlName="finished_at"
+            min="{{newReservationForm.get('started_at')?.value}}"
+            id="finished_at"><br>
           <label>Name</label>
           <input type="text" name="reservationName" formControlName="name" id="name"><br>
           <label>Room</label>
