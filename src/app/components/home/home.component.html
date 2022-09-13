@@ -2,13 +2,13 @@
   <h1 class="text-primary">Today's reservations</h1>
 </div>
 <app-home-item
-  *ngFor="let reservation of reservations"
+  *ngFor="let reservation of reservations$|async"
   [reservation]="reservation"
   (onShowAttendeesToggle)="toggleAttendeesModal($event)"
 ></app-home-item>
 <ng-container *ngIf="attendeesModalVisible">
   <app-reservation-attendee
-    *ngFor="let reservation of reservations"
+    *ngFor="let reservation of reservations$|async"
     [reservation]="selectedReservation"
     [attendees]="selectedAttendees"
     (close)="attendeesModalVisible=false"

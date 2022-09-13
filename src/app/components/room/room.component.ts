@@ -16,7 +16,8 @@ import {Observable, tap} from "rxjs";
 
 export class RoomComponent implements OnInit {
   @Input() room?: Room;
-  rooms$?:Observable<Room[]>;
+  rooms:Room[] = [];
+  rooms$?: Observable<Room[]>;
   selectedRoom?: Room;
   regularModalVisible: boolean = false;
   insertModalVisible: boolean = false;
@@ -46,18 +47,11 @@ export class RoomComponent implements OnInit {
     this.activatedRoute.queryParams.pipe(
       untilDestroyed(this),
       tap(params => {
-          this.rooms$ = this.roomService.searchRoom(params)
+          this.rooms$ = this.roomService.searchRoom(params);
         }
       )
     ).subscribe();
   }
-
-  // searchRoom(searchRoomData: any) {
-  //   this.roomService.searchRoom(searchRoomData)
-  //     .subscribe(
-  //       searchedRoom => this.rooms = searchedRoom
-  //     );
-  // }
 
   deleteRoom(room: Room) {
     this.roomService.deleteRoom(room);
@@ -87,7 +81,7 @@ export class RoomComponent implements OnInit {
   toggleInsertRoomModal() {
     this.insertModalVisible = true;
     this.searchRoomComponentVisible = false;
-    this.rooms$ = this.roomService.getRooms();
+    this.rooms$ = this.roomService.searchRoom([]);
   }
 
   toggleRoomSearch() {
@@ -96,7 +90,8 @@ export class RoomComponent implements OnInit {
 
   addNewRoom(room: Room) {
     this.roomService.addNewRoom(room).subscribe(
-      room => this.rooms$ = room
+
     );
+
   }
 }
