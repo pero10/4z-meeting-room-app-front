@@ -1,18 +1,43 @@
+<!--<form class="autocomplete-form">-->
+<!--    <input-->
+<!--      type="text"-->
+<!--      matInput-->
+<!--      [matAutocomplete]="auto"-->
+<!--      class="autocomplete-full-width"-->
+<!--      placeholder="Choose new attendee"-->
+<!--    >-->
+<!--    <mat-autocomplete-->
+<!--      #auto="matAutocomplete"-->
+<!--      [displayWith]="displayFn"-->
+<!--      [formControl]="myControl"-->
+<!--      name="input"-->
+<!--    >-->
+<!--      <mat-option-->
+<!--        *ngFor="let user of filteredUsers | async"-->
+<!--        [value]="user.id"-->
+<!--      >-->
+<!--        {{user?.email}}-->
+<!--      </mat-option>-->
+<!--    </mat-autocomplete>-->
+<!--</form>-->
+
 <form class="autocomplete-form">
-    <input type="text" matInput [matAutocomplete]="auto" class="autocomplete-full-width">
-    <mat-autocomplete class="autocomplete-input"
-      #auto="matAutocomplete"
+    <input type="text"
+           placeholder="Pick attendee"
+           aria-label="Number"
+           matInput
+           [matAutocomplete]="auto">
+    <mat-autocomplete
+      autoActiveFirstOption
       [displayWith]="displayFn"
       [formControl]="myControl"
-      name="input"
-    >
+      #auto="matAutocomplete">
+
       <mat-option
         *ngFor="let user of filteredUsers | async"
-        [value]="user.id"
-      >
-        {{user?.email}}
-        sss
+        [value]="user.id">
+        {{user.email}}
       </mat-option>
+
     </mat-autocomplete>
-<!--  <pre>{{attendee.value | json}}</pre>-->
 </form>

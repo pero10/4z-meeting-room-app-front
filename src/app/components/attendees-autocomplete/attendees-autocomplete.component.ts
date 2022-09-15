@@ -3,7 +3,8 @@ import {User} from "../../User";
 import {UserService} from "../../services/user.service";
 import {FormControl} from "@angular/forms";
 import {map, startWith} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
+import {logExperimentalWarnings} from "@angular-devkit/build-angular/src/builders/browser-esbuild/experimental-warnings";
 
 @Component({
   selector: 'app-attendees-autocomplete',
@@ -14,7 +15,7 @@ export class AttendeesAutocompleteComponent implements OnInit {
   @Input() user ?: User;
   users? : User[] = [];
 
-  myControl = new FormControl;
+  myControl = new FormControl<string>('');
   filteredUsers?: Observable<User[]>;
   attendee: any;
 
@@ -24,9 +25,10 @@ export class AttendeesAutocompleteComponent implements OnInit {
     this.userService.getUsers().subscribe(
       (users) => this.users = users
     );
-    this.filteredUsers = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
+    const filtered = this.myControl.valueChanges.pipe(
+      tap(console.log),
+      startWith('')
+      // map(value => this._filter(value))
     )
   }
 
@@ -39,9 +41,7 @@ export class AttendeesAutocompleteComponent implements OnInit {
     const filterValue = value.toLowerCase();
     // console.log(this.users);
     return this.users!.filter(user =>
-      user.firstName.toLowerCase().includes(filterValue) ||
-      user.lastName.toLowerCase().includes((filterValue)
-      )
+      user.email.toLowerCase().includes(filterValue)
     );
   }
 }
