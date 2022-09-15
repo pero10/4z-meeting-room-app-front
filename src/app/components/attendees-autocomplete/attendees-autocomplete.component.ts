@@ -5,6 +5,7 @@ import {FormControl} from "@angular/forms";
 import {map, startWith} from "rxjs/operators";
 import {Observable, tap} from "rxjs";
 import {logExperimentalWarnings} from "@angular-devkit/build-angular/src/builders/browser-esbuild/experimental-warnings";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-attendees-autocomplete',
@@ -18,30 +19,42 @@ export class AttendeesAutocompleteComponent implements OnInit {
   myControl = new FormControl<string>('');
   filteredUsers?: Observable<User[]>;
   attendee: any;
+  reservationID?:number;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private activatedRoute:ActivatedRoute
+
+  ) { }
 
   ngOnInit(): void {
+    // this.activatedRoute.queryParams.subscribe(
+    //   params =>
+    //     {
+    //       if(params['id']){
+    //         this.reservationID=params['id'];
+    //       }
+    //     }
+    // );
     this.userService.getUsers().subscribe(
       (users) => this.users = users
     );
-    const filtered = this.myControl.valueChanges.pipe(
-      tap(console.log),
-      startWith('')
-      // map(value => this._filter(value))
-    )
+    this.filteredUsers = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.filterUsers(value||''))
+    );
   }
 
   displayFn(user: User):string{
-    // return user ? user.firstName + " " + user.lastName : "";
+    console.log(user);
     return user ? user.email : "";
   }
 
-  private _filter(value: string): User[]{
+  private filterUsers(value: string): User[]
+  {
     const filterValue = value.toLowerCase();
-    // console.log(this.users);
-    return this.users!.filter(user =>
-      user.email.toLowerCase().includes(filterValue)
-    );
+    return this.users!.filter(
+      option =>
+        option.email.toLowerCase().includes(filterValue));
   }
 }

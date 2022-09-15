@@ -24,20 +24,22 @@
 <form class="autocomplete-form">
     <input type="text"
            placeholder="Pick attendee"
-           aria-label="Number"
+           aria-label="number"
            matInput
-           [matAutocomplete]="auto">
+           [matAutocomplete]="auto"
+           [formControl]="myControl"
+    >
     <mat-autocomplete
+      class="autocomplete-full-width"
+      ngDefaultControl
       autoActiveFirstOption
-      [displayWith]="displayFn"
-      [formControl]="myControl"
-      #auto="matAutocomplete">
-
+      #auto="matAutocomplete"
+      [displayWith]="displayFn">
       <mat-option
+        label=""
         *ngFor="let user of filteredUsers | async"
-        [value]="user.id">
+        [value]="user">
         {{user.email}}
       </mat-option>
-
     </mat-autocomplete>
 </form>
