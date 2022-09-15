@@ -143,5 +143,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #e1c953 !important
 }
 
+.autocomplete{
+  padding: 5px 20px;
+}
+
+.autocomplete-form{
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.autocomplete-full-width{
+  width: 100%;
+}
+
+.modal-center-items{
+  display:flex;
+  justify-content: center;
+}
+
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

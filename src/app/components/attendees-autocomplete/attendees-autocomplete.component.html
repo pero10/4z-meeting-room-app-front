@@ -1,8 +1,17 @@
-<form>
-    <input type="text" matInput [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" [formControl]="myControl">
-      <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
-        {{attendee?.email}}
+<form class="autocomplete-form">
+    <input type="text" matInput [matAutocomplete]="auto" class="autocomplete-full-width">
+    <mat-autocomplete class="autocomplete-input"
+      #auto="matAutocomplete"
+      [displayWith]="displayFn"
+      [formControl]="myControl"
+      name="input"
+    >
+      <mat-option
+        *ngFor="let user of filteredUsers | async"
+        [value]="user.id"
+      >
+        {{user?.email}}
+        sss
       </mat-option>
     </mat-autocomplete>
 <!--  <pre>{{attendee.value | json}}</pre>-->

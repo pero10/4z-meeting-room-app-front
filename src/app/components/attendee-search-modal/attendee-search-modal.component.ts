@@ -1,9 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {User} from "../../User";
-import {UserService} from "../../services/user.service";
-import {ActivatedRoute} from "@angular/router";
-import {Subscription, switchMap, tap} from "rxjs";
-import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
+import {UntilDestroy, } from "@ngneat/until-destroy";
 
 @UntilDestroy()
 @Component({
@@ -14,37 +10,13 @@ import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 export class AttendeeSearchModalComponent implements OnInit {
 
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  unsub:Subscription|undefined;
-  attendees: User[] = [];
   reservationID?:number;
+  possibleAttendees$: any;
 
-  constructor(
-    private userService:UserService,
-    private activatedRoute:ActivatedRoute
+  constructor( ) { }
 
-  ) { }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
-    this.activatedRoute.queryParams.pipe(
-      untilDestroyed(this),
-      // tap(result=>{
-      //   console.log(result);
-      // }),
-      switchMap(params=>{
-        return this.userService.getUsersInReservationRange(params['id']);
-        }
-      ),
-      tap(result=>{
-        this.attendees = result;
-        console.log(result);
-      })
-    ).subscribe();
-  }
-
-  ngOnDestroy(){
-
-  }
 
   onClose() {
     this.close.emit(true);

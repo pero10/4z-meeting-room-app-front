@@ -7,25 +7,30 @@
                 (click)="onClose()"
         ></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body modal-center-items">
 <!--        {{attendees|json}}-->
 <!--        <form class="example-form">-->
 <!--          <mat-form-field class="example-full-width" appearance="fill">-->
 <!--            <mat-label>Number</mat-label>-->
 <!--            <input type="text"-->
-<!--                   placeholder="Pick one"-->
+<!--                   placeholder="Pick attendee"-->
 <!--                   aria-label="Number"-->
 <!--                   matInput-->
-<!--                   [formControl]="myControl"-->
 <!--                   [matAutocomplete]="auto">-->
-<!--            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">-->
-<!--              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
-<!--                {{option}}-->
+<!--            <mat-autocomplete
+                  autoActiveFirstOption
+                  #auto="matAutocomplete">-->
+<!--              <mat-option
+                      *ngFor="let possibleAttendee of possibleAttendees$ | async"
+                      [value]="possibleAttendee.id">-->
+<!--                {{possibleAttendee.email}}-->
 <!--              </mat-option>-->
 <!--            </mat-autocomplete>-->
 <!--          </mat-form-field>-->
 <!--        </form>-->
+        <app-attendees-autocomplete>
 
+        </app-attendees-autocomplete>
       </div>
     </div>
   </div>
