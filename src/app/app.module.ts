@@ -6,8 +6,10 @@ import {Router, RouterModule, Routes} from "@angular/router";
 import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule} from "@angular/forms";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
-
 import { AppRoutingModule } from './app-routing.module';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatOptionModule} from "@angular/material/core";
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -37,8 +39,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReservationAttendeeComponent } from './components/reservation-attendee/reservation-attendee.component';
 import {CookieService} from "ngx-cookie-service";
 import { AttendeesAutocompleteComponent } from './components/attendees-autocomplete/attendees-autocomplete.component';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatOptionModule} from "@angular/material/core";
 import { SearchReservationComponent } from './components/search-reservation/search-reservation.component';
 import { SearchRoomComponent } from './components/search-room/search-room.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';

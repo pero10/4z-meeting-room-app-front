@@ -1,45 +1,19 @@
-<!--<form class="autocomplete-form">-->
-<!--    <input-->
-<!--      type="text"-->
-<!--      matInput-->
-<!--      [matAutocomplete]="auto"-->
-<!--      class="autocomplete-full-width"-->
-<!--      placeholder="Choose new attendee"-->
-<!--    >-->
-<!--    <mat-autocomplete-->
-<!--      #auto="matAutocomplete"-->
-<!--      [displayWith]="displayFn"-->
-<!--      [formControl]="myControl"-->
-<!--      name="input"-->
-<!--    >-->
-<!--      <mat-option-->
-<!--        *ngFor="let user of filteredUsers | async"-->
-<!--        [value]="user.id"-->
-<!--      >-->
-<!--        {{user?.email}}-->
-<!--      </mat-option>-->
-<!--    </mat-autocomplete>-->
-<!--</form>-->
-
 <form class="autocomplete-form">
     <input type="text"
-           placeholder="Pick attendee"
-           aria-label="number"
            matInput
            [matAutocomplete]="auto"
            [formControl]="myControl"
     >
     <mat-autocomplete
-      class="autocomplete-full-width"
-      ngDefaultControl
-      autoActiveFirstOption
       #auto="matAutocomplete"
+      autoActiveFirstOption
+      ngDefaultControl
       [displayWith]="displayFn">
       <mat-option
-        label=""
         *ngFor="let user of filteredUsers | async"
         [value]="user">
         {{user.email}}
+
       </mat-option>
     </mat-autocomplete>
 </form>
