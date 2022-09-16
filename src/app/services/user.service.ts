@@ -69,6 +69,6 @@ export class UserService {
 
   getUsersInReservationRange(id:number){
     const url =this.apiUrl +'/availability/'+id;
-    return this.http.get<User[]>(url);
+    return this.http.get<Number[]>(url);
   }
 }

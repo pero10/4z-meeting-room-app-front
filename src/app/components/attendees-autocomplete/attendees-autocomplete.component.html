@@ -12,7 +12,7 @@
       <mat-option
         *ngFor="let user of filteredUsers | async"
         [value]="user">
-        {{user.email}}
+        <button (click)="addUserToList(user)" class="selectUserForReservation">add</button>{{user.email}}
 
       </mat-option>
     </mat-autocomplete>

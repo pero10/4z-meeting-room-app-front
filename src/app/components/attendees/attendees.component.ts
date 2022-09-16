@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Attendee} from "../../Reservation";
 import {ReservationService} from "../../services/reservation.service";
 import {ActivatedRoute} from "@angular/router";
 import {UntilDestroy} from "@ngneat/until-destroy";
 import {Observable} from "rxjs";
+import {Attendee} from "../../Reservation";
 
 @UntilDestroy()
 @Component({

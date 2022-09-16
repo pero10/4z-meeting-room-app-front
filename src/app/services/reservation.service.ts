@@ -5,6 +5,7 @@ import {Attendee, Reservation} from "../Reservation";
 import {environment} from "../../environments/environment";
 import {CookieService} from "ngx-cookie-service";
 import {NewReservationFormValue} from "../components/modal-new-reservation/modal-new-reservation.component";
+import {User} from "../User";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -86,4 +87,8 @@ export class ReservationService {
   }
 
 
+  addUserToReservation(users:User[],reservationID:number) {
+    const url = `${this.apiUrl}/api/reservations/${reservationID}`
+    return this.http.post<Reservation>(this.apiUrl + '/api/reservations', users, httpOptions);
+  }
 }

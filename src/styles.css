@@ -162,5 +162,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   justify-content: center;
 }
 
+.autocomplete-form input{
+  padding: 5px;
+  width:340px;
+}
+
+.above-modal{
+  z-index: 10000;
+}
+
+.selectUserForReservation{
+  padding:-2px;
+  border-radius: 8px;
+  background-color: #d79292;
+  color: #e8e1e1;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

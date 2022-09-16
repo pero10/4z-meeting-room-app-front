@@ -8,31 +8,10 @@
         ></button>
       </div>
       <div class="modal-body modal-center-items">
-        <!--
-        <form class="autocomplete-form">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Number</mat-label>
-            <input type="text"
-                   placeholder="Pick attendee"
-                   aria-label="Number"
-                   matInput
-                   [matAutocomplete]="auto">
-                 <mat-autocomplete
-                  autoActiveFirstOption
-                  #auto="matAutocomplete">
-
-              <mat-option
-                      *ngFor="let possibleAttendee of possibleAttendees$ | async"
-                      [value]="possibleAttendee.id">
-                {{possibleAttendee.email}}
-              </mat-option>
-
-            </mat-autocomplete>
-          </mat-form-field>
-        </form>-->
-        <app-attendees-autocomplete>
-
+        <app-attendees-autocomplete class="above-modal">
         </app-attendees-autocomplete>
+
+
       </div>
     </div>
   </div>

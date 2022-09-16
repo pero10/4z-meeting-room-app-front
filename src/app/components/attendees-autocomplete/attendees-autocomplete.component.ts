@@ -6,6 +6,7 @@ import {map, startWith} from "rxjs/operators";
 import {Observable, tap} from "rxjs";
 import {logExperimentalWarnings} from "@angular-devkit/build-angular/src/builders/browser-esbuild/experimental-warnings";
 import {ActivatedRoute} from "@angular/router";
+import {ReservationService} from "../../services/reservation.service";
 
 @Component({
   selector: 'app-attendees-autocomplete',
@@ -20,41 +21,59 @@ export class AttendeesAutocompleteComponent implements OnInit {
   filteredUsers?: Observable<User[]>;
   attendee: any;
   reservationID?:number;
+  availableUsersIDs$?:Observable<Number[]>;
+  userList:User[]=[];
 
   constructor(
-    private userService: UserService,
+    private userService:UserService,
+    private reservationService: ReservationService,
     private activatedRoute:ActivatedRoute
-
   ) { }
 
   ngOnInit(): void {
-    // this.activatedRoute.queryParams.subscribe(
-    //   params =>
-    //     {
-    //       if(params['id']){
-    //         this.reservationID=params['id'];
-    //       }
-    //     }
-    // );
+    this.activatedRoute.queryParams.subscribe(
+      params =>
+        {
+          if(params['id']){
+            this.availableUsersIDs$ =
+              this.userService.getUsersInReservationRange(params['id']);
+
+            this.reservationID = params['id'];
+          }
+        }
+    );
     this.userService.getUsers().subscribe(
+      //ovo ce ici u activated route
       (users) => this.users = users
     );
     this.filteredUsers = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this.filterUsers(value||''))
+      map(
+        value =>
+          this.filterUsers(value||'')
+      )
     );
   }
 
-  displayFn(user: User):string{
-    console.log(user);
+  displayFn(user: User) {
     return user ? user.email : "";
   }
 
-  private filterUsers(value: string): User[]
+  private filterUsers(value:any): User[]
   {
-    const filterValue = value.toLowerCase();
     return this.users!.filter(
       option =>
-        option.email.toLowerCase().includes(filterValue));
+        option.email.toLowerCase().includes(value.toString().toLowerCase())
+    );
+  }
+
+  addUserToList(user:User) {
+    if (user.id != null) {
+      this.userList.push(user);
+    }
+  }
+
+  submitList(){
+    this.reservationService.addUserToReservation(this.userList,this.reservationID!);
   }
 }
