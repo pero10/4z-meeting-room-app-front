@@ -3,6 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <p>Search for attendees and add them!</p>
+        <span class="float-right"></span>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                 (click)="onClose()"
         ></button>
@@ -11,10 +12,10 @@
 
         <form class="autocomplete-form">
           <mat-form-field class="autocomplete-full-width" appearance="fill">
-            <mat-label>Add users:</mat-label>
+            <mat-label>{{capacity-sumOfAttendees}} invitation(s) remaining</mat-label>
             <br>
             <input
-              placeholder="email:"
+
               type="text"
               aria-label="user"
               [matAutocomplete]="auto"

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ReservationService} from "../../services/reservation.service";
 import {ActivatedRoute} from "@angular/router";
 import {UntilDestroy} from "@ngneat/until-destroy";
@@ -14,12 +14,14 @@ import {AddAttendee} from "../../AddAttendee";
 })
 export class AttendeesComponent implements OnInit {
 
-  searchAttendeeModalVisible: boolean = false;
-  attendees$?: Observable<Attendee[]>;
-  pendingAttendees$?: Observable<Attendee[]>;
-  id?: number;
+  @Output() capacityOutput: EventEmitter<number> = new EventEmitter<number>();
 
-  // attendeesModalVisible: boolean=false;
+  searchAttendeeModalVisible: boolean = false;
+  attendees?: Attendee[] = [];
+  pendingAttendees?: Attendee[] = [];
+  sumOfAttendees: number=0;
+  reservationID?: number;
+  capacity!: number;
 
   constructor(
     private reservationService: ReservationService,
@@ -32,8 +34,20 @@ export class AttendeesComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(
       params => {
         if (params['id']) {
-          this.attendees$ = this.reservationService.getReservationAttendees(params['id']);
-          this.pendingAttendees$ = this.reservationService.getReservationPendingAttendees(params['id']);
+          this.reservationService.getReservationAttendees(params['id']).subscribe(
+            attendees => {
+              this.attendees = attendees;
+              this.sumOfAttendees += attendees.length;
+            });
+          this.reservationService.getReservationPendingAttendees(params['id']).subscribe(
+            pendingAttendees => {
+              this.pendingAttendees = pendingAttendees;
+              this.sumOfAttendees+=pendingAttendees.length;
+            }
+          );
+        }
+        if (params['roomCapacity']) {
+          this.capacity = params['roomCapacity'];
         }
       }
     );
@@ -43,7 +57,7 @@ export class AttendeesComponent implements OnInit {
     this.searchAttendeeModalVisible = true;
   }
 
-  addUserToReservation(userAndReservation:AddAttendee){
+  addUserToReservation(userAndReservation: AddAttendee) {
     console.log(userAndReservation);
     this.reservationService.addUserToReservation(
       userAndReservation.userID,
@@ -51,4 +65,11 @@ export class AttendeesComponent implements OnInit {
     ).subscribe();
   }
 
+  getCapacity(): number {
+    return this.capacity;
+  }
+
+  getSumOfAttendees() {
+    return this.sumOfAttendees;
+  }
 }

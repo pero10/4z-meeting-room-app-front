@@ -47,6 +47,7 @@ import { AttendeeSearchModalComponent } from './components/attendee-search-modal
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatOptionModule} from "@angular/material/core";
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import {MatOptionModule} from "@angular/material/core";
     AttendeesComponent,
     AttendeeItemComponent,
     PendingAttendeeComponent,
-    AttendeeSearchModalComponent
+    AttendeeSearchModalComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

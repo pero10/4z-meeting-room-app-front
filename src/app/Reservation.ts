@@ -19,7 +19,8 @@ export interface ReservationHost{
 
 export interface ReservationRoom{
   "id":number
-  "name":string
+  "name":string,
+  "capacity":number
 }
 
 export interface Attendee{

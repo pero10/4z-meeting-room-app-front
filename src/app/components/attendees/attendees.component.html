@@ -7,11 +7,11 @@
   </button>
 </div>
 <app-attendee-item
-  *ngFor="let attendee of attendees$|async"
+  *ngFor="let attendee of attendees"
   [attendee]="attendee"
 ></app-attendee-item>
 <app-pending-attendee
-  *ngFor="let pendingAttendee of pendingAttendees$|async"
+  *ngFor="let pendingAttendee of pendingAttendees"
   [pendingAttendee]="pendingAttendee"
 ></app-pending-attendee>
 
@@ -19,5 +19,7 @@
   *ngIf="searchAttendeeModalVisible"
   (close)="searchAttendeeModalVisible=false"
   (onAddUserToReservation)="addUserToReservation($event)"
+  [capacity]="getCapacity()"
+  [sumOfAttendees]="getSumOfAttendees()"
 >
 </app-attendee-search-modal>

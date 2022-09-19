@@ -24,6 +24,13 @@
   </div>
   <div>
     <a
+      *ngIf="currentUser"
+      routerLink="profile"
+      class="btn m-right-10 some-blue-bg"
+      >
+      My page
+    </a>
+    <a
       *ngIf="!currentUser"
       routerLink="login"
       class="btn btn-primary"

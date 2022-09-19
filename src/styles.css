@@ -186,5 +186,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   float:right;
 }
 
+.m-right-10{
+  margin-right:10px;
+}
+
+.float-right{
+  float:right;
+}
+
+.some-blue-bg{
+  background-color: #7eaed3;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -16,6 +16,8 @@ import {AddAttendee} from "../../AddAttendee";
   styleUrls: ['./attendee-search-modal.component.css']
 })
 export class AttendeeSearchModalComponent implements OnInit {
+  @Input() capacity!: number;
+  @Input() sumOfAttendees!: number;
   @Output() onAddUserToReservation = new EventEmitter<AddAttendee>();
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() user ?: User;
@@ -54,6 +56,8 @@ export class AttendeeSearchModalComponent implements OnInit {
           this.filterUsers(value || '')
       )
     );
+    console.log(this.sumOfAttendees);
+
   }
 
   displayFn(user: User) {
@@ -67,18 +71,19 @@ export class AttendeeSearchModalComponent implements OnInit {
     );
   }
 
-  callUserToReservation(user: User)
-  {
-    if (user.id != null) {
-      this.users = this.users?.filter(exactUser => exactUser !== user);
-      alert(user.firstName + ' is successfully added to the reservation!');
+  callUserToReservation(user: User) {
+    if (this.capacity < this.sumOfAttendees) {
+      if (user.id != null) {
+        this.users = this.users?.filter(exactUser => exactUser !== user);
+        alert(user.firstName + ' is successfully added to the reservation!');
 
-      this.onAddUserToReservation.emit(
-        {
-          userID: user.id,
-          reservationID: this.reservationID
-        }
-      );
+        this.onAddUserToReservation.emit(
+          {
+            userID: user.id,
+            reservationID: this.reservationID
+          }
+        );
+      }
     }
   }
 
