@@ -7,8 +7,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule} from "@angular/forms";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { AppRoutingModule } from './app-routing.module';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatOptionModule} from "@angular/material/core";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -46,6 +44,9 @@ import { AttendeesComponent } from './components/attendees/attendees.component';
 import { AttendeeItemComponent } from './components/attendee-item/attendee-item.component';
 import { PendingAttendeeComponent } from './components/pending-attendee/pending-attendee.component';
 import { AttendeeSearchModalComponent } from './components/attendee-search-modal/attendee-search-modal.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatOptionModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { AttendeeSearchModalComponent } from './components/attendee-search-modal
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
     MatOptionModule,
     MatAutocompleteModule
   ],

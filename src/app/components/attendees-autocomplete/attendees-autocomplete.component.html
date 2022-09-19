@@ -1,19 +1,19 @@
-<form class="autocomplete-form">
-    <input type="text"
-           matInput
-           [matAutocomplete]="auto"
-           [formControl]="myControl"
-    >
-    <mat-autocomplete
-      #auto="matAutocomplete"
-      autoActiveFirstOption
-      ngDefaultControl
-      [displayWith]="displayFn">
-      <mat-option
-        *ngFor="let user of filteredUsers | async"
-        [value]="user">
-        <button (click)="addUserToList(user)" class="selectUserForReservation">add</button>{{user.email}}
+<!--<form class="autocomplete-form">-->
+<!--    <input type="text"-->
+<!--           matInput-->
+<!--           [matAutocomplete]="auto"-->
+<!--           [formControl]="myControl"-->
+<!--    >-->
+<!--    <mat-autocomplete-->
+<!--      #auto="matAutocomplete"-->
+<!--      autoActiveFirstOption-->
+<!--      ngDefaultControl-->
+<!--      [displayWith]="displayFn">-->
+<!--      <mat-option-->
+<!--        *ngFor="let user of filteredUsers | async"-->
+<!--        [value]="user">-->
+<!--        <button (click)="addUserToList(user)" class="selectUserForReservation">add</button>{{user.email}}-->
 
-      </mat-option>
-    </mat-autocomplete>
-</form>
+<!--      </mat-option>-->
+<!--    </mat-autocomplete>-->
+<!--</form>-->

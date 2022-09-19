@@ -18,5 +18,6 @@
 <app-attendee-search-modal
   *ngIf="searchAttendeeModalVisible"
   (close)="searchAttendeeModalVisible=false"
+  (onAddUserToReservation)="addUserToReservation($event)"
 >
 </app-attendee-search-modal>

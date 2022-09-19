@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RoomService} from "../../services/room.service";
-import {Reservation} from "../../Reservation";
 import {Room} from "../../Room";
 
 @Component({
@@ -20,7 +19,7 @@ export class ModalNewRoomComponent implements OnInit {
   whiteboard?: boolean;
   videocall?: boolean;
 
-  constructor(private roomService: RoomService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -42,9 +41,6 @@ export class ModalNewRoomComponent implements OnInit {
       tv:this.tv!,
       whiteboard: this.whiteboard!,
       videocall:this.videocall!
-      // tv: this.transferBooleanToNumber(this.tv!),
-      // whiteboard: this.transferBooleanToNumber(this.whiteboard!),
-      // videocall: this.transferBooleanToNumber(this.videocall!)
     };
 
     this.onAddRoom.emit(newRoom);

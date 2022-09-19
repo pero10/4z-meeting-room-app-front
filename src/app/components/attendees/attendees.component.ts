@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UntilDestroy} from "@ngneat/until-destroy";
 import {Observable} from "rxjs";
 import {Attendee} from "../../Reservation";
+import {AddAttendee} from "../../AddAttendee";
 
 @UntilDestroy()
 @Component({
@@ -40,6 +41,14 @@ export class AttendeesComponent implements OnInit {
 
   toggleAttendeeSearchComponent() {
     this.searchAttendeeModalVisible = true;
+  }
+
+  addUserToReservation(userAndReservation:AddAttendee){
+    console.log(userAndReservation);
+    this.reservationService.addUserToReservation(
+      userAndReservation.userID,
+      userAndReservation.reservationID
+    ).subscribe();
   }
 
 }

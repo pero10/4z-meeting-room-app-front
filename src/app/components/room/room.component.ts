@@ -89,9 +89,6 @@ export class RoomComponent implements OnInit {
   }
 
   addNewRoom(room: Room) {
-    this.roomService.addNewRoom(room).subscribe(
-
-    );
-
+    this.roomService.addNewRoom(room).subscribe();
   }
 }

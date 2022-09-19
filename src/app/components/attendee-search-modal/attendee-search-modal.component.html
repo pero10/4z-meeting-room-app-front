@@ -1,4 +1,4 @@
-<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+<div class="modal z-index-smaller" tabindex="-1" [ngStyle]="{'display' : 'block'}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,10 +8,43 @@
         ></button>
       </div>
       <div class="modal-body modal-center-items">
-        <app-attendees-autocomplete class="above-modal">
-        </app-attendees-autocomplete>
 
+        <form class="autocomplete-form">
+          <mat-form-field class="autocomplete-full-width" appearance="fill">
+            <mat-label>Add users:</mat-label>
+            <br>
+            <input
+              placeholder="email:"
+              type="text"
+              aria-label="user"
+              [matAutocomplete]="auto"
+              [formControl]="myControl"
+              matInput
+            >
+<!--              matNativeControl-->
+<!--            >-->
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              autoActiveFirstOption
+              ngDefaultControl
+              [displayWith]="displayFn">
 
+              <mat-option
+                *ngFor="let user of filteredUsers | async"
+                [value]="user">
+                {{user.email}}
+                <button
+                  (click)="callUserToReservation(user)"
+                  class="buttonAddUserToReservation"
+                >
+                  add
+                </button>
+              </mat-option>
+
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+<!--        <button (click)="submitList()" class="btn upd-btn-color">Add selected users!</button>-->
       </div>
     </div>
   </div>
