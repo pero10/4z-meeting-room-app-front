@@ -25,7 +25,6 @@ export class ModalNewReservationComponent implements OnInit {
 
   @Output() onAddReservation: EventEmitter<NewReservationFormValue> = new EventEmitter();
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   rooms?: Room[];
 
   currentUser?: LoginData | null;
@@ -40,7 +39,7 @@ export class ModalNewReservationComponent implements OnInit {
       "started_at" : new FormControl<string | null>(null, Validators.required),
       "finished_at" : new FormControl<string | null>(null, Validators.required),
       "name" : new FormControl<string | null>(null, Validators.required),
-      "roomId" : new FormControl<number | null>(null, Validators.required),
+      "roomId" : new FormControl<number | null>({value: null,disabled:true}, Validators.required),
     })
   }
 
