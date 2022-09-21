@@ -85,7 +85,6 @@ export class ReservationService {
     return this.http.get<Reservation[]>(this.apiUrl + '/api/reservations/filter', {params});
   }
 
-
   addUserToReservation(id:number,reservationID:number) {
     const url = `${this.apiUrl}/api/reservations/attendees/${reservationID}`
     return this.http.post<Reservation>(url, id, httpOptions);

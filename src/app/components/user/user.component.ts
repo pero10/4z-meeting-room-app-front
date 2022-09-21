@@ -32,9 +32,9 @@ export class UserComponent implements OnInit {
 
     this.activatedRoute.queryParams.pipe(
       untilDestroyed(this),
-      tap(params=>
-      this.searchUser(params)
-      )
+      tap(params=>{
+      this.searchUser(params);
+      })
     ).subscribe();
   }
 

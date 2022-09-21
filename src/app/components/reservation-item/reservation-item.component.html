@@ -24,6 +24,8 @@
         routerLink="/dashboard/attendees"
         [queryParams]="{
         id: reservation.id,
+        started_at:reservation.started_at,
+        finished_at:reservation.finished_at,
         roomCapacity:reservation.room.capacity
         }"
       >

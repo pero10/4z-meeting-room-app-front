@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ReservationService} from "../../services/reservation.service";
 import {ActivatedRoute} from "@angular/router";
 import {UntilDestroy} from "@ngneat/until-destroy";
-import {Observable} from "rxjs";
 import {Attendee} from "../../Reservation";
 import {AddAttendee} from "../../AddAttendee";
 
@@ -58,7 +57,6 @@ export class AttendeesComponent implements OnInit {
   }
 
   addUserToReservation(userAndReservation: AddAttendee) {
-    console.log(userAndReservation);
     this.reservationService.addUserToReservation(
       userAndReservation.userID,
       userAndReservation.reservationID
@@ -69,7 +67,7 @@ export class AttendeesComponent implements OnInit {
     return this.capacity;
   }
 
-  getSumOfAttendees() {
+  getSumOfAttendees(): number {
     return this.sumOfAttendees;
   }
 }

@@ -45,7 +45,9 @@ export class ModalNewReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.rooms$ = this.roomService.getRooms().pipe(untilDestroyed(this));
+    this.rooms$ = this.roomService.getRooms().pipe(
+      untilDestroyed(this)
+    );
 
     this.authService.currentUserData.pipe(
       untilDestroyed(this),

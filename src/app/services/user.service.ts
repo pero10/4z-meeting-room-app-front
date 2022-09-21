@@ -67,8 +67,12 @@ export class UserService {
     return this.http.get<User[]>(this.apiUrl + '/filter', {params});
   }
 
-  getUsersInReservationRange(id:number){
-    const url =this.apiUrl +'/availability/'+id;
-    return this.http.get<Number[]>(url);
+  getUsersInReservationRange(started_at:string,finished_at:string,id:number){
+    let params: HttpParams = new HttpParams();
+    params = params.append('from',started_at);
+    params = params.append('to',finished_at);
+    params = params.append('id',id);
+    const url =this.apiUrl +'/availability';
+    return this.http.get<User[]>(url,{params});
   }
 }

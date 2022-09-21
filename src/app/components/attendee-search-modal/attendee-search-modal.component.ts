@@ -1,13 +1,14 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UntilDestroy,} from "@ngneat/until-destroy";
+import {UntilDestroy, untilDestroyed,} from "@ngneat/until-destroy";
 import {User} from "../../User";
 import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {UserService} from "../../services/user.service";
 import {ReservationService} from "../../services/reservation.service";
 import {ActivatedRoute} from "@angular/router";
 import {map, startWith} from "rxjs/operators";
 import {AddAttendee} from "../../AddAttendee";
+import {Reservation} from "../../Reservation";
 
 @UntilDestroy()
 @Component({
@@ -18,6 +19,8 @@ import {AddAttendee} from "../../AddAttendee";
 export class AttendeeSearchModalComponent implements OnInit {
   @Input() capacity!: number;
   @Input() sumOfAttendees!: number;
+  @Input() reservation!: Reservation;
+
   @Output() onAddUserToReservation = new EventEmitter<AddAttendee>();
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() user ?: User;
@@ -26,7 +29,7 @@ export class AttendeeSearchModalComponent implements OnInit {
   myControl = new FormControl<string>('');
   filteredUsers?: Observable<User[]>;
   reservationID!: number;
-  availableUsersIDs$?: Observable<Number[]>;
+  unavailableUserIds?: Number[] = [];
 
   constructor(
     private userService: UserService,
@@ -36,19 +39,37 @@ export class AttendeeSearchModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(
-      params => {
-        if (params['id']) {
-          this.availableUsersIDs$ =
-            this.userService.getUsersInReservationRange(params['id']);
-          this.reservationID = params['id'];
+    // this.activatedRoute.queryParams.subscribe(
+    //   params => {
+    //     if (params['id'])
+    //     {
+    //       this.availableUsersIDs$ = this.userService.getUsersInReservationRange(params['id']);
+    //       this.reservationID = params['id'];
+    //     }
+    //   }
+    // );
+
+    this.activatedRoute.queryParams.pipe(
+      untilDestroyed(this),
+      tap(params => {
+          if (params['id']) {
+            this.reservationID = params['id'];
+            if(params['started_at'] && params['finished_at']){
+            this.userService.getUsersInReservationRange(
+              params['started_at'],
+              params['finished_at'],
+              params['id']
+            ).subscribe(
+              availableUsers => {
+                this.users = availableUsers;
+              }
+            );
+            }
+          }
         }
-      }
-    );
-    this.userService.getUsers().subscribe(
-      //ovo ce ici u activated route
-      (users) => this.users = users
-    );
+      )
+    ).subscribe();
+
     this.filteredUsers = this.myControl.valueChanges.pipe(
       startWith(''),
       map(
@@ -56,8 +77,6 @@ export class AttendeeSearchModalComponent implements OnInit {
           this.filterUsers(value || '')
       )
     );
-    console.log(this.sumOfAttendees);
-
   }
 
   displayFn(user: User) {
@@ -72,7 +91,7 @@ export class AttendeeSearchModalComponent implements OnInit {
   }
 
   callUserToReservation(user: User) {
-    if (this.capacity < this.sumOfAttendees) {
+    if (this.sumOfAttendees < this.capacity) {
       if (user.id != null) {
         this.users = this.users?.filter(exactUser => exactUser !== user);
         alert(user.firstName + ' is successfully added to the reservation!');
@@ -84,6 +103,8 @@ export class AttendeeSearchModalComponent implements OnInit {
           }
         );
       }
+    } else {
+      alert('You reached maximum number of attendees for this room.');
     }
   }
 

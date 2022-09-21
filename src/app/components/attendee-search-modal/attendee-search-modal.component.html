@@ -33,7 +33,7 @@
               <mat-option
                 *ngFor="let user of filteredUsers | async"
                 [value]="user">
-                {{user.email}}
+                #{{user.id+' | '+user.email}}
                 <button
                   (click)="callUserToReservation(user)"
                   class="buttonAddUserToReservation"

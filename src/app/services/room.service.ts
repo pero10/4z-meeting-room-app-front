@@ -61,7 +61,21 @@ export class RoomService {
         params = params.append(key, searchRoomData[key]);
       }
     });
-    return this.http.get<Room[]>(this.apiUrl + '/api/rooms/filter', {params});
+
+    const url = this.apiUrl + '/api/rooms/filter';
+
+    return this.http.get<Room[]>(url, {params});
+  }
+
+  getOccupiedRooms(from:string,to:string){
+    let params:HttpParams = new HttpParams();
+    params = params.append('from',from);
+    params = params.append('to',to);
+
+    const url=this.apiUrl+'/api/rooms/check';
+
+    this.http.get<Number[]>(url,{params});
+    //returns array of ids of occupied rooms
   }
 }
 
