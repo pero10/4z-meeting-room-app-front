@@ -1,9 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Room} from "../../Room";
-import {faEye, faPencil, faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import {faEye, faPencil, faTrashCan,faClipboard} from "@fortawesome/free-solid-svg-icons";
 import {AuthService} from "../../services/auth.service";
 import {LoginData} from "../../LoginData";
-// import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-room-item',
@@ -19,7 +18,7 @@ export class RoomItemComponent implements OnInit {
   faDelete = faTrashCan;
   faEye = faEye;
   faPencil = faPencil;
-
+  faClipboard = faClipboard
   currentUser?: LoginData | any;
 
   notAdmin: boolean = false;
@@ -42,4 +41,7 @@ export class RoomItemComponent implements OnInit {
     this.onShowModal.emit(room);
   }
 
+  showThisRoomReservationsModal() {
+
+  }
 }

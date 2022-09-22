@@ -4,22 +4,29 @@
       <fa-icon
         *ngIf="currentUser"
         (click)="onDelete(room)"
-        [ngStyle]="{'color':'#f00','float':'right', 'margin':'0px 10px'}"
+        [ngStyle]="{'color':'#f00', 'margin':'0px 10px'}"
         [icon]="faDelete"
-        class="pointer">
+        class="pointer float-right">
       </fa-icon>
       <fa-icon
         *ngIf="currentUser"
         (click)="showEditModalToggle()"
-        [ngStyle]="{'color':'#0f0','float':'right', 'margin':'0px 10px'}"
+        [ngStyle]="{'color':'#0f0', 'margin':'0px 10px'}"
         [icon]="faPencil"
-        class="pointer">
+        class="pointer float-right">
+      </fa-icon>
+      <fa-icon
+        *ngIf="currentUser"
+      (click)="showThisRoomReservationsModal()"
+      [ngStyle]="{'color':'#2553d2', 'margin':'0px 10px'}"
+      class="pointer float-right"
+      [icon]="faClipboard">
       </fa-icon>
       <fa-icon
         (click)="showModalToggle(room)"
-        [ngStyle]="{'color':'#f0f','float':'right', 'margin':'0px 10px'}"
+        [ngStyle]="{'color':'#f0f', 'margin':'0px 10px'}"
         [icon]="faEye"
-        class="pointer">
+        class="pointer float-right">
       </fa-icon>
     </h1>
     <div class="card-body">
