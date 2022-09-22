@@ -31,8 +31,6 @@
           <input type="text" name="reservationName" formControlName="name" id="name"><br>
           <label>Room</label>
           <select formControlName="roomId" name="room"
-          [disabled]="newReservationForm.get('started_at')?.value===null&&
-          newReservationForm.get('finished_at')?.value===null"
           >
             <option
               *ngFor="let room of rooms$|async"

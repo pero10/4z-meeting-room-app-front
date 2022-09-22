@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Room} from "../Room";
 import {environment} from "../../environments/environment";
@@ -67,15 +67,14 @@ export class RoomService {
     return this.http.get<Room[]>(url, {params});
   }
 
-  getOccupiedRooms(from:string,to:string){
+  getFreeRooms(from:string,to:string):Observable<Room[]>{
     let params:HttpParams = new HttpParams();
     params = params.append('from',from);
     params = params.append('to',to);
 
     const url=this.apiUrl+'/api/rooms/check';
 
-    this.http.get<Number[]>(url,{params});
-    //returns array of ids of occupied rooms
+    return this.http.get<Room[]>(url,{params});
   }
 }
 

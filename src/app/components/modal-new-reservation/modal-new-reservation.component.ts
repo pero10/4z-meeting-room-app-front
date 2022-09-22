@@ -8,11 +8,11 @@ import {FormControl, FormGroup, UntypedFormGroup, Validators} from "@angular/for
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {Observable, tap} from "rxjs";
 
-export interface NewReservationFormValue{
-  "started_at" : string,
-  "finished_at" : string,
-  "name" : string,
-  "roomId" : number
+export interface NewReservationFormValue {
+  "started_at": string,
+  "finished_at": string,
+  "name": string,
+  "roomId": number
 }
 
 @UntilDestroy()
@@ -36,23 +36,38 @@ export class ModalNewReservationComponent implements OnInit {
               private authService: AuthService) {
 
     this.newReservationForm = new FormGroup({
-      "started_at" : new FormControl<string | null>(null, Validators.required),
-      "finished_at" : new FormControl<string | null>(null, Validators.required),
-      "name" : new FormControl<string | null>(null, Validators.required),
-      "roomId" : new FormControl<number | null>({value: null,disabled:true}, Validators.required),
-    })
+      "started_at": new FormControl<string | null>(null, Validators.required),
+      "finished_at": new FormControl<string | null>(null, Validators.required),
+      "name": new FormControl<string | null>(null, Validators.required),
+      "roomId": new FormControl<number | null>({value: null, disabled: true}, Validators.required),
+    });
+
+    const started_at = this.newReservationForm.controls['started_at'];
+    const finished_at = this.newReservationForm.controls['finished_at'];
+
+    this.newReservationForm.valueChanges.subscribe(()=> {
+      if(started_at?.value!==null  && finished_at?.value!==null){
+        this.newReservationForm.controls['roomId']?.enable({emitEvent:false});
+        this.rooms$ = this.roomService.getFreeRooms(started_at?.value,finished_at?.value);
+      }
+      else{
+        this.newReservationForm.get('roomId')?.disable({emitEvent:false});
+      }
+    }
+    );
   }
 
+
   ngOnInit(): void {
-    this.rooms$ = this.roomService.getRooms().pipe(
-      untilDestroyed(this)
-    );
+    // this.rooms$ = this.roomService.getRooms().pipe(
+    //   untilDestroyed(this)
+    // );
 
     this.authService.currentUserData.pipe(
       untilDestroyed(this),
       tap(
-      (user) =>
-        this.currentUser = user)
+        (user) =>
+          this.currentUser = user)
     ).subscribe();
   }
 
