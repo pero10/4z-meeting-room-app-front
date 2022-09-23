@@ -17,7 +17,7 @@
       </fa-icon>
       <fa-icon
         *ngIf="currentUser"
-      (click)="showThisRoomReservationsModal()"
+      (click)="showThisRoomReservationsModal(room)"
       [ngStyle]="{'color':'#2553d2', 'margin':'0px 10px'}"
       class="pointer float-right"
       [icon]="faClipboard">

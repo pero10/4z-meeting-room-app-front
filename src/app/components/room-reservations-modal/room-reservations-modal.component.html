@@ -1,0 +1,34 @@
+<div class="modal" tabindex="-1" [ngStyle]="{'display' : 'block'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header insert-new-item modal-normal-header">
+        <h1>Scheduled reservations for the
+        <button type="button"
+                class="btn-close float-right"
+                id="close-button-new"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                (click)="onClose()"
+        ></button>
+          "{{room?.name}}":
+        </h1>
+      </div>
+      <div class="modal-body">
+        <ng-container *ngIf="reservations.length>0; else noReservations">
+        <div *ngFor="let reservation of reservations" class="little-item">
+          <div>
+            <h2>{{reservation.name}}</h2>
+          </div>
+          Duration: <br>{{reservation.started_at}} - {{reservation.finished_at}}
+        </div>
+        </ng-container>
+        <ng-template #noReservations>
+          <div class="2-flex p-2">
+            <h2>There is no scheduled reservations for this room.</h2>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+

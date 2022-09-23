@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/c
 import {Observable} from "rxjs";
 import {Room} from "../Room";
 import {environment} from "../../environments/environment";
+import { Reservation } from '../Reservation';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -28,7 +29,7 @@ export class RoomService {
   }
 
   getRooms(): Observable<Room[]> {
-    return this.http.get<Room[]>(this.apiUrl + '/api/rooms/desc');
+    return this.http.get<Room[]>(this.apiUrl + '/api/rooms/asc');
   }
 
   deleteRoom(room: Room): Observable<Room> {
@@ -75,6 +76,12 @@ export class RoomService {
     const url=this.apiUrl+'/api/rooms/check';
 
     return this.http.get<Room[]>(url,{params});
+  }
+
+  getRoomReservations(id?:number):Observable<Reservation[]>{
+    let url = this.apiUrl+'/api/room-reservations/'+id;
+
+    return this.http.get<Reservation[]>(url);
   }
 }
 

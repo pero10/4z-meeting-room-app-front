@@ -6,6 +6,7 @@ import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {Observable, tap} from "rxjs";
+import {Reservation} from "../../Reservation";
 
 @UntilDestroy()
 @Component({
@@ -22,6 +23,7 @@ export class RoomComponent implements OnInit {
   regularModalVisible: boolean = false;
   insertModalVisible: boolean = false;
   editModalVisible: boolean = false;
+  reservationRoomModalVisible: boolean=false;
 
   currentUser?: LoginData | any;
   searchRoomComponentVisible: boolean = false;
@@ -29,6 +31,7 @@ export class RoomComponent implements OnInit {
   @Output() filterParams: EventEmitter<any> = new EventEmitter<any>();
 
   params: any[] = [];
+
 
   constructor(private roomService: RoomService,
               private authService: AuthService,
@@ -90,5 +93,11 @@ export class RoomComponent implements OnInit {
 
   addNewRoom(room: Room) {
     this.roomService.addNewRoom(room).subscribe();
+  }
+
+  reservationRoomModalToggle(room:Room){
+    // this.searchRoomComponentVisible=false;
+    this.reservationRoomModalVisible =!this.reservationRoomModalVisible;
+    this.selectedRoom=room;
   }
 }

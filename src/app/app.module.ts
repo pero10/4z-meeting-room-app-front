@@ -48,6 +48,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatOptionModule} from "@angular/material/core";
 import { ProfileComponent } from './components/profile/profile.component';
+import { RoomReservationsModalComponent } from './components/room-reservations-modal/room-reservations-modal.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     AttendeeItemComponent,
     PendingAttendeeComponent,
     AttendeeSearchModalComponent,
-    ProfileComponent
+    ProfileComponent,
+    RoomReservationsModalComponent
   ],
   imports: [
     BrowserModule,

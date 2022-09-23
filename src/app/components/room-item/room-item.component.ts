@@ -3,6 +3,7 @@ import {Room} from "../../Room";
 import {faEye, faPencil, faTrashCan,faClipboard} from "@fortawesome/free-solid-svg-icons";
 import {AuthService} from "../../services/auth.service";
 import {LoginData} from "../../LoginData";
+import { Reservation } from 'src/app/Reservation';
 
 @Component({
   selector: 'app-room-item',
@@ -14,6 +15,7 @@ export class RoomItemComponent implements OnInit {
   @Output() onDeleteRoom : EventEmitter<Room> = new EventEmitter();
   @Output() onShowModal : EventEmitter<Room> = new EventEmitter();
   @Output() onShowEditModal : EventEmitter<Room> = new EventEmitter()
+  @Output() onShowReservationsModal : EventEmitter<Room> = new EventEmitter()
 
   faDelete = faTrashCan;
   faEye = faEye;
@@ -41,7 +43,7 @@ export class RoomItemComponent implements OnInit {
     this.onShowModal.emit(room);
   }
 
-  showThisRoomReservationsModal() {
-
+  showThisRoomReservationsModal(room?:Room) {
+    this.onShowReservationsModal.emit(room);
   }
 }

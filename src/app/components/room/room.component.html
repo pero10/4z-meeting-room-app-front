@@ -22,6 +22,7 @@ Filters
   (onDeleteRoom)="deleteRoom(room)"
   (onShowModal)="onModalToggle($event)"
   (onShowEditModal)="editModalToggle(room)"
+  (onShowReservationsModal)="reservationRoomModalToggle(room)"
 ></app-room-item>
 
 <app-modal-temp
@@ -44,3 +45,9 @@ Filters
   (onAddRoom)="addNewRoom($event)"
 >
 ></app-modal-new-room>
+
+<app-room-reservations-modal
+*ngIf="reservationRoomModalVisible"
+(close)="reservationRoomModalVisible=false"
+[room]="selectedRoom">
+</app-room-reservations-modal>

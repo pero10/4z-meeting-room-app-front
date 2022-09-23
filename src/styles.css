@@ -161,6 +161,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
+.little-item{
+  border-left: 3px solid #7c7979;
+  padding: 10px 20px;
+  margin-bottom: 5px;
+}
+
 .modal-center-items{
   display:flex;
   justify-content: center;
