@@ -12,8 +12,12 @@ Filters
 </div>
 <app-search-room
 *ngIf = "searchRoomComponentVisible"
-(showRoomSearch)="toggleRoomSearch()"
->
+(showRoomSearch)="toggleRoomSearch()">
+<!--[ngClass]="{-->
+<!--'swing-in-top-fwd':searchRoomComponentVisible,-->
+<!--'swing-out-top-bck':!searchRoomComponentVisible-->
+<!--}"-->
+<!--&gt;-->
 
 </app-search-room>
 <app-room-item
@@ -23,6 +27,7 @@ Filters
   (onShowModal)="onModalToggle($event)"
   (onShowEditModal)="editModalToggle(room)"
   (onShowReservationsModal)="reservationRoomModalToggle(room)"
+  class="swing-in-top-fwd"
 ></app-room-item>
 
 <app-modal-temp

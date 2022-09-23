@@ -1,14 +1,21 @@
 <div class="container mt-5">
   <h1 class="text-primary">Today's reservations</h1>
 </div>
+<ng-container *ngIf="reservations.length>0;else ifNoTodayReservations">
 <app-home-item
-  *ngFor="let reservation of reservations$|async"
+  *ngFor="let reservation of reservations"
   [reservation]="reservation"
   (onShowAttendeesToggle)="toggleAttendeesModal($event)"
 ></app-home-item>
+</ng-container>
+<ng-template #ifNoTodayReservations>
+  <div class="no-today-reservations">
+    <h2>There is no any scheduled reservations for today. :) </h2>
+  </div>
+</ng-template>
 <ng-container *ngIf="attendeesModalVisible">
   <app-reservation-attendee
-    *ngFor="let reservation of reservations$|async"
+    *ngFor="let reservation of reservations"
     [reservation]="selectedReservation"
     [attendees]="selectedAttendees"
     (close)="attendeesModalVisible=false"

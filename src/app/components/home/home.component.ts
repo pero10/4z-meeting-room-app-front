@@ -12,7 +12,7 @@ import {UntilDestroy} from "@ngneat/until-destroy";
 })
 export class HomeComponent implements OnInit {
   @Input() reservation?: Reservation;
-  reservations$?: Observable<Reservation[]>;
+  reservations: Reservation[]=[];
   attendeesModalVisible: boolean = false;
   selectedReservation ?: Reservation;
   selectedAttendees ?: Attendee[];
@@ -20,7 +20,9 @@ export class HomeComponent implements OnInit {
   constructor(private reservationService: ReservationService) { }
 
   ngOnInit(): void {
-      this.reservations$=this.reservationService.getReservationsToday();
+      this.reservationService.getReservationsToday().subscribe(todayReservations =>{
+        this.reservations = todayReservations;
+      });
   }
 
   toggleAttendeesModal(reservation: Reservation){

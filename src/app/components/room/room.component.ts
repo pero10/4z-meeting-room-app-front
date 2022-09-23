@@ -6,7 +6,6 @@ import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 import {Observable, tap} from "rxjs";
-import {Reservation} from "../../Reservation";
 
 @UntilDestroy()
 @Component({
@@ -56,6 +55,8 @@ export class RoomComponent implements OnInit {
     ).subscribe();
   }
 
+
+
   deleteRoom(room: Room) {
     this.roomService.deleteRoom(room);
   }
@@ -88,6 +89,7 @@ export class RoomComponent implements OnInit {
   }
 
   toggleRoomSearch() {
+
     this.searchRoomComponentVisible = !this.searchRoomComponentVisible;
   }
 
