@@ -1,1 +1,28 @@
-<p>profile works!</p>
+<div class="container-lg">
+
+  <ng-container *ngIf="userComingReservation?.length == 0; else noReservations">
+    <app-user-coming *ngFor="let reservation1 of userComingReservation"
+                     [reservation]="reservation1" class="little-item">
+    </app-user-coming>
+  </ng-container>
+  <ng-template #noReservations>
+    <div class="2-flex p-2">
+      <h1 class="text-center m-2">Nemate zakazane sastanke</h1>
+    </div>
+  </ng-template>
+
+  <ng-container *ngIf="userPendingReservation?.length == 0; else nopReservations">
+    <app-user-invite *ngFor="let reservation2 of userPendingReservation" [reservation]="reservation2" class="little-item">
+    </app-user-invite>
+  </ng-container>
+  <ng-template #nopReservations>
+    <div class="2-flex p-2">
+      <h1 class="text-center m-2">Nemate pozive za sastanke</h1>
+    </div>
+  </ng-template>
+</div>
+
+<!--
+*ngFor="let user of userComingReservation|async"
+*ngFor="let user of userPendingReservation|async"
+-->

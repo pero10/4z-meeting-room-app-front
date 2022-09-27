@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit{
         this.cookieService.set('user', token.token, 1);
         this.authService.getCurrentUser(token.token).subscribe(
           (user) => {
+            console.log(token.token);
             this.authService.changeUser(user);
             this.userData = user;
             this.router.navigate(['']);

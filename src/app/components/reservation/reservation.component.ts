@@ -111,4 +111,5 @@ export class ReservationComponent implements OnInit {
   toggleReservationSearchComponent() {
     this.searchReservationComponentVisible = !this.searchReservationComponentVisible;
   }
+
 }

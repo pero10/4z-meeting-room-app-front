@@ -89,4 +89,14 @@ export class ReservationService {
     const url = `${this.apiUrl}/api/reservations/attendees/${reservationID}`
     return this.http.post<Reservation>(url, id, httpOptions);
   }
+
+  getPendingUserReservations(id?:number):Observable<Reservation[]>{
+    let url = this.apiUrl + "/api/user-reservations-pending/" + id;
+    return this.http.get<Reservation[]>(url)
+  }
+
+  getComingUserReservations(id?:number):Observable<Reservation[]>{
+    let url = this.apiUrl + "/api/user-reservations-coming/" + id;
+    return this.http.get<Reservation[]>(url);
+  }
 }

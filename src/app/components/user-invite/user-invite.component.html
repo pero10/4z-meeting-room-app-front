@@ -1,0 +1,21 @@
+<div class="container-lg mt-5"
+     *ngIf="reservation"
+>
+  <div class="card">
+    <h1 class="card-header">{{reservation?.name}}
+      <fa-icon [icon]="faCheck"></fa-icon>
+      <fa-icon [icon]="faX"></fa-icon>
+    </h1>
+    <div class="card-body">
+      <h3>room: {{reservation?.room?.name}}</h3>
+      <h2 class="card-title">
+        <fa-icon [icon]="faClock"></fa-icon>
+        {{reservation?.started_at}}<br>
+        <fa-icon [icon]="faClock"></fa-icon>
+        {{reservation?.finished_at}}
+      </h2>
+      <p class="card-text">{{reservation?.status}}</p>
+      <h3 class="card-text">Host email: {{reservation?.host?.email}}</h3>
+    </div>
+  </div>
+</div>
