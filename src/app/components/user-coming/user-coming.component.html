@@ -2,7 +2,8 @@
      *ngIf="reservation"
 >
   <div class="card">
-    <h1 class="card-header">{{reservation?.name}}
+    <h1 class="card-header bg-success">{{reservation?.name}}
+      <span class="float-right">ovde ide ikonica za brisanje ovog zahteva</span>
     </h1>
     <div class="card-body">
       <h3>room: {{reservation?.room?.name}}</h3>

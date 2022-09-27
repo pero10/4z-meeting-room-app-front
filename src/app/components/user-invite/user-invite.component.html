@@ -2,9 +2,14 @@
      *ngIf="reservation"
 >
   <div class="card">
-    <h1 class="card-header">{{reservation?.name}}
+    <h1 class="card-header bg-pending">{{reservation?.name}}
       <fa-icon [icon]="faCheck"></fa-icon>
       <fa-icon [icon]="faX"></fa-icon>
+      <span class="float-right">
+
+
+
+      </span>
     </h1>
     <div class="card-body">
       <h3>room: {{reservation?.room?.name}}</h3>

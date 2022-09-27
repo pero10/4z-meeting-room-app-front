@@ -31,17 +31,17 @@ export class ProfileComponent implements OnInit {
 
     if(this.currentUser){
       //reservations where user is invited
-      this.reservationService.getPendingUserReservations(this.currentUser?.id).subscribe(
+      this.reservationService.getPendingUserReservations(this.currentUser.id).subscribe(
         reservations => {
-          console.log(reservations);
+          // console.log(reservations);
           this.userPendingReservation = reservations;
         }
       );
 
       //reservations where user is coming to
-      this.reservationService.getComingUserReservations(this.currentUser?.id).subscribe(
+      this.reservationService.getComingUserReservations(this.currentUser.id).subscribe(
         reservations => {
-          console.log(reservations);
+          // console.log(reservations);
           this.userComingReservation = reservations;
         }
       )
