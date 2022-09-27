@@ -7,6 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule} from "@angular/forms";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { AppRoutingModule } from './app-routing.module';
+import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -49,6 +50,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatOptionModule} from "@angular/material/core";
 import { ProfileComponent } from './components/profile/profile.component';
 import { RoomReservationsModalComponent } from './components/room-reservations-modal/room-reservations-modal.component';
+import { UserInviteComponent } from './components/user-invite/user-invite.component';
+import { UserComingComponent } from './components/user-coming/user-coming.component';
 
 
 @NgModule({
@@ -88,7 +91,9 @@ import { RoomReservationsModalComponent } from './components/room-reservations-m
     PendingAttendeeComponent,
     AttendeeSearchModalComponent,
     ProfileComponent,
-    RoomReservationsModalComponent
+    RoomReservationsModalComponent,
+    UserInviteComponent,
+    UserComingComponent
   ],
   imports: [
     BrowserModule,
