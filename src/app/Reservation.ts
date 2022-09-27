@@ -2,8 +2,8 @@ import {DatePipe} from "@angular/common";
 
 export interface Reservation{
   "id" ?: number,
-  "started_at": DatePipe,
-  "finished_at": DatePipe,
+  "started_at": Date,
+  "finished_at": Date,
   "name": string,
   "status": string,
   "room":ReservationRoom,

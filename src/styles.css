@@ -165,10 +165,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   cursor: pointer;
 }
 
-.little-item{
-  border-left: 3px solid #7c7979;
+.room-reservation-item{
   padding: 10px 20px;
   margin-bottom: 5px;
+}
+
+.expired{
+  border-left: 3px solid #e76e6e;
+}
+
+.not-expired{
+  border-left: 3px solid #4ece46;
 }
 
 .modal-center-items{

@@ -58,7 +58,12 @@ export class AuthService {
     };
 
     return this.http.get<LoginData>(this.url + '/api/me', httpOptions).pipe(
-      tap((user) => this.userData.next(user)));
+      tap((user) => {
+        this.userData.next(user);
+        console.log(user);
+      })
+    );
+
   }
 
 }
