@@ -3,12 +3,9 @@
 >
   <div class="card">
     <h1 class="card-header bg-pending">{{reservation?.name}}
-      <fa-icon [icon]="faCheck"></fa-icon>
-      <fa-icon [icon]="faX"></fa-icon>
       <span class="float-right">
-
-
-
+          <fa-icon [icon]="faCheck" class="text-success me-3" (click)="acceptMeeting()"></fa-icon>
+          <fa-icon [icon]="faX" class="text-danger" (click)="declineMeeting()"></fa-icon>
       </span>
     </h1>
     <div class="card-body">

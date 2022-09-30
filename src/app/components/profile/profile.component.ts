@@ -33,7 +33,6 @@ export class ProfileComponent implements OnInit {
       //reservations where user is invited
       this.reservationService.getPendingUserReservations(this.currentUser.id).subscribe(
         reservations => {
-          // console.log(reservations);
           this.userPendingReservation = reservations;
         }
       );
@@ -41,7 +40,6 @@ export class ProfileComponent implements OnInit {
       //reservations where user is coming to
       this.reservationService.getComingUserReservations(this.currentUser.id).subscribe(
         reservations => {
-          // console.log(reservations);
           this.userComingReservation = reservations;
         }
       )

@@ -15,6 +15,7 @@
 
 
   <ng-container *ngIf="userPendingReservation?.length!=0; else noPendingReservations">
+    <h1 class="text-center">Sastanci na koje ste pozvani, molim Vas odgovorite na poziv</h1>
     <app-user-invite
       *ngFor="let reservationPending of userPendingReservation"
       [reservation]="reservationPending">

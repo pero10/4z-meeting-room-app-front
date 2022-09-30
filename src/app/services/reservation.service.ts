@@ -99,4 +99,14 @@ export class ReservationService {
     let url = this.apiUrl + "/api/user-reservations-coming/" + id;
     return this.http.get<Reservation[]>(url);
   }
+
+  userAcceptMeetingRequest(id?:number):Observable<any>{
+    let url = this.apiUrl + "/api/reservations/attendees/transfer/" + id;
+    return this.http.post<any>(url, id, httpOptions);
+  }
+
+  userDeclineMeetingRequest(id?:number):Observable<any>{
+    let url = this.apiUrl + "/api/reservations/attendees/" + id;
+    return this.http.delete(url);
+  }
 }
